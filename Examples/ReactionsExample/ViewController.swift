@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     guard let reaction = reactionSelect.selectedReaction else { return }
 
     reactionButton.reaction   = reaction
-    reactionButton.isSelected = true
+    reactionButton.isSelected = false
   }
 }
 

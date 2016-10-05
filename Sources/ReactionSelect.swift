@@ -26,7 +26,6 @@
 
 import UIKit
 
-@IBDesignable
 public final class ReactionSelect: ReactionControl {
   public var options: [Reaction] = Reaction.facebook {
     didSet { setupAndUpdate() }
@@ -36,6 +35,12 @@ public final class ReactionSelect: ReactionControl {
   private var optionIconLayers: [CALayer] = []
   private var optionLabels: [UILabel]     = []
   private let backgroundLayer = Component.ReactionSelect.backgroundLayer
+  private lazy var press: UILongPressGestureRecognizer = UILongPressGestureRecognizer().build {
+    $0.addTarget(self, action: #selector(ReactionSelect.gestureAction))
+    $0.minimumPressDuration = 0
+  }
+
+  public var stickyReaction: Bool = false
 
   // MARK: - Managing Internal State
 
@@ -59,8 +64,6 @@ public final class ReactionSelect: ReactionControl {
     optionLabels     = options.map { Component.ReactionSelect.optionLabel(option: $0, height: space * 4) }
 
     if backgroundLayer.superlayer == nil {
-      let press = UILongPressGestureRecognizer(target: self, action: #selector(ReactionSelect.gestureAction))
-      press.minimumPressDuration = 0
       addGestureRecognizer(press)
 
       layer.addSublayer(backgroundLayer)
@@ -73,10 +76,11 @@ public final class ReactionSelect: ReactionControl {
   // MARK: - Updating Object State
 
   override func update() {
+    let stickReaction    = (highlightedReactionIndex != nil && press.state != .ended) || (press.state == .ended && stickyReaction)
     let optionCount      = CGFloat(options.count)
     var backgroundBounds = bounds
 
-    if highlightedReactionIndex != nil {
+    if stickReaction {
       backgroundBounds = CGRect(x: 0, y: space, width: bounds.width, height: bounds.height - space)
     }
 
@@ -90,19 +94,20 @@ public final class ReactionSelect: ReactionControl {
       self?.backgroundLayer.path = backgroundPath
     }
 
-    let pathAnimation                   = CABasicAnimation(keyPath: "path")
-    pathAnimation.toValue               = backgroundPath
-    pathAnimation.fillMode              = kCAFillModeBoth
-    pathAnimation.isRemovedOnCompletion = false
+    let pathAnimation = CABasicAnimation(keyPath: "path").build {
+      $0.toValue               = backgroundPath
+      $0.fillMode              = kCAFillModeBoth
+      $0.isRemovedOnCompletion = false
+    }
     backgroundLayer.add(pathAnimation, forKey: "morhingPath")
 
-    updateOptionsWithSize((iconSize, highlightedIconSize), margin: space)
+    updateOptionsWithSize((iconSize, highlightedIconSize), sticky: stickReaction)
 
     CATransaction.commit()
   }
 
-  private func updateOptionsWithSize(_ size: (normal: CGFloat, highlighted: CGFloat), margin: CGFloat) {
-    let topMargin = highlightedReactionIndex == nil ? margin : margin * 2
+  private func updateOptionsWithSize(_ size: (normal: CGFloat, highlighted: CGFloat), sticky: Bool) {
+    let topMargin = sticky ? space * 2 : space
 
     for (index, icon) in optionIconLayers.enumerated() {
       let fi            = CGFloat(index)
@@ -110,11 +115,11 @@ public final class ReactionSelect: ReactionControl {
       var labelAlpha    = CGFloat(0)
       var labelTranform = CGAffineTransform(scaleX: 0.5, y: 0.5)
 
-      if let highlightedIndex = highlightedReactionIndex, index >= highlightedIndex {
+      if sticky, let highlightedIndex = highlightedReactionIndex, index >= highlightedIndex {
         if index == highlightedIndex {
           labelAlpha    = 0.7
           labelTranform = .identity
-          icon.frame    = CGRect(x: (size.normal + space) * fi, y: bounds.height - size.highlighted - margin, width: size.highlighted, height: size.highlighted)
+          icon.frame    = CGRect(x: (size.normal + space) * fi, y: bounds.height - size.highlighted - space, width: size.highlighted, height: size.highlighted)
         }
         else {
           icon.frame = CGRect(x: (size.normal + space) * (fi - 1) + size.highlighted, y: topMargin, width: size.normal, height: size.normal)
@@ -124,10 +129,10 @@ public final class ReactionSelect: ReactionControl {
         icon.frame = CGRect(x: space + (size.normal + space) * fi, y: topMargin, width: size.normal, height: size.normal)
       }
 
-      UIView.animate(withDuration: CATransaction.animationDuration(), delay: 0, options: .curveEaseIn, animations: {
+      UIView.animate(withDuration: CATransaction.animationDuration(), delay: 0, options: .curveEaseIn, animations: { [unowned self] in
         label.transform = labelTranform
         label.alpha     = labelAlpha
-        label.center    = CGPoint(x: icon.frame.midX, y: icon.frame.minY - label.bounds.height / 2 - margin)
+        label.center    = CGPoint(x: icon.frame.midX, y: icon.frame.minY - label.bounds.height / 2 - self.space)
         }, completion: nil)
     }
   }
@@ -146,11 +151,15 @@ public final class ReactionSelect: ReactionControl {
     }
 
     switch gestureRecognizer.state {
+    case .began:
+      update()
     case .changed:
       if needsUpdate {
         sendActions(for: isPointInsideExtendedBounds(location) ? .touchDragEnter : .touchDragExit)
       }
     case .ended:
+      update()
+
       sendActions(for: index == nil ? .touchUpOutside : .touchUpInside)
     default:
       break

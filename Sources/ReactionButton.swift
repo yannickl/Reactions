@@ -26,7 +26,6 @@
 
 import UIKit
 
-@IBDesignable
 public final class ReactionButton: ReactionControl {
   private let iconImageView: UIImageView = Component.ReactionButton.facebookLikeIcon
   private let titleLabel: UILabel        = Component.ReactionButton.facebookLikeLabel
@@ -73,7 +72,7 @@ public final class ReactionButton: ReactionControl {
     isSelected = !isSelected
 
     if isSelected {
-      UIView.animateKeyframes(withDuration: 0.2, delay: 0, options: .calculationModeCubic, animations: { [weak self] in
+      UIView.animateKeyframes(withDuration: 0.25, delay: 0, options: .calculationModeCubic, animations: { [weak self] in
         UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
           self?.iconImageView.transform = CGAffineTransform(scaleX: 1.8, y: 1.8)
         })

@@ -25,7 +25,7 @@
                                     <constraint firstAttribute="width" constant="282" id="qnA-qz-I2J"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="reactionChangedAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="BaQ-56-Y20"/>
+                                    <action selector="reactionChangedAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EyN-vD-eKm"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3W2-40-QAu" customClass="ReactionButton" customModule="ReactionsExample" customModuleProvider="target">
