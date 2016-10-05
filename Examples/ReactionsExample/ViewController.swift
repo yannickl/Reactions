@@ -21,7 +21,8 @@ class ViewController: UIViewController {
   @IBAction func reactionChangedAction(_ sender: AnyObject) {
     guard let reaction = reactionSelect.selectedReaction else { return }
 
-    reactionButton.reaction = reaction
+    reactionButton.reaction   = reaction
+    reactionButton.isSelected = true
   }
 }
 

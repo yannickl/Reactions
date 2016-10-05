@@ -35,18 +35,12 @@ public final class ReactionSelect: ReactionControl {
   private var space: CGFloat = 6
   private var optionIconLayers: [CALayer] = []
   private var optionLabels: [UILabel]     = []
-  private let backgroundLayer = ComponentBuilder.ReactionSelect.backgroundLayer
+  private let backgroundLayer = Component.ReactionSelect.backgroundLayer
 
   // MARK: - Managing Internal State
 
   private var highlightedReactionIndex: Int? {
-    didSet {
-      if oldValue != highlightedReactionIndex {
-        sendActions(for: .valueChanged)
-
-        setNeedsLayout()
-      }
-    }
+    didSet { setNeedsLayout() }
   }
 
   public var selectedReaction: Reaction? {
@@ -61,10 +55,14 @@ public final class ReactionSelect: ReactionControl {
     optionIconLayers.forEach { $0.removeFromSuperlayer() }
     optionLabels.forEach { $0.removeFromSuperview() }
 
-    optionIconLayers = options.map { ComponentBuilder.ReactionSelect.optionIcon(option: $0) }
-    optionLabels     = options.map { ComponentBuilder.ReactionSelect.optionLabel(option: $0, height: space * 4) }
+    optionIconLayers = options.map { Component.ReactionSelect.optionIcon(option: $0) }
+    optionLabels     = options.map { Component.ReactionSelect.optionLabel(option: $0, height: space * 4) }
 
     if backgroundLayer.superlayer == nil {
+      let press = UILongPressGestureRecognizer(target: self, action: #selector(ReactionSelect.gestureAction))
+      press.minimumPressDuration = 0
+      addGestureRecognizer(press)
+
       layer.addSublayer(backgroundLayer)
     }
 
@@ -104,11 +102,13 @@ public final class ReactionSelect: ReactionControl {
   }
 
   private func updateOptionsWithSize(_ size: (normal: CGFloat, highlighted: CGFloat), margin: CGFloat) {
+    let topMargin = highlightedReactionIndex == nil ? margin : margin * 2
+
     for (index, icon) in optionIconLayers.enumerated() {
-      let fi    = CGFloat(index)
-      let label = optionLabels[index]
-      let labelAlpha: CGFloat
-      let labelTranform: CGAffineTransform
+      let fi            = CGFloat(index)
+      let label         = optionLabels[index]
+      var labelAlpha    = CGFloat(0)
+      var labelTranform = CGAffineTransform(scaleX: 0.5, y: 0.5)
 
       if let highlightedIndex = highlightedReactionIndex, index >= highlightedIndex {
         if index == highlightedIndex {
@@ -117,15 +117,11 @@ public final class ReactionSelect: ReactionControl {
           icon.frame    = CGRect(x: (size.normal + space) * fi, y: bounds.height - size.highlighted - margin, width: size.highlighted, height: size.highlighted)
         }
         else {
-          labelAlpha    = 0
-          labelTranform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-          icon.frame    = CGRect(x: (size.normal + space) * (fi - 1) + size.highlighted, y: margin * 2, width: size.normal, height: size.normal)
+          icon.frame = CGRect(x: (size.normal + space) * (fi - 1) + size.highlighted, y: topMargin, width: size.normal, height: size.normal)
         }
       }
       else {
-        labelAlpha    = 0
-        labelTranform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        icon.frame    = CGRect(x: space + (size.normal + space) * fi, y: margin, width: size.normal, height: size.normal)
+        icon.frame = CGRect(x: space + (size.normal + space) * fi, y: topMargin, width: size.normal, height: size.normal)
       }
 
       UIView.animate(withDuration: CATransaction.animationDuration(), delay: 0, options: .curveEaseIn, animations: {
@@ -137,45 +133,43 @@ public final class ReactionSelect: ReactionControl {
   }
 
   // MARK: - Responding to Touch Events
-  
-  public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    guard let touch = touches.first else { return }
 
-    highlightedReactionIndex = optionIndexFromTouch(touch)
-  }
+  func gestureAction(_ gestureRecognizer: UIGestureRecognizer) {
+    let location    = gestureRecognizer.location(in: self)
+    let index       = optionIndexFromPoint(location)
+    let needsUpdate = index != highlightedReactionIndex
 
-  public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    guard let touch = touches.first else { return }
+    if needsUpdate {
+      highlightedReactionIndex = index
 
-    highlightedReactionIndex = optionIndexFromTouch(touch)
-  }
-
-  public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    guard let touch = touches.first else {
-      highlightedReactionIndex = nil
-
-      return
+      sendActions(for: .valueChanged)
     }
 
-    highlightedReactionIndex = optionIndexFromTouch(touch)
+    switch gestureRecognizer.state {
+    case .changed:
+      if needsUpdate {
+        sendActions(for: isPointInsideExtendedBounds(location) ? .touchDragEnter : .touchDragExit)
+      }
+    case .ended:
+      sendActions(for: index == nil ? .touchUpOutside : .touchUpInside)
+    default:
+      break
+    }
   }
 
-  public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-    highlightedReactionIndex = nil
+  private func isPointInsideExtendedBounds(_ location: CGPoint) -> Bool {
+    return CGRect(x: bounds.origin.x, y: -bounds.height, width: bounds.width, height: bounds.height * 3).contains(location)
   }
 
-  private func optionIndexFromTouch(_ touch: UITouch) -> Int? {
-    let point          = touch.location(in: self)
-    let extendedBounds = CGRect(x: bounds.origin.x, y: -bounds.height, width: bounds.width, height: bounds.height * 3)
-
-    if extendedBounds.contains(point) {
+  private func optionIndexFromPoint(_ location: CGPoint) -> Int? {
+    if isPointInsideExtendedBounds(location) {
       for (index, o) in optionIconLayers.enumerated() {
-        if o.frame.origin.x <= point.x && point.x <= (o.frame.origin.x + o.frame.width) {
+        if o.frame.origin.x <= location.x && location.x <= (o.frame.origin.x + o.frame.width) {
           return index
         }
       }
     }
-
+    
     return nil
   }
 }

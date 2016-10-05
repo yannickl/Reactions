@@ -26,63 +26,63 @@
 
 import UIKit
 
-struct ComponentBuilder {
+protocol ComponentBuilder {}
+
+extension ComponentBuilder where Self: AnyObject {
+  func build(_ block: (Self) -> Void) -> Self {
+    block(self)
+
+    return self
+  }
+}
+
+extension NSObject: ComponentBuilder {}
+
+struct Component {
   struct ReactionSelect {
     static func optionIcon(option: Reaction) -> CALayer {
-      let ca      = CALayer()
-      ca.contents = option.icon.cgImage
-
-      return ca
+      return CALayer().build {
+        $0.contents = option.icon.cgImage
+      }
     }
 
     static func optionLabel(option: Reaction, height: CGFloat) -> UILabel {
       let title = option.title
-
-      let l                 = UILabel()
-      l.text                = title
-      l.font                = UIFont(name: "Helvetica", size: 10)
-      l.textAlignment       = .center
-      l.textColor           = .white
-      l.backgroundColor     = .black
-      l.alpha               = 0
-      l.layer.masksToBounds = true
-      l.layer.cornerRadius  = height / 2
+      let font  = UIFont(name: "Helvetica", size: 10) ?? .systemFont(ofSize: 10)
 
       let size       = CGSize(width: 200, height: 200)
-      let attributes = [NSFontAttributeName: l.font] as [String: Any]
+      let attributes = [NSFontAttributeName: font] as [String: Any]
       let bounds     = title.boundingRect(with: size, options: [], attributes: attributes, context: nil)
-      l.frame        = CGRect(x: 0, y: 0, width: bounds.width + height / 2, height: height)
 
-      return l
+      return UILabel().build {
+        $0.text                = title
+        $0.font                = font
+        $0.textAlignment       = .center
+        $0.textColor           = .white
+        $0.backgroundColor     = .black
+        $0.alpha               = 0
+        $0.frame               = CGRect(x: 0, y: 0, width: bounds.width + height / 2, height: height)
+        $0.layer.masksToBounds = true
+        $0.layer.cornerRadius  = height / 2
+      }
     }
 
-    static var backgroundLayer: CAShapeLayer {
-      let layer           = CAShapeLayer()
-      layer.fillColor     = UIColor.white.cgColor
-      layer.shadowOffset  = CGSize(width: 0, height: 1)
-      layer.shadowOpacity = 0.1
-      
-      return layer
+    static var backgroundLayer = CAShapeLayer().build {
+      $0.fillColor     = UIColor.white.cgColor
+      $0.shadowOffset  = CGSize(width: 0, height: 1)
+      $0.shadowOpacity = 0.1
     }
   }
 
   struct ReactionButton {
-    static var facebookLikeIcon: UIImageView {
-      let iv         = UIImageView(image: UIImage(named: "like-template")?.withRenderingMode(.alwaysTemplate))
-      iv.contentMode = .scaleAspectFit
-      iv.tintColor   = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
-
-      return iv
+    static var facebookLikeIcon = UIImageView().build {
+      $0.contentMode = .scaleAspectFit
     }
 
-    static var facebookLikeLabel: UILabel {
-      let l           = UILabel()
-      l.text          = "Like"
-      l.font          = UIFont(name: "HelveticaNeue", size: 16)
-      l.textAlignment = .left
-      l.textColor     = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
-      
-      return l
+    static var facebookLikeLabel = UILabel().build {
+      $0.font          = UIFont(name: "HelveticaNeue", size: 16)
+      $0.textAlignment = .left
+      $0.textColor     = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
     }
   }
 }
