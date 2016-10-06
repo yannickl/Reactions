@@ -24,16 +24,10 @@
  *
  */
 
-import Foundation
+import UIKit
 
-protocol ComponentBuilder {}
-
-extension ComponentBuilder where Self: AnyObject {
-  func build(_ block: (Self) -> Void) -> Self {
-    block(self)
-
-    return self
-  }
+public final class ReactionSelectConfig {
+  public var spacing: CGFloat = 6
+  public var iconSize: CGFloat? = nil
+  public var stickyReaction: Bool = false
 }
-
-extension NSObject: ComponentBuilder {}

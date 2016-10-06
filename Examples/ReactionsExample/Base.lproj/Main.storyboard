@@ -35,18 +35,41 @@
                                     <constraint firstAttribute="height" constant="38" id="qkB-jB-xgK"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zD-5d-Zpi" customClass="ReactionButton" customModule="ReactionsExample" customModuleProvider="target">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="0bl-3a-c4z"/>
+                                    <constraint firstAttribute="height" constant="38" id="Zny-i7-rQp"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jWo-H6-9GO" customClass="ReactionSummary" customModule="ReactionsExample" customModuleProvider="target">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="q1k-5x-TOp"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="summaryTouchedAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EYH-KU-Mlv"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="jWo-H6-9GO" firstAttribute="top" secondItem="9zD-5d-Zpi" secondAttribute="bottom" constant="16" id="8vZ-dE-b3W"/>
                             <constraint firstItem="3W2-40-QAu" firstAttribute="top" secondItem="yZN-Tr-YCb" secondAttribute="bottom" constant="30" id="LDj-pw-zsc"/>
                             <constraint firstItem="yZN-Tr-YCb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LP5-Ep-8if"/>
+                            <constraint firstAttribute="trailing" secondItem="9zD-5d-Zpi" secondAttribute="trailing" constant="16" id="PqR-1y-Vd4"/>
                             <constraint firstItem="yZN-Tr-YCb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="VEs-Xj-pfX"/>
+                            <constraint firstItem="jWo-H6-9GO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="XBl-O2-UKd"/>
                             <constraint firstItem="yZN-Tr-YCb" firstAttribute="centerX" secondItem="3W2-40-QAu" secondAttribute="centerX" id="co8-Kw-neA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jWo-H6-9GO" secondAttribute="bottom" id="eqz-or-lyo"/>
+                            <constraint firstAttribute="trailing" secondItem="jWo-H6-9GO" secondAttribute="trailing" constant="8" id="kLL-jH-Zis"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="reactionButton" destination="3W2-40-QAu" id="OBR-IJ-ZU5"/>
+                        <outlet property="dynamicReactionButton" destination="9zD-5d-Zpi" id="Qbp-7k-NWv"/>
+                        <outlet property="reactionButton" destination="3W2-40-QAu" id="TJy-sa-dXp"/>
                         <outlet property="reactionSelect" destination="yZN-Tr-YCb" id="62K-BN-Gag"/>
+                        <outlet property="reactionSummary" destination="jWo-H6-9GO" id="Tf7-6q-M1N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

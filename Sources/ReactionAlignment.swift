@@ -26,6 +26,9 @@
 
 import UIKit
 
-public final class ReactionSummaryView: UIView {
-
+public enum ReactionAlignment {
+  case left
+  case right
+  case centerLeft
+  case centerRight
 }

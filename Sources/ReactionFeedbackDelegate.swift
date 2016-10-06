@@ -24,16 +24,12 @@
  *
  */
 
-import Foundation
-
-protocol ComponentBuilder {}
-
-extension ComponentBuilder where Self: AnyObject {
-  func build(_ block: (Self) -> Void) -> Self {
-    block(self)
-
-    return self
-  }
+public enum ReactionFeedback {
+  case slideFingerAcross
+  case releaseToCancel
+  case tapToSelectAReaction
 }
 
-extension NSObject: ComponentBuilder {}
+public protocol ReactionFeedbackDelegate: class {
+  func reactionFeedbackDidChanged(_ feedback: ReactionFeedback?)
+}

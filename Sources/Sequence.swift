@@ -26,14 +26,10 @@
 
 import Foundation
 
-protocol ComponentBuilder {}
+extension Sequence where Iterator.Element: Hashable {
+  func uniq() -> [Iterator.Element] {
+    var alreadySeen: [Iterator.Element: Bool] = [:]
 
-extension ComponentBuilder where Self: AnyObject {
-  func build(_ block: (Self) -> Void) -> Self {
-    block(self)
-
-    return self
+    return filter { alreadySeen.updateValue(true, forKey: $0) == nil }
   }
 }
-
-extension NSObject: ComponentBuilder {}

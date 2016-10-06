@@ -40,15 +40,6 @@ public struct Reaction {
     self.icon            = icon
     self.alternativeIcon = alternativeIcon
   }
-
-  static let facebook: [Reaction] = [
-    Reaction(id: "like", title: "J'aime", color: UIColor(red: 0.29, green: 0.54, blue: 0.95, alpha: 1), icon: UIImage(named: "like")!, alternativeIcon: UIImage(named: "like-template")?.withRenderingMode(.alwaysTemplate)),
-    Reaction(id: "love", title: "J'adore", color: UIColor(red: 0.93, green: 0.23, blue: 0.33, alpha: 1), icon: UIImage(named: "love")!),
-    Reaction(id: "haha", title: "Haha", color: UIColor(red: 0.99, green: 0.84, blue: 0.38, alpha: 1), icon: UIImage(named: "haha")!),
-    Reaction(id: "wow", title: "Wouah", color: UIColor(red: 0.99, green: 0.84, blue: 0.38, alpha: 1), icon: UIImage(named: "wow")!),
-    Reaction(id: "sad", title: "Triste", color: UIColor(red: 0.99, green: 0.84, blue: 0.38, alpha: 1), icon: UIImage(named: "sad")!),
-    Reaction(id: "angry", title: "Grrr", color: UIColor(red: 0.96, green: 0.37, blue: 0.34, alpha: 1), icon: UIImage(named: "angry")!)
-  ]
 }
 
 extension Reaction: Equatable {
@@ -57,8 +48,14 @@ extension Reaction: Equatable {
   }
 }
 
+extension Reaction: Hashable {
+  public var hashValue: Int {
+    return id.hashValue
+  }
+}
+
 extension Reaction: CustomStringConvertible {
   public var description: String {
-    return "<Reaction id=\(id)>"
+    return "<Reaction id=\(id) title=\(title)>"
   }
 }

@@ -57,9 +57,7 @@ public class ReactionControl: UIControl {
 
   // MARK: - Building Object
 
-  func setup() {
-
-  }
+  func setup() {}
 
   final func setupAndUpdate() {
     setup()
@@ -68,6 +66,5 @@ public class ReactionControl: UIControl {
 
   // MARK: - Updating Object State
 
-  func update() {
-  }
+  func update() {}
 }
