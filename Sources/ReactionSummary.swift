@@ -26,21 +26,34 @@
 
 import UIKit
 
+/**
+ A `ReactionSummary` component aims to display a list of reactions as a thumbnail associate to a text description.
+ 
+ You can configure/skin the summary using a `ReactionSummaryConfig`.
+ */
 public final class ReactionSummary: UIReactionControl {
-  private let textLabel: UILabel            = Components.reactionSummary.facebookSummaryLabel()
+  private let textLabel: UILabel            = UILabel()
   private var reactionIconLayers: [CALayer] = []
 
-  private let spacing: CGFloat = 8
-
-  public var font: UIFont! {
-    get { return textLabel.font }
-    set {
-      textLabel.font = newValue
-
-      update()
-    }
+  /**
+   The reaction summary configuration.
+   */
+  public var config: ReactionSummaryConfig = ReactionSummaryConfig() {
+    didSet { setupAndUpdate() }
   }
 
+  /**
+   The reactions to summarize.
+   */
+  public var reactions: [Reaction] = [] {
+    didSet { setupAndUpdate() }
+  }
+
+  /**
+   The text displayed by the reaction summary.
+
+   This string is nil by default.
+   */
   public var text: String? {
     get { return textLabel.text }
     set {
@@ -48,19 +61,6 @@ public final class ReactionSummary: UIReactionControl {
 
       update()
     }
-  }
-
-  /**
-   The technique to use for aligning the icon and the text.
-
-   The default value of this property is left.
-   */
-  public var alignment: ReactionAlignment = .left {
-    didSet { update() }
-  }
-
-  public var reactions: [Reaction] = [] {
-    didSet { setupAndUpdate() }
   }
 
   // MARK: - Building Object
@@ -92,28 +92,21 @@ public final class ReactionSummary: UIReactionControl {
   // MARK: - Updating Object State
 
   override func update() {
-    let textSize   = textLabel.sizeThatFits(CGSize(width: bounds.width, height: bounds.height))
-    let iconSize   = min(bounds.height, textSize.height + 4)
-    let iconWidth  = (iconSize - 3) * CGFloat(reactionIconLayers.count) + spacing
-    let margin     = (bounds.width - iconWidth - textSize.width) / 2
+    textLabel.font      = config.font
+    textLabel.textColor = config.textColor
 
-    for (index, l) in reactionIconLayers.enumerated() {
-      let x: CGFloat
+    let textSize  = textLabel.sizeThatFits(CGSize(width: bounds.width, height: bounds.height))
+    let iconSize  = min(bounds.height, textSize.height + 4)
+    let iconWidth = (iconSize - 3) * CGFloat(reactionIconLayers.count) + config.spacing
+    let margin    = (bounds.width - iconWidth - textSize.width) / 2
 
-      switch alignment {
-      case .left: x = (iconSize - 3) * CGFloat(index)
-      case .right: x = bounds.width - iconSize - (iconSize - 3) * CGFloat(index)
-      case .centerLeft: x = margin + (iconSize - 3) * CGFloat(index)
-      case .centerRight: x = bounds.width - iconSize - (iconSize - 3) * CGFloat(index) - margin
-      }
-
-      l.frame        = CGRect(x: x, y: (bounds.height - iconSize) / 2, width: iconSize, height: iconSize)
-      l.cornerRadius = iconSize / 2
+    for index in 0 ..< reactionIconLayers.count {
+      updateIconAtIndex(index, with: iconSize, margin: margin)
     }
 
     let textX: CGFloat
 
-    switch alignment {
+    switch config.alignment {
     case .left: textX = iconWidth
     case .right: textX = bounds.width - iconWidth - textSize.width
     case .centerLeft: textX = margin + iconWidth
@@ -121,6 +114,21 @@ public final class ReactionSummary: UIReactionControl {
     }
 
     textLabel.frame = CGRect(x: textX, y: 0, width: textSize.width, height: bounds.height)
+  }
+
+  private func updateIconAtIndex(_ index: Int, with size: CGFloat, margin: CGFloat) {
+    let x: CGFloat
+    let layer = reactionIconLayers[index]
+
+    switch config.alignment {
+    case .left: x = (size - 3) * CGFloat(index)
+    case .right: x = bounds.width - size - (size - 3) * CGFloat(index)
+    case .centerLeft: x = margin + (size - 3) * CGFloat(index)
+    case .centerRight: x = bounds.width - size - (size - 3) * CGFloat(index) - margin
+    }
+
+    layer.frame        = CGRect(x: x, y: (bounds.height - size) / 2, width: size, height: size)
+    layer.cornerRadius = size / 2
   }
 
   // MARK: - Responding to Gesture Events

@@ -26,16 +26,36 @@
 
 import UIKit
 
-public final class ReactionSelectControlConfig {
-  public typealias ReactionSelectControlConfigBlock = (ReactionSelectControlConfig) -> Void
+/**
+ The reaction selector configuration object.
+ */
+public final class ReactionSelectorConfig: Configurable {
+  /**
+   The builder block.
+   The block gives a reference of receiver you can configure.
+   */
+  public typealias ConfigurableBlock = (ReactionSelectorConfig) -> Void
 
+  /// The spacing between the icons and borders.
   public var spacing: CGFloat = 6
+
+  /// The icon size when the selector is inactive.
   public var iconSize: CGFloat? = nil
+
+  /// Boolean value to know whether the reactions needs to be sticked when they are selected.
   public var stickyReaction: Bool = false
 
+  // MARK: - Initializing a Reaction Selector
+
+  // Initialize a configurable with default values.
   init() {}
 
-  public init(block: ReactionSelectControlConfigBlock) {
+  /**
+   Initialize a configurable with default values.
+
+   - Parameter block: A configurable block to configure itself.
+   */
+  public init(block: ConfigurableBlock) {
     block(self)
   }
 

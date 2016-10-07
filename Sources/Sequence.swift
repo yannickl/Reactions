@@ -26,7 +26,9 @@
 
 import Foundation
 
+/// Convenient projet extension
 extension Sequence where Iterator.Element: Hashable {
+  /// Returns uniq elements in the sequence by keeping the element order.
   func uniq() -> [Iterator.Element] {
     var alreadySeen: [Iterator.Element: Bool] = [:]
 

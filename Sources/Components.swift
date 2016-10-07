@@ -86,12 +86,5 @@ struct Components {
         $0.contents = option.icon.cgImage
       }
     }
-
-    static func facebookSummaryLabel() -> UILabel {
-      return UILabel().build {
-        $0.font          = UIFont(name: "HelveticaNeue", size: 14)
-        $0.textColor     = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
-      }
-    }
   }
 }

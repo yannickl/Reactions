@@ -27,33 +27,45 @@
 import UIKit
 
 /**
- A `ReactionSelectControl` object is a horizontal control made of multiple reactions, each reaction functioning as a discrete button. A select control affords a compact means to group together a number of reactions.
+ A `ReactionSelector` object is a horizontal control made of multiple reactions, each reaction functioning as a discrete button. A select control affords a compact means to group together a number of reactions.
  
- The `ReactionSelectControl` object automatically resizes reactions using the `iconSize` and `spacing` values defined in the `config` property.
+ The `ReactionSelector` object automatically resizes reactions using the `iconSize` and `spacing` values defined in the `config` property.
+ 
+ You can configure/skin the button using a `ReactionSelectorConfig`.
  */
-public final class ReactionSelectControl: UIReactionControl {
+public final class ReactionSelector: UIReactionControl {
+  private var reactionIconLayers: [CALayer] = []
+  private var reactionLabels: [UILabel]     = []
+  private let backgroundLayer               = Components.reactionSelect.backgroundLayer()
+
+  /**
+   The reactions available in the selector.
+   */
   public var reactions: [Reaction] = Reaction.facebook.all {
     didSet { setupAndUpdate() }
   }
 
+  /// The feedback delegate.
   public weak var feedbackDelegate: ReactionFeedbackDelegate?
+
+  /// The selector feedback state.
   public internal(set) var feedback: ReactionFeedback? {
     didSet {
       if oldValue != feedback { feedbackDelegate?.reactionFeedbackDidChanged(feedback) }
     }
   }
-  
-  public var config = ReactionSelectControlConfig()
 
-  private var reactionIconLayers: [CALayer] = []
-  private var reactionLabels: [UILabel]     = []
-  private let backgroundLayer = Components.reactionSelect.backgroundLayer()
+  /**
+   The reaction selector configuration.
+   */
+  public var config = ReactionSelectorConfig()
 
   // MARK: - Managing Internal State
 
   private var stateHighlightedReactionIndex: Int?
   private var stateSelectedReaction: Reaction?
 
+  /// The selected reaction.
   public var selectedReaction: Reaction? {
     get { return stateSelectedReaction }
     set {
@@ -81,7 +93,7 @@ public final class ReactionSelectControl: UIReactionControl {
 
     if backgroundLayer.superlayer == nil {
       addGestureRecognizer(UILongPressGestureRecognizer().build {
-        $0.addTarget(self, action: #selector(ReactionSelectControl.longPressAction))
+        $0.addTarget(self, action: #selector(ReactionSelector.longPressAction))
         $0.minimumPressDuration = 0
       })
 

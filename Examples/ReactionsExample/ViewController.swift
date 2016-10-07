@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, ReactionFeedbackDelegate {
-  @IBOutlet weak var reactionSelect: ReactionSelectControl!
+  @IBOutlet weak var reactionSelect: ReactionSelector!
   @IBOutlet weak var reactionButton: ReactionButton! {
     didSet {
       reactionButton.config = ReactionButtonConfig() {
@@ -22,20 +22,19 @@ class ViewController: UIViewController, ReactionFeedbackDelegate {
 
   @IBOutlet weak var facebookReactionButton: ReactionButton! {
     didSet {
-      facebookReactionButton.reactionSelectControl = ReactionSelectControl()
-      facebookReactionButton.config                = ReactionButtonConfig() {
+      facebookReactionButton.reactionSelector = ReactionSelector()
+      facebookReactionButton.config           = ReactionButtonConfig() {
         $0.iconMarging = 8
         $0.spacing     = 4
         $0.font        = UIFont(name: "HelveticaNeue", size: 14)
       }
 
-      facebookReactionButton.reactionSelectControl?.feedbackDelegate = self
+      facebookReactionButton.reactionSelector?.feedbackDelegate = self
     }
   }
   @IBOutlet weak var reactionSummary: ReactionSummary! {
     didSet {
       reactionSummary.reactions = Reaction.facebook.all
-      reactionSummary.alignment = .left
       reactionSummary.text      = "A description"
     }
   }
@@ -61,7 +60,7 @@ class ViewController: UIViewController, ReactionFeedbackDelegate {
   }
 
   @IBAction func summaryTouchedAction(_ sender: AnyObject) {
-    facebookReactionButton.presentOverlay()
+    facebookReactionButton.presentReactionSelector()
   }
 
   // MARK: - ReactionFeedback Methods
@@ -69,7 +68,7 @@ class ViewController: UIViewController, ReactionFeedbackDelegate {
   func reactionFeedbackDidChanged(_ feedback: ReactionFeedback?) {
     feedbackLabel.isHidden = feedback == nil
 
-    feedbackLabel.text = feedback?.localizedString()
+    feedbackLabel.text = feedback?.localizedString
   }
 }
 

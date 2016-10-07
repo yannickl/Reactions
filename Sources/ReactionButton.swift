@@ -26,6 +26,13 @@
 
 import UIKit
 
+/**
+ A `ReactionButton` object is a control that executes a reaction in response to user interactions.
+
+ You can tap a reaction button in order to highlight/unhighlight a reaction. You can also make a long press to the button to display a `ReactionSelector` if you have attached one.
+ 
+ You can configure/skin the button using a `ReactionButtonConfig`.
+ */
 public final class ReactionButton: UIReactionControl {
   private let iconImageView: UIImageView = Components.reactionButton.facebookLikeIcon()
   private let titleLabel: UILabel        = Components.reactionButton.facebookLikeLabel()
@@ -34,22 +41,38 @@ public final class ReactionButton: UIReactionControl {
     $0.backgroundColor = .clear
     $0.alpha           = 0
 
-    $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ReactionButton.dismissOverlay)))
+    $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ReactionButton.dismissReactionSelector)))
   }
 
+  /**
+   A Boolean value indicating whether the reaction button is in the selected state.
+   */
   public override var isSelected: Bool {
     didSet { update() }
   }
 
+  /**
+   The reaction button configuration.
+   */
   public var config: ReactionButtonConfig = ReactionButtonConfig() {
     didSet { update() }
   }
 
+  /**
+   The reaction used to build the button.
+   
+   The reaction `title` fills the button one, and the `alternativeIcon` is used to display the icon. If the `alternativeIcon` is nil, the `icon` is used instead.
+   */
   public var reaction = Reaction.facebook.like {
     didSet { update() }
   }
 
-  public var reactionSelectControl: ReactionSelectControl? {
+  /**
+   The attached selector that the button will use in order to choose a reaction.
+   
+   There are two ways to display the selector: calling the `presentReactionSelector` method or by doing a long press to the button.
+   */
+  public var reactionSelector: ReactionSelector? {
     didSet { setupReactionSelect(old: oldValue) }
   }
 
@@ -63,19 +86,19 @@ public final class ReactionButton: UIReactionControl {
     addSubview(titleLabel)
   }
 
-  private func setupReactionSelect(old: ReactionSelectControl?) {
-    if let reactionSelect = reactionSelectControl {
-      overlay.addSubview(reactionSelect)
+  private func setupReactionSelect(old: ReactionSelector?) {
+    if let selector = reactionSelector {
+      overlay.addSubview(selector)
     }
 
     old?.removeFromSuperview()
     old?.removeTarget(self, action: #selector(ReactionButton.reactionTouchedInsideAction), for: .touchUpInside)
     old?.removeTarget(self, action: #selector(ReactionButton.reactionTouchedOutsideAction), for: .touchUpOutside)
 
-    reaction = reactionSelectControl?.reactions.first ?? Reaction.facebook.like
+    reaction = reactionSelector?.reactions.first ?? Reaction.facebook.like
 
-    reactionSelectControl?.addTarget(self, action: #selector(ReactionButton.reactionTouchedInsideAction), for: .touchUpInside)
-    reactionSelectControl?.addTarget(self, action: #selector(ReactionButton.reactionTouchedOutsideAction), for: .touchUpOutside)
+    reactionSelector?.addTarget(self, action: #selector(ReactionButton.reactionTouchedInsideAction), for: .touchUpInside)
+    reactionSelector?.addTarget(self, action: #selector(ReactionButton.reactionTouchedOutsideAction), for: .touchUpOutside)
   }
 
   // MARK: - Updating Object State
@@ -139,34 +162,34 @@ public final class ReactionButton: UIReactionControl {
   private var isLongPressMoved = false
 
   func longPressAction(_ gestureRecognizer: UILongPressGestureRecognizer) {
-    guard let reactionSelect = reactionSelectControl else { return }
+    guard let selector = reactionSelector else { return }
 
     if gestureRecognizer.state == .began {
       isLongPressMoved = false
 
-      displayOverlay(feedback: .slideFingerAcross)
+      displayReactionSelector(feedback: .slideFingerAcross)
     }
 
     if gestureRecognizer.state == .changed {
       isLongPressMoved = true
 
-      reactionSelect.longPressAction(gestureRecognizer)
+      selector.longPressAction(gestureRecognizer)
     }
     else if gestureRecognizer.state == .ended {
       if isLongPressMoved {
-        reactionSelect.longPressAction(gestureRecognizer)
+        selector.longPressAction(gestureRecognizer)
 
-        dismissOverlay()
+        dismissReactionSelector()
       }
       else {
-        reactionSelect.feedback = .tapToSelectAReaction
+        selector.feedback = .tapToSelectAReaction
       }
     }
   }
 
   // MARK: - Responding to Select Events
 
-  func reactionTouchedInsideAction(_ sender: ReactionSelectControl) {
+  func reactionTouchedInsideAction(_ sender: ReactionSelector) {
     guard let selectedReaction = sender.selectedReaction else { return }
 
     let isReactionChanged = reaction != selectedReaction
@@ -177,28 +200,36 @@ public final class ReactionButton: UIReactionControl {
     if isReactionChanged {
       sendActions(for: .valueChanged)
     }
-    
-    dismissOverlay()
+
+    dismissReactionSelector()
   }
 
-  func reactionTouchedOutsideAction(_ sender: ReactionSelectControl) {
-    dismissOverlay()
+  func reactionTouchedOutsideAction(_ sender: ReactionSelector) {
+    dismissReactionSelector()
   }
 
-  // MARK: -
+  // MARK: - Presenting Reaction Selectors
 
-  public func presentOverlay() {
-    displayOverlay(feedback: .tapToSelectAReaction)
+  /**
+   Presents the attached reaction selector.
+   
+   If no reaction selector is attached, the method does nothing.
+   */
+  public func presentReactionSelector() {
+    displayReactionSelector(feedback: .tapToSelectAReaction)
   }
 
-  public func dismissOverlay() {
-    reactionSelectControl?.feedback = nil
-    
+  /**
+   Dismisses the attached reaction selector that was presented by the button.
+   */
+  public func dismissReactionSelector() {
+    reactionSelector?.feedback = nil
+
     animateOverlay(alpha: 0, center: CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY))
   }
 
-  func displayOverlay(feedback: ReactionFeedback) {
-    guard let reactionSelect = reactionSelectControl, let window = UIApplication.shared.keyWindow else { return }
+  private func displayReactionSelector(feedback: ReactionFeedback) {
+    guard let selector = reactionSelector, let window = UIApplication.shared.keyWindow else { return }
 
     if overlay.superview == nil {
       UIApplication.shared.keyWindow?.addSubview(overlay)
@@ -206,26 +237,26 @@ public final class ReactionButton: UIReactionControl {
 
     overlay.frame = CGRect(x:0 , y: 0, width: window.bounds.width, height: window.bounds.height * 2)
 
-    let centerPoint       = convert(CGPoint(x: bounds.midX, y: 0), to: nil)
-    reactionSelect.frame  = reactionSelect.boundsToFit()
-    reactionSelect.center = centerPoint
+    let centerPoint = convert(CGPoint(x: bounds.midX, y: 0), to: nil)
+    selector.frame  = selector.boundsToFit()
+    selector.center = centerPoint
 
-    if reactionSelect.frame.origin.x - config.spacing < 0 {
-      reactionSelect.center = CGPoint(x: centerPoint.x - reactionSelect.frame.origin.x + config.spacing, y: centerPoint.y)
+    if selector.frame.origin.x - config.spacing < 0 {
+      selector.center = CGPoint(x: centerPoint.x - selector.frame.origin.x + config.spacing, y: centerPoint.y)
     }
-    else if reactionSelect.frame.origin.x + reactionSelect.frame.width + config.spacing > overlay.bounds.width {
-      reactionSelect.center = CGPoint(x: centerPoint.x - (reactionSelect.frame.origin.x + reactionSelect.frame.width + config.spacing - overlay.bounds.width), y: centerPoint.y)
+    else if selector.frame.origin.x + selector.frame.width + config.spacing > overlay.bounds.width {
+      selector.center = CGPoint(x: centerPoint.x - (selector.frame.origin.x + selector.frame.width + config.spacing - overlay.bounds.width), y: centerPoint.y)
     }
 
-    reactionSelect.feedback = feedback
+    selector.feedback = feedback
 
-    animateOverlay(alpha: 1, center: CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY - reactionSelect.bounds.height))
+    animateOverlay(alpha: 1, center: CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY - selector.bounds.height))
   }
 
   private func animateOverlay(alpha: CGFloat, center: CGPoint) {
     UIView.animate(withDuration: 0.1) { [weak self] in
       guard let overlay = self?.overlay else { return }
-
+      
       overlay.alpha  = alpha
       overlay.center = center
     }

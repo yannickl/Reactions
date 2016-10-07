@@ -24,11 +24,16 @@
  *
  */
 
-import UIKit
-
+/**
+ These constants specify reaction alignment.
+ */
 public enum ReactionAlignment {
+  /// Text and icon are visually left aligned. The icon is to the left of text.
   case left
+  /// Text and icon are visually right aligned. The icon is to the right of text.
   case right
+  /// Text and icon are visually center aligned. The icon is to the left of text.
   case centerLeft
+  /// Text and icon are visually center aligned. The icon is to the right of text.
   case centerRight
 }

@@ -24,14 +24,45 @@
  *
  */
 
-/**
- The delegate of a `ReactionSelector` object should adopt the `ReactionFeedbackDelegate` protocol. It allows the delegate to know in which state the selector is.
- */
-public protocol ReactionFeedbackDelegate: class {
-  /**
-   Tells the delegate that the feedback did changed.
+import UIKit
 
-   - Parameter feedback: The reaction feedback.
+/**
+ The reaction summary configuration object.
+ */
+public final class ReactionSummaryConfig: Configurable {
+  /**
+   The builder block.
+   The block gives a reference of receiver you can configure.
    */
-  func reactionFeedbackDidChanged(_ feedback: ReactionFeedback?)
+  public typealias ConfigurableBlock = (ReactionSummaryConfig) -> Void
+
+  /// The spacing between the icons and the text.
+  public var spacing: CGFloat = 8
+
+  /// The font of the text.
+  public var font: UIFont! = UIFont(name: "HelveticaNeue", size: 14)
+
+  /// The color of the text.
+  public var textColor: UIColor! = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
+
+  /**
+   The technique to use for aligning the icon and the text.
+
+   The default value of this property is left.
+   */
+  public var alignment: ReactionAlignment = .left
+
+  // MARK: - Initializing a Reaction Summary
+
+  // Initialize a configurable with default values.
+  init() {}
+
+  /**
+   Initialize a configurable with default values.
+
+   - Parameter block: A configurable block to configure itself.
+   */
+  public init(block: ConfigurableBlock) {
+    block(self)
+  }
 }

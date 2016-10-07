@@ -26,14 +26,26 @@
 
 import UIKit
 
-public final class ReactionButtonConfig {
-  public typealias ReactionButtonConfigBlock = (ReactionButtonConfig) -> Void
+/**
+ The reaction button configuration object.
+ */
+public final class ReactionButtonConfig: Configurable {
+  /**
+   The builder block.
+   The block gives a reference of receiver you can configure.
+   */
+  public typealias ConfigurableBlock = (ReactionButtonConfig) -> Void
 
+  /// The spacing between the icon and the text.
   public var spacing: CGFloat     = 8
+
+  /// The marging between the icon and border.
   public var iconMarging: CGFloat = 4
 
+  /// The font of the text.
   public var font: UIFont! = UIFont(name: "HelveticaNeue", size: 16)
 
+  /// The color of the text (and image) when no reaction is selected.
   public var neutralTintColor: UIColor = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
 
   /**
@@ -43,9 +55,17 @@ public final class ReactionButtonConfig {
    */
   public var alignment: ReactionAlignment = .left
 
+  // MARK: - Initializing a Reaction Button
+
+  // Initialize a configurable with default values.
   init() {}
-  
-  public init(block: ReactionButtonConfigBlock) {
+
+  /**
+   Initialize a configurable with default values.
+
+   - Parameter block: A configurable block to configure itself.
+   */
+  public init(block: ConfigurableBlock) {
     block(self)
   }
 }

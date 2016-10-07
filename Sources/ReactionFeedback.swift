@@ -24,12 +24,21 @@
  *
  */
 
+/**
+ These constants specify reaction feedback when interacting with the `ReactionSelector`.
+ */
 public enum ReactionFeedback {
+  /// Slide finger across feedback
   case slideFingerAcross
+  /// Release to cancel feedback
   case releaseToCancel
+  /// Tap to select a reaction feedback
   case tapToSelectAReaction
 
-  public func localizedString() -> String {
+  // MARK: - Getting a Localized Feedback Description
+
+  /// A string containing the localized description of the feedback.
+  public var localizedString: String {
     switch self {
     case .slideFingerAcross:
       return "Slide finger across"

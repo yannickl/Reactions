@@ -26,10 +26,11 @@
 
 import Foundation
 
-/// Protocol helper to build interface component in an easy and elegant way
+/// Protocol helper to build interface component in an easy and elegant way.
 protocol ComponentBuilder {}
 
 extension ComponentBuilder where Self: AnyObject {
+  /// Calls the parameter block in order to update the receiver properties and then returns the object.
   func build(_ block: (Self) -> Void) -> Self {
     block(self)
 

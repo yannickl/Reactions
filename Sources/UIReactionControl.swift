@@ -26,16 +26,26 @@
 
 import UIKit
 
+/**
+ The `UIReactionControl` class implements common behavior for reaction elements. It mainly defines two methods:
+ 
+ - `setup`: Manage the view hierarchy by adding and/or removing elements.
+ - `update`: Layout the view hierarchy and update state.
+ 
+ You should override these methods if you subclass the `UIReactionControl`.
+ */
 public class UIReactionControl: UIControl {
   // MARK: - Initializing a ReactionSelect Object
 
-  override init(frame: CGRect) {
+  /// Initializes and returns a newly allocated view object with the specified frame rectangle.
+  public override init(frame: CGRect) {
     super.init(frame: frame)
 
     setupAndUpdate()
   }
 
-  required public init?(coder aDecoder: NSCoder) {
+  /// Returns an object initialized from data in a given unarchiver.
+  public required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
 
     setupAndUpdate()
@@ -43,12 +53,14 @@ public class UIReactionControl: UIControl {
 
   // MARK: - Laying out Subviews
 
+  /// Lays out subviews.
   public override func layoutSubviews() {
     super.layoutSubviews()
 
     update()
   }
 
+  /// Called when a designable object is created in Interface Builder.
   public override func prepareForInterfaceBuilder() {
     super.prepareForInterfaceBuilder()
 
@@ -57,8 +69,10 @@ public class UIReactionControl: UIControl {
 
   // MARK: - Building Object
 
+  /// Setup the view hierarchy
   func setup() {}
 
+  /// Call the setup then the update method
   final func setupAndUpdate() {
     setup()
 
@@ -69,5 +83,6 @@ public class UIReactionControl: UIControl {
 
   // MARK: - Updating Object State
 
+  /// Update the state and layout the view hierarchy
   func update() {}
 }

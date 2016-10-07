@@ -24,14 +24,20 @@
  *
  */
 
-/**
- The delegate of a `ReactionSelector` object should adopt the `ReactionFeedbackDelegate` protocol. It allows the delegate to know in which state the selector is.
- */
-public protocol ReactionFeedbackDelegate: class {
-  /**
-   Tells the delegate that the feedback did changed.
+import Foundation
 
-   - Parameter feedback: The reaction feedback.
+/// Protocol to create a config object.
+protocol Configurable {
+  /**
+   The builder block.
+   The block gives a reference of receiver you can configure.
    */
-  func reactionFeedbackDidChanged(_ feedback: ReactionFeedback?)
+  typealias ConfigurableBlock = (Self) -> Void
+
+  /**
+   Initialize a configurable with default values.
+
+   - Parameter block: A configurable block to configure itself.
+   */
+  init(block: ConfigurableBlock)
 }
