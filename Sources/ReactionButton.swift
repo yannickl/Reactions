@@ -104,7 +104,9 @@ public final class ReactionButton: UIReactionControl {
   // MARK: - Updating Object State
 
   override func update() {
-    titleLabel.font = config.font
+    iconImageView.image = reaction.alternativeIcon ?? reaction.icon
+    titleLabel.font     = config.font
+    titleLabel.text     = reaction.title
 
     let iconSize   = min(bounds.width - config.spacing, bounds.height) - config.iconMarging * 2
     let titleSize  = titleLabel.sizeThatFits(CGSize(width: bounds.width - iconSize, height: bounds.height))
@@ -127,9 +129,6 @@ public final class ReactionButton: UIReactionControl {
         titleFrame.origin.x = emptyWidth / 2
       }
     }
-
-    iconImageView.image = reaction.alternativeIcon ?? reaction.icon
-    titleLabel.text     = reaction.title
 
     iconImageView.frame = iconFrame
     titleLabel.frame    = titleFrame

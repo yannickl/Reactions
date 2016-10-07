@@ -24,28 +24,11 @@
  *
  */
 
-/**
- These constants specify reaction feedback when interacting with the `ReactionSelector`.
- */
-public enum ReactionFeedback {
-  /// Slide finger across feedback
-  case slideFingerAcross
-  /// Release to cancel feedback
-  case releaseToCancel
-  /// Tap to select a reaction feedback
-  case tapToSelectAReaction
+/** The "Slide finger across" feedback. */
+"feedback.slideFingerAcross" = "Balayez avec votre doigt";
 
-  // MARK: - Getting a Localized Feedback Description
+/** The "Release to cancel" feedback. */
+"feedback.releaseToCancel" = "Relâcher pour annuler";
 
-  /// A string containing the localized description of the feedback.
-  public var localizedString: String {
-    switch self {
-    case .slideFingerAcross:
-      return "feedback.slideFingerAcross".localized()
-    case .releaseToCancel:
-      return "feedback.releaseToCancel".localized()
-    case .tapToSelectAReaction:
-      return "feedback.tapToSelectAReaction".localized()
-    }
-  }
-}
+/** The "Tap to select a reaction" feedback. */
+"feedback.tapToSelectAReaction" = "Toucher pour sélectionner une réaction";

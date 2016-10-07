@@ -32,35 +32,60 @@ extension Reaction {
   public struct facebook {
     /// The facebook's "like" reaction.
     public static var like: Reaction {
-      return Reaction(id: "like", title: "J'aime", color: UIColor(red: 0.29, green: 0.54, blue: 0.95, alpha: 1), icon: UIImage(named: "like")!, alternativeIcon: UIImage(named: "like-template")?.withRenderingMode(.alwaysTemplate))
+      return reactionWithId("like")
     }
 
     /// The facebook's "love" reaction.
     public static var love: Reaction {
-      return Reaction(id: "love", title: "J'adore", color: UIColor(red: 0.93, green: 0.23, blue: 0.33, alpha: 1), icon: UIImage(named: "love")!)
+      return reactionWithId("love")
     }
 
     /// The facebook's "haha" reaction.
     public static var haha: Reaction {
-      return Reaction(id: "haha", title: "Haha", color: UIColor(red: 0.99, green: 0.84, blue: 0.38, alpha: 1), icon: UIImage(named: "haha")!)
+      return reactionWithId("haha")
     }
 
     /// The facebook's "wow" reaction.
     public static var wow: Reaction {
-      return Reaction(id: "wow", title: "Wouah", color: UIColor(red: 0.99, green: 0.84, blue: 0.38, alpha: 1), icon: UIImage(named: "wow")!)
+      return reactionWithId("wow")
     }
 
     /// The facebook's "sad" reaction.
     public static var sad: Reaction {
-      return Reaction(id: "sad", title: "Triste", color: UIColor(red: 0.99, green: 0.84, blue: 0.38, alpha: 1), icon: UIImage(named: "sad")!)
+      return reactionWithId("sad")
     }
 
     /// The facebook's "angry" reaction.
     public static var angry: Reaction {
-      return Reaction(id: "angry", title: "Grrr", color: UIColor(red: 0.96, green: 0.37, blue: 0.34, alpha: 1), icon: UIImage(named: "angry")!)
+      return reactionWithId("angry")
     }
 
     /// The list of standard facebook reactions in this order: `.like`, `.love`, `.haha`, `.wow`, `.sad`, `.angry`.
     public static let all: [Reaction] = [facebook.like, facebook.love, facebook.haha, facebook.wow, facebook.sad, facebook.angry]
+
+    // MARK: - Convenience Methods
+
+    private static func reactionWithId(_ id: String) -> Reaction {
+      var color: UIColor            = .black
+      var alternativeIcon: UIImage? = nil
+
+      switch id {
+      case "like":
+        color           = UIColor(red: 0.29, green: 0.54, blue: 0.95, alpha: 1)
+        alternativeIcon = imageWithName("like-template").withRenderingMode(.alwaysTemplate)
+      case "love":
+        color = UIColor(red: 0.93, green: 0.23, blue: 0.33, alpha: 1)
+      case "angry":
+        color = UIColor(red: 0.96, green: 0.37, blue: 0.34, alpha: 1)
+      default:
+        color = UIColor(red: 0.99, green: 0.84, blue: 0.38, alpha: 1)
+      }
+
+      return Reaction(id: id, title: id.localized(from: "FacebookReactionLocalizable"), color: color, icon: imageWithName(id), alternativeIcon: alternativeIcon)
+    }
+
+    private static func imageWithName(_ name: String) -> UIImage {
+      return UIImage(named: name, in: .reactionsBundle(), compatibleWith: nil)!
+    }
   }
 }

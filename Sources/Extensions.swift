@@ -24,28 +24,37 @@
  *
  */
 
-/**
- These constants specify reaction feedback when interacting with the `ReactionSelector`.
- */
-public enum ReactionFeedback {
-  /// Slide finger across feedback
-  case slideFingerAcross
-  /// Release to cancel feedback
-  case releaseToCancel
-  /// Tap to select a reaction feedback
-  case tapToSelectAReaction
+import Foundation
 
-  // MARK: - Getting a Localized Feedback Description
+extension Sequence where Iterator.Element: Hashable {
+  /// Returns uniq elements in the sequence by keeping the order.
+  func uniq() -> [Iterator.Element] {
+    var alreadySeen: [Iterator.Element: Bool] = [:]
 
-  /// A string containing the localized description of the feedback.
-  public var localizedString: String {
-    switch self {
-    case .slideFingerAcross:
-      return "feedback.slideFingerAcross".localized()
-    case .releaseToCancel:
-      return "feedback.releaseToCancel".localized()
-    case .tapToSelectAReaction:
-      return "feedback.tapToSelectAReaction".localized()
+    return filter { alreadySeen.updateValue(true, forKey: $0) == nil }
+  }
+}
+
+extension Bundle {
+  /// Returns the current lib bundle
+  class func reactionsBundle() -> Bundle {
+    var bundle = Bundle(for: ReactionButton.self)
+
+    if let url = bundle.url(forResource: "Reactions", withExtension: "bundle"), let podBundle = Bundle(url: url) {
+      bundle = podBundle
     }
+
+    return bundle
+  }
+}
+
+extension String {
+  /**
+   Returns the string localized.
+   
+   - Parameter tableName: The receiver’s string table to search. By default the method attempts to use the table in FeedbackLocalizable.strings.
+   */
+  func localized(from tableName: String? = "FeedbackLocalizable") -> String {
+    return NSLocalizedString(self, tableName: tableName, bundle: .reactionsBundle(), value: self, comment: "")
   }
 }

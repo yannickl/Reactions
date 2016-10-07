@@ -23,11 +23,14 @@
 		CED9D93E1DA6566700A70C2D /* FacebookReactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D93D1DA6566700A70C2D /* FacebookReactions.swift */; };
 		CED9D9401DA6869500A70C2D /* ReactionSelectorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D93F1DA6869500A70C2D /* ReactionSelectorConfig.swift */; };
 		CED9D9421DA6931A00A70C2D /* ReactionAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9411DA6931A00A70C2D /* ReactionAlignment.swift */; };
-		CED9D9461DA6A07D00A70C2D /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9451DA6A07D00A70C2D /* Sequence.swift */; };
 		CED9D9481DA6EAFA00A70C2D /* ReactionFeedbackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9471DA6EAFA00A70C2D /* ReactionFeedbackDelegate.swift */; };
 		CED9D94A1DA78F9400A70C2D /* ReactionButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9491DA78F9400A70C2D /* ReactionButtonConfig.swift */; };
 		CED9D94C1DA7D36700A70C2D /* ReactionSummaryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D94B1DA7D36700A70C2D /* ReactionSummaryConfig.swift */; };
 		CED9D94E1DA7E49500A70C2D /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D94D1DA7E49500A70C2D /* Configurable.swift */; };
+		CED9D9531DA82AA100A70C2D /* Facebook.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED9D9521DA82AA100A70C2D /* Facebook.xcassets */; };
+		CED9D9591DA82C6700A70C2D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9581DA82C6700A70C2D /* Extensions.swift */; };
+		CED9D95A1DA835DB00A70C2D /* FeedbackLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CED9D95C1DA835DB00A70C2D /* FeedbackLocalizable.strings */; };
+		CED9D95D1DA835DF00A70C2D /* FacebookReactionLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CED9D95F1DA835DF00A70C2D /* FacebookReactionLocalizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,11 +52,16 @@
 		CED9D93D1DA6566700A70C2D /* FacebookReactions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookReactions.swift; sourceTree = "<group>"; };
 		CED9D93F1DA6869500A70C2D /* ReactionSelectorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionSelectorConfig.swift; sourceTree = "<group>"; };
 		CED9D9411DA6931A00A70C2D /* ReactionAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionAlignment.swift; sourceTree = "<group>"; };
-		CED9D9451DA6A07D00A70C2D /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		CED9D9471DA6EAFA00A70C2D /* ReactionFeedbackDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionFeedbackDelegate.swift; sourceTree = "<group>"; };
 		CED9D9491DA78F9400A70C2D /* ReactionButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionButtonConfig.swift; sourceTree = "<group>"; };
 		CED9D94B1DA7D36700A70C2D /* ReactionSummaryConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionSummaryConfig.swift; sourceTree = "<group>"; };
 		CED9D94D1DA7E49500A70C2D /* Configurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
+		CED9D9521DA82AA100A70C2D /* Facebook.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Facebook.xcassets; sourceTree = "<group>"; };
+		CED9D9581DA82C6700A70C2D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CED9D95B1DA835DB00A70C2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/FeedbackLocalizable.strings; sourceTree = "<group>"; };
+		CED9D95E1DA835DF00A70C2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/FacebookReactionLocalizable.strings; sourceTree = "<group>"; };
+		CED9D9601DA8364D00A70C2D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/FeedbackLocalizable.strings; sourceTree = "<group>"; };
+		CED9D9611DA8364D00A70C2D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/FacebookReactionLocalizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +78,7 @@
 		CED4FCD51D9FD95D00F54838 = {
 			isa = PBXGroup;
 			children = (
+				CED9D9511DA82AA100A70C2D /* Resources */,
 				CED4FCF51DA014B100F54838 /* Sources */,
 				CED4FCE01D9FD95D00F54838 /* ReactionsExample */,
 				CED4FCDF1D9FD95D00F54838 /* Products */,
@@ -103,6 +112,7 @@
 				CE874F021DA2DA64000D309E /* ComponentBuilder.swift */,
 				CED9D93B1DA64FCD00A70C2D /* Components.swift */,
 				CED9D94D1DA7E49500A70C2D /* Configurable.swift */,
+				CED9D9581DA82C6700A70C2D /* Extensions.swift */,
 				CED9D93D1DA6566700A70C2D /* FacebookReactions.swift */,
 				CED4FCF61DA014B100F54838 /* Reaction.swift */,
 				CED9D9411DA6931A00A70C2D /* ReactionAlignment.swift */,
@@ -114,11 +124,21 @@
 				CED9D93F1DA6869500A70C2D /* ReactionSelectorConfig.swift */,
 				CE874F001DA2D916000D309E /* ReactionSummary.swift */,
 				CED9D94B1DA7D36700A70C2D /* ReactionSummaryConfig.swift */,
-				CED9D9451DA6A07D00A70C2D /* Sequence.swift */,
 				CEB867BB1DA41CB600031B0D /* UIReactionControl.swift */,
 			);
 			name = Sources;
 			path = ../Sources;
+			sourceTree = "<group>";
+		};
+		CED9D9511DA82AA100A70C2D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CED9D9521DA82AA100A70C2D /* Facebook.xcassets */,
+				CED9D95C1DA835DB00A70C2D /* FeedbackLocalizable.strings */,
+				CED9D95F1DA835DF00A70C2D /* FacebookReactionLocalizable.strings */,
+			);
+			name = Resources;
+			path = ../Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +185,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = CED4FCD51D9FD95D00F54838;
 			productRefGroup = CED4FCDF1D9FD95D00F54838 /* Products */;
@@ -183,7 +204,10 @@
 			files = (
 				CED4FCEC1D9FD95D00F54838 /* LaunchScreen.storyboard in Resources */,
 				CED4FCE91D9FD95D00F54838 /* Assets.xcassets in Resources */,
+				CED9D95D1DA835DF00A70C2D /* FacebookReactionLocalizable.strings in Resources */,
 				CED4FCE71D9FD95D00F54838 /* Main.storyboard in Resources */,
+				CED9D95A1DA835DB00A70C2D /* FeedbackLocalizable.strings in Resources */,
+				CED9D9531DA82AA100A70C2D /* Facebook.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,11 +225,11 @@
 				CED4FCF91DA10D6600F54838 /* ReactionButton.swift in Sources */,
 				CEB867BC1DA41CB600031B0D /* UIReactionControl.swift in Sources */,
 				CED9D94E1DA7E49500A70C2D /* Configurable.swift in Sources */,
+				CED9D9591DA82C6700A70C2D /* Extensions.swift in Sources */,
 				CE874F031DA2DA64000D309E /* ComponentBuilder.swift in Sources */,
 				CED4FCE41D9FD95D00F54838 /* ViewController.swift in Sources */,
 				CED4FCE21D9FD95D00F54838 /* AppDelegate.swift in Sources */,
 				CED4FCFD1DA1100900F54838 /* ReactionFeedback.swift in Sources */,
-				CED9D9461DA6A07D00A70C2D /* Sequence.swift in Sources */,
 				CED9D9401DA6869500A70C2D /* ReactionSelectorConfig.swift in Sources */,
 				CED9D94A1DA78F9400A70C2D /* ReactionButtonConfig.swift in Sources */,
 				CED9D93C1DA64FCD00A70C2D /* Components.swift in Sources */,
@@ -234,6 +258,24 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		CED9D95C1DA835DB00A70C2D /* FeedbackLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CED9D95B1DA835DB00A70C2D /* Base */,
+				CED9D9601DA8364D00A70C2D /* fr */,
+			);
+			name = FeedbackLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		CED9D95F1DA835DF00A70C2D /* FacebookReactionLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CED9D95E1DA835DF00A70C2D /* Base */,
+				CED9D9611DA8364D00A70C2D /* fr */,
+			);
+			name = FacebookReactionLocalizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -241,6 +283,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -291,6 +334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

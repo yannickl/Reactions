@@ -24,14 +24,11 @@
  *
  */
 
-import Foundation
+/** The "Slide finger across" feedback. */
+"feedback.slideFingerAcross" = "Slide finger across";
 
-/// Convenient projet extension
-extension Sequence where Iterator.Element: Hashable {
-  /// Returns uniq elements in the sequence by keeping the element order.
-  func uniq() -> [Iterator.Element] {
-    var alreadySeen: [Iterator.Element: Bool] = [:]
+/** The "Release to cancel" feedback. */
+"feedback.releaseToCancel" = "Release to cancel";
 
-    return filter { alreadySeen.updateValue(true, forKey: $0) == nil }
-  }
-}
+/** The "Tap to select a reaction" feedback. */
+"feedback.tapToSelectAReaction" = "Tap to select a reaction";
