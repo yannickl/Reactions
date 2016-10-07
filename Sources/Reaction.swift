@@ -26,6 +26,11 @@
 
 import UIKit
 
+/**
+ A reaction structure is 
+ 
+ The `Reaction` struct implements a reaction on a `ReactionSelect` object. A tab bar operates strictly in radio mode, where one item is selected at a time—tapping a tab bar item toggles the view above the tab bar. You can also specify a badge value on the tab bar item for adding additional visual information—for example, the Messages app uses a badge on the item to show the number of new messages. This class also provides a number of system defaults for creating items.
+ */
 public struct Reaction {
   public let id: String
   public let title: String

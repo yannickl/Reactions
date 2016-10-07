@@ -26,6 +26,7 @@
 
 import UIKit
 
+/// Pre-build UI components
 struct Components {
   struct reactionSelect {
     static func reactionIcon(option: Reaction) -> CALayer {

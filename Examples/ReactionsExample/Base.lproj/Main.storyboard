@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZN-Tr-YCb" customClass="ReactionSelect" customModule="ReactionsExample" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZN-Tr-YCb" customClass="ReactionSelectControl" customModule="ReactionsExample" customModuleProvider="target">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="JKf-vL-t3z"/>
@@ -41,6 +41,9 @@
                                     <constraint firstAttribute="width" constant="114" id="0bl-3a-c4z"/>
                                     <constraint firstAttribute="height" constant="38" id="Zny-i7-rQp"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="facebookButtonReactionTouchedUpAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="daM-Ta-7vb"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jWo-H6-9GO" customClass="ReactionSummary" customModule="ReactionsExample" customModuleProvider="target">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,22 +54,53 @@
                                     <action selector="summaryTouchedAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EYH-KU-Mlv"/>
                                 </connections>
                             </view>
+                            <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZb-9n-6lO">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="mDP-bN-3YY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QpX-4F-4B3">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="j6x-hV-BYJ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r2V-fQ-AD8">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ALu-SK-5Sd"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="jWo-H6-9GO" firstAttribute="top" secondItem="9zD-5d-Zpi" secondAttribute="bottom" constant="16" id="8vZ-dE-b3W"/>
+                            <constraint firstItem="jWo-H6-9GO" firstAttribute="top" secondItem="9zD-5d-Zpi" secondAttribute="bottom" constant="4" id="8vZ-dE-b3W"/>
+                            <constraint firstItem="eZb-9n-6lO" firstAttribute="top" secondItem="QpX-4F-4B3" secondAttribute="bottom" id="BRH-PW-D7C"/>
+                            <constraint firstItem="jWo-H6-9GO" firstAttribute="top" secondItem="eZb-9n-6lO" secondAttribute="bottom" constant="5" id="Cqs-Xa-I2S"/>
+                            <constraint firstAttribute="trailing" secondItem="eZb-9n-6lO" secondAttribute="trailing" id="FGX-zV-Ehg"/>
                             <constraint firstItem="3W2-40-QAu" firstAttribute="top" secondItem="yZN-Tr-YCb" secondAttribute="bottom" constant="30" id="LDj-pw-zsc"/>
                             <constraint firstItem="yZN-Tr-YCb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LP5-Ep-8if"/>
-                            <constraint firstAttribute="trailing" secondItem="9zD-5d-Zpi" secondAttribute="trailing" constant="16" id="PqR-1y-Vd4"/>
+                            <constraint firstItem="eZb-9n-6lO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Mjp-qf-E50"/>
+                            <constraint firstAttribute="trailing" secondItem="r2V-fQ-AD8" secondAttribute="trailing" id="Mw6-ez-lcG"/>
+                            <constraint firstAttribute="trailing" secondItem="QpX-4F-4B3" secondAttribute="trailing" id="U4M-cg-3lR"/>
                             <constraint firstItem="yZN-Tr-YCb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="VEs-Xj-pfX"/>
                             <constraint firstItem="jWo-H6-9GO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="XBl-O2-UKd"/>
+                            <constraint firstItem="jWo-H6-9GO" firstAttribute="top" secondItem="r2V-fQ-AD8" secondAttribute="bottom" constant="4" id="cP8-Up-XRk"/>
+                            <constraint firstItem="r2V-fQ-AD8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cUw-0l-mTE"/>
                             <constraint firstItem="yZN-Tr-YCb" firstAttribute="centerX" secondItem="3W2-40-QAu" secondAttribute="centerX" id="co8-Kw-neA"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jWo-H6-9GO" secondAttribute="bottom" id="eqz-or-lyo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jWo-H6-9GO" secondAttribute="bottom" constant="4" id="eqz-or-lyo"/>
                             <constraint firstAttribute="trailing" secondItem="jWo-H6-9GO" secondAttribute="trailing" constant="8" id="kLL-jH-Zis"/>
+                            <constraint firstItem="9zD-5d-Zpi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="n4m-YK-8Jg"/>
+                            <constraint firstItem="QpX-4F-4B3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="rgE-Eo-Q3O"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dynamicReactionButton" destination="9zD-5d-Zpi" id="Qbp-7k-NWv"/>
+                        <outlet property="facebookReactionButton" destination="9zD-5d-Zpi" id="naU-pJ-kv4"/>
+                        <outlet property="feedbackLabel" destination="eZb-9n-6lO" id="J95-Ji-GcN"/>
                         <outlet property="reactionButton" destination="3W2-40-QAu" id="TJy-sa-dXp"/>
                         <outlet property="reactionSelect" destination="yZN-Tr-YCb" id="62K-BN-Gag"/>
                         <outlet property="reactionSummary" destination="jWo-H6-9GO" id="Tf7-6q-M1N"/>

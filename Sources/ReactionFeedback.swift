@@ -24,47 +24,19 @@
  *
  */
 
-import UIKit
+public enum ReactionFeedback {
+  case slideFingerAcross
+  case releaseToCancel
+  case tapToSelectAReaction
 
-public class ReactionControl: UIControl {
-  // MARK: - Initializing a ReactionSelect Object
-
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-
-    setupAndUpdate()
+  public func localizedString() -> String {
+    switch self {
+    case .slideFingerAcross:
+      return "Slide finger across"
+    case .releaseToCancel:
+      return "Release to cancel"
+    case .tapToSelectAReaction:
+      return "Tap to select a reaction"
+    }
   }
-
-  required public init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-
-    setupAndUpdate()
-  }
-
-  // MARK: - Laying out Subviews
-
-  public override func layoutSubviews() {
-    super.layoutSubviews()
-
-    update()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    super.prepareForInterfaceBuilder()
-
-    update()
-  }
-
-  // MARK: - Building Object
-
-  func setup() {}
-
-  final func setupAndUpdate() {
-    setup()
-    update()
-  }
-
-  // MARK: - Updating Object State
-
-  func update() {}
 }

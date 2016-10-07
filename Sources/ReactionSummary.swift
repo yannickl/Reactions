@@ -26,7 +26,7 @@
 
 import UIKit
 
-public final class ReactionSummary: ReactionControl {
+public final class ReactionSummary: UIReactionControl {
   private let textLabel: UILabel            = Components.reactionSummary.facebookSummaryLabel()
   private var reactionIconLayers: [CALayer] = []
 

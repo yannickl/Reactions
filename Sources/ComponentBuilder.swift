@@ -26,6 +26,7 @@
 
 import Foundation
 
+/// Protocol helper to build interface component in an easy and elegant way
 protocol ComponentBuilder {}
 
 extension ComponentBuilder where Self: AnyObject {

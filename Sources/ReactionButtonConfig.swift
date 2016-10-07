@@ -26,6 +26,26 @@
 
 import UIKit
 
-public final class ReactionFeedbackBar: UIView {
+public final class ReactionButtonConfig {
+  public typealias ReactionButtonConfigBlock = (ReactionButtonConfig) -> Void
 
+  public var spacing: CGFloat     = 8
+  public var iconMarging: CGFloat = 4
+
+  public var font: UIFont! = UIFont(name: "HelveticaNeue", size: 16)
+
+  public var neutralTintColor: UIColor = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
+
+  /**
+   The technique to use for aligning the icon and the text.
+
+   The default value of this property is left.
+   */
+  public var alignment: ReactionAlignment = .left
+
+  init() {}
+  
+  public init(block: ReactionButtonConfigBlock) {
+    block(self)
+  }
 }

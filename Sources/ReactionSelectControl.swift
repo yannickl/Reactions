@@ -26,7 +26,12 @@
 
 import UIKit
 
-public final class ReactionSelect: ReactionControl {
+/**
+ A `ReactionSelectControl` object is a horizontal control made of multiple reactions, each reaction functioning as a discrete button. A select control affords a compact means to group together a number of reactions.
+ 
+ The `ReactionSelectControl` object automatically resizes reactions using the `iconSize` and `spacing` values defined in the `config` property.
+ */
+public final class ReactionSelectControl: UIReactionControl {
   public var reactions: [Reaction] = Reaction.facebook.all {
     didSet { setupAndUpdate() }
   }
@@ -38,7 +43,7 @@ public final class ReactionSelect: ReactionControl {
     }
   }
   
-  public var config = ReactionSelectConfig()
+  public var config = ReactionSelectControlConfig()
 
   private var reactionIconLayers: [CALayer] = []
   private var reactionLabels: [UILabel]     = []
@@ -76,7 +81,7 @@ public final class ReactionSelect: ReactionControl {
 
     if backgroundLayer.superlayer == nil {
       addGestureRecognizer(UILongPressGestureRecognizer().build {
-        $0.addTarget(self, action: #selector(ReactionSelect.longPressAction))
+        $0.addTarget(self, action: #selector(ReactionSelectControl.longPressAction))
         $0.minimumPressDuration = 0
       })
 
@@ -90,11 +95,8 @@ public final class ReactionSelect: ReactionControl {
   // MARK: - Updating Object State
 
   override func update() {
-    let backgroundBounds = stateHighlightedReactionIndex == nil ? bounds : CGRect(x: 0, y: config.spacing, width: bounds.width, height: bounds.height - config.spacing)
-
-    let backgroundPath      = UIBezierPath(roundedRect: backgroundBounds, cornerRadius: backgroundBounds.height / 2).cgPath
-    let iconSize            = backgroundBounds.height - 2 * config.spacing
-    let highlightedIconSize = bounds.width - (bounds.height - 2 * config.spacing) * (CGFloat(reactions.count) - 1)
+    let backgroundBounds = config.computedBounds(bounds, highlighted: stateHighlightedReactionIndex != nil)
+    let backgroundPath   = UIBezierPath(roundedRect: backgroundBounds, cornerRadius: backgroundBounds.height / 2).cgPath
 
     CATransaction.begin()
     CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
@@ -107,40 +109,29 @@ public final class ReactionSelect: ReactionControl {
       $0.fillMode              = kCAFillModeBoth
       $0.isRemovedOnCompletion = false
     }
+
     backgroundLayer.add(pathAnimation, forKey: "morhingPath")
 
-    updateReactions(normalSize: iconSize, highlightedSize: highlightedIconSize)
+    for index in 0 ..< reactionIconLayers.count {
+      updateReactionAtIndex(index, highlighted: stateHighlightedReactionIndex == index)
+    }
 
     CATransaction.commit()
   }
 
-  private func updateReactions(normalSize size: CGFloat, highlightedSize: CGFloat) {
-    let topMargin = stateHighlightedReactionIndex == nil ? config.spacing : config.spacing * 2
+  private func updateReactionAtIndex(_ index: Int, highlighted isHighlighted: Bool) {
+    let icon: CALayer                    = reactionIconLayers[index]
+    let label: UILabel                   = reactionLabels[index]
+    let labelAlpha: CGFloat              = isHighlighted ? 0.7 : 0
+    let labelTranform: CGAffineTransform = isHighlighted ? .identity : CGAffineTransform(scaleX: 0.5, y: 0.5)
 
-    for (index, icon) in reactionIconLayers.enumerated() {
-      let fi            = CGFloat(index)
-      let label         = reactionLabels[index]
-      var labelAlpha    = CGFloat(0)
-      var labelTranform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+    icon.frame = config.computedIconFrameAtIndex(index, in: bounds, reactionCount: reactions.count, highlightedIndex: stateHighlightedReactionIndex)
 
-      if let highlightedIndex = stateHighlightedReactionIndex, index == highlightedIndex {
-        labelAlpha    = 0.7
-        labelTranform = .identity
-        icon.frame    = CGRect(x: (size + config.spacing) * fi, y: bounds.height - highlightedSize - config.spacing, width: highlightedSize, height: highlightedSize)
-      }
-      else if let highlightedIndex = stateHighlightedReactionIndex, index > highlightedIndex {
-        icon.frame = CGRect(x: (size + config.spacing) * (fi - 1) + highlightedSize, y: topMargin, width: size, height: size)
-      }
-      else {
-        icon.frame = CGRect(x: config.spacing + (size + config.spacing) * fi, y: topMargin, width: size, height: size)
-      }
-
-      UIView.animate(withDuration: CATransaction.animationDuration(), delay: 0, options: .curveEaseIn, animations: { [unowned self] in
-        label.transform = labelTranform
-        label.alpha     = labelAlpha
-        label.center    = CGPoint(x: icon.frame.midX, y: icon.frame.minY - label.bounds.height / 2 - self.config.spacing)
-        }, completion: nil)
-    }
+    UIView.animate(withDuration: CATransaction.animationDuration(), delay: 0, options: .curveEaseIn, animations: { [unowned self] in
+      label.alpha     = labelAlpha
+      label.transform = labelTranform
+      label.center    = CGPoint(x: icon.frame.midX, y: icon.frame.minY - label.bounds.height / 2 - self.config.spacing)
+      }, completion: nil)
   }
 
   // MARK: - Configuring the Resizing Behavior
@@ -152,8 +143,8 @@ public final class ReactionSelect: ReactionControl {
 
    - Returns: The minimum view bounds the receiver should have.
    */
-  func boundToFit() -> CGRect {
-    let iconSize = config.iconSize ?? 40
+  func boundsToFit() -> CGRect {
+    let iconSize = config.computedIconSize(highlighted: false)
 
     return CGRect(x: 0, y: 0, width: CGFloat(reactions.count) * (iconSize + config.spacing) + config.spacing, height: iconSize + config.spacing * 2)
   }

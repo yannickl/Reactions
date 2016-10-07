@@ -26,8 +26,48 @@
 
 import UIKit
 
-public final class ReactionSelectConfig {
-  public var spacing: CGFloat = 6
-  public var iconSize: CGFloat? = nil
-  public var stickyReaction: Bool = false
+public class UIReactionControl: UIControl {
+  // MARK: - Initializing a ReactionSelect Object
+
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+
+    setupAndUpdate()
+  }
+
+  required public init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+
+    setupAndUpdate()
+  }
+
+  // MARK: - Laying out Subviews
+
+  public override func layoutSubviews() {
+    super.layoutSubviews()
+
+    update()
+  }
+
+  public override func prepareForInterfaceBuilder() {
+    super.prepareForInterfaceBuilder()
+
+    update()
+  }
+
+  // MARK: - Building Object
+
+  func setup() {}
+
+  final func setupAndUpdate() {
+    setup()
+
+    if superview != nil {
+      update()
+    }
+  }
+
+  // MARK: - Updating Object State
+
+  func update() {}
 }

@@ -26,7 +26,7 @@
 
 import UIKit
 
-public final class ReactionButton: ReactionControl {
+public final class ReactionButton: UIReactionControl {
   private let iconImageView: UIImageView = Components.reactionButton.facebookLikeIcon()
   private let titleLabel: UILabel        = Components.reactionButton.facebookLikeLabel()
   private lazy var overlay: UIView       = UIView().build {
@@ -37,21 +37,11 @@ public final class ReactionButton: ReactionControl {
     $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ReactionButton.dismissOverlay)))
   }
 
-  private let spacing: CGFloat     = 8
-  private let iconMarging: CGFloat = 8
-
   public override var isSelected: Bool {
     didSet { update() }
   }
 
-  public var textColor = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
-
-  /**
-   The technique to use for aligning the icon and the text.
-
-   The default value of this property is left.
-   */
-  public var alignment: ReactionAlignment = .left {
+  public var config: ReactionButtonConfig = ReactionButtonConfig() {
     didSet { update() }
   }
 
@@ -59,7 +49,7 @@ public final class ReactionButton: ReactionControl {
     didSet { update() }
   }
 
-  public var linkedReactionSelect: ReactionSelect? {
+  public var reactionSelectControl: ReactionSelectControl? {
     didSet { setupReactionSelect(old: oldValue) }
   }
 
@@ -73,8 +63,8 @@ public final class ReactionButton: ReactionControl {
     addSubview(titleLabel)
   }
 
-  private func setupReactionSelect(old: ReactionSelect?) {
-    if let reactionSelect = linkedReactionSelect {
+  private func setupReactionSelect(old: ReactionSelectControl?) {
+    if let reactionSelect = reactionSelectControl {
       overlay.addSubview(reactionSelect)
     }
 
@@ -82,32 +72,35 @@ public final class ReactionButton: ReactionControl {
     old?.removeTarget(self, action: #selector(ReactionButton.reactionTouchedInsideAction), for: .touchUpInside)
     old?.removeTarget(self, action: #selector(ReactionButton.reactionTouchedOutsideAction), for: .touchUpOutside)
 
-    reaction = linkedReactionSelect?.reactions.first ?? Reaction.facebook.like
-    linkedReactionSelect?.addTarget(self, action: #selector(ReactionButton.reactionTouchedInsideAction), for: .touchUpInside)
-    linkedReactionSelect?.addTarget(self, action: #selector(ReactionButton.reactionTouchedOutsideAction), for: .touchUpOutside)
+    reaction = reactionSelectControl?.reactions.first ?? Reaction.facebook.like
+
+    reactionSelectControl?.addTarget(self, action: #selector(ReactionButton.reactionTouchedInsideAction), for: .touchUpInside)
+    reactionSelectControl?.addTarget(self, action: #selector(ReactionButton.reactionTouchedOutsideAction), for: .touchUpOutside)
   }
 
   // MARK: - Updating Object State
 
   override func update() {
-    let iconSize   = min(bounds.width - spacing, bounds.height) - iconMarging
+    titleLabel.font = config.font
+
+    let iconSize   = min(bounds.width - config.spacing, bounds.height) - config.iconMarging * 2
     let titleSize  = titleLabel.sizeThatFits(CGSize(width: bounds.width - iconSize, height: bounds.height))
     var iconFrame  = CGRect(x: 0, y: (bounds.height - iconSize) / 2, width: iconSize, height: iconSize)
-    var titleFrame = CGRect(x: iconSize + spacing, y: 0, width: titleSize.width, height: bounds.height)
+    var titleFrame = CGRect(x: iconSize + config.spacing, y: 0, width: titleSize.width, height: bounds.height)
 
-    if alignment == .right {
+    if config.alignment == .right {
       iconFrame.origin.x  = bounds.width - iconSize
-      titleFrame.origin.x = bounds.width - iconSize - spacing - titleSize.width
+      titleFrame.origin.x = bounds.width - iconSize - config.spacing - titleSize.width
     }
-    else if alignment == .centerLeft || alignment == .centerRight {
-      let emptyWidth = bounds.width - iconFrame.width - titleLabel.bounds.width - spacing
+    else if config.alignment == .centerLeft || config.alignment == .centerRight {
+      let emptyWidth = bounds.width - iconFrame.width - titleLabel.bounds.width - config.spacing
 
-      if alignment == .centerLeft {
+      if config.alignment == .centerLeft {
         iconFrame.origin.x  = emptyWidth / 2
-        titleFrame.origin.x = emptyWidth / 2 + iconSize + spacing
+        titleFrame.origin.x = emptyWidth / 2 + iconSize + config.spacing
       }
       else {
-        iconFrame.origin.x  = emptyWidth / 2 + titleSize.width + spacing
+        iconFrame.origin.x  = emptyWidth / 2 + titleSize.width + config.spacing
         titleFrame.origin.x = emptyWidth / 2
       }
     }
@@ -119,8 +112,8 @@ public final class ReactionButton: ReactionControl {
     titleLabel.frame    = titleFrame
 
     UIView.transition(with: titleLabel, duration: 0.15, options: .transitionCrossDissolve, animations: { [unowned self] in
-      self.iconImageView.tintColor = self.isSelected ? self.reaction.color : self.textColor
-      self.titleLabel.textColor    = self.isSelected ? self.reaction.color : self.textColor
+      self.iconImageView.tintColor = self.isSelected ? self.reaction.color : self.config.neutralTintColor
+      self.titleLabel.textColor    = self.isSelected ? self.reaction.color : self.config.neutralTintColor
       }, completion: nil)
   }
 
@@ -146,7 +139,7 @@ public final class ReactionButton: ReactionControl {
   private var isLongPressMoved = false
 
   func longPressAction(_ gestureRecognizer: UILongPressGestureRecognizer) {
-    guard let reactionSelect = linkedReactionSelect else { return }
+    guard let reactionSelect = reactionSelectControl else { return }
 
     if gestureRecognizer.state == .began {
       isLongPressMoved = false
@@ -173,31 +166,39 @@ public final class ReactionButton: ReactionControl {
 
   // MARK: - Responding to Select Events
 
-  func reactionTouchedInsideAction(_ sender: ReactionSelect) {
+  func reactionTouchedInsideAction(_ sender: ReactionSelectControl) {
     guard let selectedReaction = sender.selectedReaction else { return }
+
+    let isReactionChanged = reaction != selectedReaction
 
     reaction   = selectedReaction
     isSelected = true
 
+    if isReactionChanged {
+      sendActions(for: .valueChanged)
+    }
+    
     dismissOverlay()
   }
 
-  func reactionTouchedOutsideAction(_ sender: ReactionSelect) {
+  func reactionTouchedOutsideAction(_ sender: ReactionSelectControl) {
     dismissOverlay()
   }
 
   // MARK: -
 
-  func dismissOverlay() {
-    animateOverlay(alpha: 0, center: CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY))
-  }
-
   public func presentOverlay() {
     displayOverlay(feedback: .tapToSelectAReaction)
   }
 
+  public func dismissOverlay() {
+    reactionSelectControl?.feedback = nil
+    
+    animateOverlay(alpha: 0, center: CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY))
+  }
+
   func displayOverlay(feedback: ReactionFeedback) {
-    guard let reactionSelect = linkedReactionSelect, let window = UIApplication.shared.keyWindow else { return }
+    guard let reactionSelect = reactionSelectControl, let window = UIApplication.shared.keyWindow else { return }
 
     if overlay.superview == nil {
       UIApplication.shared.keyWindow?.addSubview(overlay)
@@ -206,14 +207,14 @@ public final class ReactionButton: ReactionControl {
     overlay.frame = CGRect(x:0 , y: 0, width: window.bounds.width, height: window.bounds.height * 2)
 
     let centerPoint       = convert(CGPoint(x: bounds.midX, y: 0), to: nil)
-    reactionSelect.frame  = reactionSelect.boundToFit()
+    reactionSelect.frame  = reactionSelect.boundsToFit()
     reactionSelect.center = centerPoint
 
-    if reactionSelect.frame.origin.x - spacing < 0 {
-      reactionSelect.center = CGPoint(x: centerPoint.x - reactionSelect.frame.origin.x + spacing, y: centerPoint.y)
+    if reactionSelect.frame.origin.x - config.spacing < 0 {
+      reactionSelect.center = CGPoint(x: centerPoint.x - reactionSelect.frame.origin.x + config.spacing, y: centerPoint.y)
     }
-    else if reactionSelect.frame.origin.x + reactionSelect.frame.width + spacing > overlay.bounds.width {
-      reactionSelect.center = CGPoint(x: centerPoint.x - (reactionSelect.frame.origin.x + reactionSelect.frame.width + spacing - overlay.bounds.width), y: centerPoint.y)
+    else if reactionSelect.frame.origin.x + reactionSelect.frame.width + config.spacing > overlay.bounds.width {
+      reactionSelect.center = CGPoint(x: centerPoint.x - (reactionSelect.frame.origin.x + reactionSelect.frame.width + config.spacing - overlay.bounds.width), y: centerPoint.y)
     }
 
     reactionSelect.feedback = feedback

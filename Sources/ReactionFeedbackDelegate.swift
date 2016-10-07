@@ -24,12 +24,6 @@
  *
  */
 
-public enum ReactionFeedback {
-  case slideFingerAcross
-  case releaseToCancel
-  case tapToSelectAReaction
-}
-
 public protocol ReactionFeedbackDelegate: class {
   func reactionFeedbackDidChanged(_ feedback: ReactionFeedback?)
 }

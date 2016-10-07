@@ -9,31 +9,40 @@
 import UIKit
 
 class ViewController: UIViewController, ReactionFeedbackDelegate {
-  @IBOutlet weak var reactionSelect: ReactionSelect!
+  @IBOutlet weak var reactionSelect: ReactionSelectControl!
   @IBOutlet weak var reactionButton: ReactionButton! {
     didSet {
-      reactionButton.alignment = .centerLeft
+      reactionButton.config = ReactionButtonConfig() {
+        $0.alignment = .centerLeft
+      }
     }
   }
-  @IBOutlet weak var dynamicReactionButton: ReactionButton! {
-    didSet {
-      dynamicReactionButton.alignment            = .right
-      dynamicReactionButton.reaction             = Reaction.facebook.love
-      dynamicReactionButton.linkedReactionSelect = ReactionSelect()
 
-      dynamicReactionButton.linkedReactionSelect?.feedbackDelegate = self
+  // Facebook like
+
+  @IBOutlet weak var facebookReactionButton: ReactionButton! {
+    didSet {
+      facebookReactionButton.reactionSelectControl = ReactionSelectControl()
+      facebookReactionButton.config                = ReactionButtonConfig() {
+        $0.iconMarging = 8
+        $0.spacing     = 4
+        $0.font        = UIFont(name: "HelveticaNeue", size: 14)
+      }
+
+      facebookReactionButton.reactionSelectControl?.feedbackDelegate = self
     }
   }
   @IBOutlet weak var reactionSummary: ReactionSummary! {
     didSet {
       reactionSummary.reactions = Reaction.facebook.all
       reactionSummary.alignment = .left
-      reactionSummary.text      = "Description"
+      reactionSummary.text      = "A description"
     }
   }
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  @IBOutlet weak var feedbackLabel: UILabel! {
+    didSet {
+      feedbackLabel.isHidden = true
+    }
   }
 
   // MARK: - Action Methods
@@ -45,14 +54,22 @@ class ViewController: UIViewController, ReactionFeedbackDelegate {
     reactionButton.isSelected = false
   }
   
+  @IBAction func facebookButtonReactionTouchedUpAction(_ sender: AnyObject) {
+    if facebookReactionButton.isSelected == false {
+      facebookReactionButton.reaction   = Reaction.facebook.like
+    }
+  }
+
   @IBAction func summaryTouchedAction(_ sender: AnyObject) {
-    dynamicReactionButton.presentOverlay()
+    facebookReactionButton.presentOverlay()
   }
 
   // MARK: - ReactionFeedback Methods
 
   func reactionFeedbackDidChanged(_ feedback: ReactionFeedback?) {
-    print("reactionFeedbackDidChanged \(feedback)")
+    feedbackLabel.isHidden = feedback == nil
+
+    feedbackLabel.text = feedback?.localizedString()
   }
 }
 
