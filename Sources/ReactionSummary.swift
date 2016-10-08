@@ -95,7 +95,12 @@ public final class ReactionSummary: UIReactionControl {
     textLabel.font      = config.font
     textLabel.textColor = config.textColor
 
-    let textSize  = textLabel.sizeThatFits(CGSize(width: bounds.width, height: bounds.height))
+    var textSize  = textLabel.sizeThatFits(CGSize(width: bounds.width, height: bounds.height))
+
+    if textSize.height == 0 {
+      textSize.height = bounds.height
+    }
+
     let iconSize  = min(bounds.height, textSize.height + 4)
     let iconWidth = (iconSize - 3) * CGFloat(reactionIconLayers.count) + config.spacing
     let margin    = (bounds.width - iconWidth - textSize.width) / 2

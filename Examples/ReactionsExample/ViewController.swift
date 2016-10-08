@@ -24,9 +24,11 @@ class ViewController: UIViewController, ReactionFeedbackDelegate {
     didSet {
       facebookReactionButton.reactionSelector = ReactionSelector()
       facebookReactionButton.config           = ReactionButtonConfig() {
-        $0.iconMarging = 8
-        $0.spacing     = 4
-        $0.font        = UIFont(name: "HelveticaNeue", size: 14)
+        $0.iconMarging      = 8
+        $0.spacing          = 4
+        $0.font             = UIFont(name: "HelveticaNeue", size: 14)
+        $0.neutralTintColor = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
+        $0.alignment        = .left
       }
 
       facebookReactionButton.reactionSelector?.feedbackDelegate = self
@@ -35,7 +37,13 @@ class ViewController: UIViewController, ReactionFeedbackDelegate {
   @IBOutlet weak var reactionSummary: ReactionSummary! {
     didSet {
       reactionSummary.reactions = Reaction.facebook.all
-      reactionSummary.text      = "A description"
+      reactionSummary.text      = "You, Chris Lattner, and 16 others"
+      reactionSummary.config    = ReactionSummaryConfig {
+        $0.spacing   = 8
+        $0.font      = UIFont(name: "HelveticaNeue", size: 12)
+        $0.textColor = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
+        $0.alignment = .left
+      }
     }
   }
   @IBOutlet weak var feedbackLabel: UILabel! {
@@ -52,7 +60,7 @@ class ViewController: UIViewController, ReactionFeedbackDelegate {
     reactionButton.reaction   = reaction
     reactionButton.isSelected = false
   }
-  
+
   @IBAction func facebookButtonReactionTouchedUpAction(_ sender: AnyObject) {
     if facebookReactionButton.isSelected == false {
       facebookReactionButton.reaction   = Reaction.facebook.like

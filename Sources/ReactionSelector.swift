@@ -29,6 +29,8 @@ import UIKit
 /**
  A `ReactionSelector` object is a horizontal control made of multiple reactions, each reaction functioning as a discrete button. A select control affords a compact means to group together a number of reactions.
  
+ The `ReactionSelector` class declares a property to control its selected reaction. When the user manipulates the selector a `valueChanged` event is generated, which results in the control (if properly configured) sending an action message.
+
  The `ReactionSelector` object automatically resizes reactions using the `iconSize` and `spacing` values defined in the `config` property.
  
  You can configure/skin the button using a `ReactionSelectorConfig`.

@@ -40,7 +40,7 @@ public final class ReactionSummaryConfig: Configurable {
   public var spacing: CGFloat = 8
 
   /// The font of the text.
-  public var font: UIFont! = UIFont(name: "HelveticaNeue", size: 14)
+  public var font: UIFont! = UIFont(name: "HelveticaNeue", size: 12)
 
   /// The color of the text.
   public var textColor: UIColor! = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
