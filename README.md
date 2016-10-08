@@ -56,10 +56,19 @@ The `ReactionSelector` control allows people to select a reaction amongst a list
 ```swift
 let select       = ReactionSelector()
 select.reactions = Reaction.facebook.all
+
+// React to reaction change
 select.addTarget(self, action: #selector(reactionDidChanged), for: .valueChanged)
 
 func reactionDidChanged(_ sender: AnyObject) {
   print(select.selectedReaction)
+}
+
+// Conforming to the ReactionFeedbackDelegate
+select.feedbackDelegate = self
+
+func reactionFeedbackDidChanged(_ feedback: ReactionFeedback?) {
+  // .slideFingerAcross, .releaseToCancel, .tapToSelectAReaction
 }
 ```
 
