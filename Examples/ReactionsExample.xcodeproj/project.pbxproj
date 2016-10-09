@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE0385EA1DAA51FC00D7F482 /* UIReactionControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0385E91DAA51FC00D7F482 /* UIReactionControlTests.swift */; };
+		CE0385F11DAA560F00D7F482 /* UIReactionControlTest.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0385F01DAA560F00D7F482 /* UIReactionControlTest.xib */; };
+		CE0385F51DAA87C100D7F482 /* ComponentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE874F021DA2DA64000D309E /* ComponentBuilder.swift */; };
+		CE0385F61DAA87C100D7F482 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D93B1DA64FCD00A70C2D /* Components.swift */; };
+		CE0385F71DAA87C100D7F482 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D94D1DA7E49500A70C2D /* Configurable.swift */; };
+		CE0385F81DAA87C100D7F482 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9581DA82C6700A70C2D /* Extensions.swift */; };
+		CE0385F91DAA87C100D7F482 /* FacebookReactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D93D1DA6566700A70C2D /* FacebookReactions.swift */; };
+		CE0385FA1DAA87C100D7F482 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4FCF61DA014B100F54838 /* Reaction.swift */; };
+		CE0385FB1DAA87C100D7F482 /* ReactionAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9411DA6931A00A70C2D /* ReactionAlignment.swift */; };
+		CE0385FC1DAA87C100D7F482 /* ReactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4FCF81DA10D6600F54838 /* ReactionButton.swift */; };
+		CE0385FD1DAA87C100D7F482 /* ReactionButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9491DA78F9400A70C2D /* ReactionButtonConfig.swift */; };
+		CE0385FE1DAA87C100D7F482 /* ReactionFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4FCFC1DA1100900F54838 /* ReactionFeedback.swift */; };
+		CE0385FF1DAA87C100D7F482 /* ReactionFeedbackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9471DA6EAFA00A70C2D /* ReactionFeedbackDelegate.swift */; };
+		CE0386001DAA87C100D7F482 /* ReactionSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4FCFA1DA10E4300F54838 /* ReactionSelector.swift */; };
+		CE0386011DAA87C100D7F482 /* ReactionSelectorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D93F1DA6869500A70C2D /* ReactionSelectorConfig.swift */; };
+		CE0386021DAA87C100D7F482 /* ReactionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE874F001DA2D916000D309E /* ReactionSummary.swift */; };
+		CE0386031DAA87C100D7F482 /* ReactionSummaryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D94B1DA7D36700A70C2D /* ReactionSummaryConfig.swift */; };
+		CE0386041DAA87C100D7F482 /* UIReactionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB867BB1DA41CB600031B0D /* UIReactionControl.swift */; };
+		CE0386081DAA8C7B00D7F482 /* ReactionFeedbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0386071DAA8C7B00D7F482 /* ReactionFeedbackTests.swift */; };
 		CE83F88E1DA8F033000943AB /* Reactions.h in Headers */ = {isa = PBXBuildFile; fileRef = CE83F88C1DA8F033000943AB /* Reactions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE83F8911DA8F033000943AB /* Reactions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE83F88A1DA8F033000943AB /* Reactions.framework */; };
 		CE83F8921DA8F033000943AB /* Reactions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE83F88A1DA8F033000943AB /* Reactions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -30,25 +49,10 @@
 		CE83F8A81DA8F05A000943AB /* ReactionSummaryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D94B1DA7D36700A70C2D /* ReactionSummaryConfig.swift */; };
 		CE83F8A91DA8F05A000943AB /* UIReactionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB867BB1DA41CB600031B0D /* UIReactionControl.swift */; };
 		CE83F8BA1DA95D41000943AB /* ReactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83F8B91DA95D41000943AB /* ReactionTests.swift */; };
-		CE83F8BD1DA95FBF000943AB /* ComponentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE874F021DA2DA64000D309E /* ComponentBuilder.swift */; };
-		CE83F8BE1DA95FBF000943AB /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D93B1DA64FCD00A70C2D /* Components.swift */; };
-		CE83F8BF1DA95FBF000943AB /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D94D1DA7E49500A70C2D /* Configurable.swift */; };
-		CE83F8C01DA95FBF000943AB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9581DA82C6700A70C2D /* Extensions.swift */; };
-		CE83F8C11DA95FBF000943AB /* FacebookReactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D93D1DA6566700A70C2D /* FacebookReactions.swift */; };
-		CE83F8C21DA95FBF000943AB /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4FCF61DA014B100F54838 /* Reaction.swift */; };
-		CE83F8C31DA95FBF000943AB /* ReactionAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9411DA6931A00A70C2D /* ReactionAlignment.swift */; };
-		CE83F8C41DA95FBF000943AB /* ReactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4FCF81DA10D6600F54838 /* ReactionButton.swift */; };
-		CE83F8C51DA95FBF000943AB /* ReactionButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9491DA78F9400A70C2D /* ReactionButtonConfig.swift */; };
-		CE83F8C61DA95FBF000943AB /* ReactionFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4FCFC1DA1100900F54838 /* ReactionFeedback.swift */; };
-		CE83F8C71DA95FBF000943AB /* ReactionFeedbackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9471DA6EAFA00A70C2D /* ReactionFeedbackDelegate.swift */; };
-		CE83F8C81DA95FBF000943AB /* ReactionSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4FCFA1DA10E4300F54838 /* ReactionSelector.swift */; };
-		CE83F8C91DA95FBF000943AB /* ReactionSelectorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D93F1DA6869500A70C2D /* ReactionSelectorConfig.swift */; };
-		CE83F8CA1DA95FBF000943AB /* ReactionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE874F001DA2D916000D309E /* ReactionSummary.swift */; };
-		CE83F8CB1DA95FBF000943AB /* ReactionSummaryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D94B1DA7D36700A70C2D /* ReactionSummaryConfig.swift */; };
-		CE83F8CC1DA95FBF000943AB /* UIReactionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB867BB1DA41CB600031B0D /* UIReactionControl.swift */; };
 		CE83F8CD1DA95FC6000943AB /* FeedbackLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CED9D95C1DA835DB00A70C2D /* FeedbackLocalizable.strings */; };
 		CE83F8CE1DA95FC6000943AB /* FacebookReactionLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CED9D95F1DA835DF00A70C2D /* FacebookReactionLocalizable.strings */; };
 		CE83F8CF1DA95FC8000943AB /* Facebook.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED9D9521DA82AA100A70C2D /* Facebook.xcassets */; };
+		CE83F8D11DAA50A5000943AB /* ReactionButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83F8D01DAA50A5000943AB /* ReactionButtonTests.swift */; };
 		CE874F011DA2D916000D309E /* ReactionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE874F001DA2D916000D309E /* ReactionSummary.swift */; };
 		CE874F031DA2DA64000D309E /* ComponentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE874F021DA2DA64000D309E /* ComponentBuilder.swift */; };
 		CEB867BC1DA41CB600031B0D /* UIReactionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB867BB1DA41CB600031B0D /* UIReactionControl.swift */; };
@@ -76,6 +80,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CE0386051DAA87F400D7F482 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CED4FCD61D9FD95D00F54838 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CED4FCDD1D9FD95D00F54838;
+			remoteInfo = ReactionsExample;
+		};
 		CE83F88F1DA8F033000943AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CED4FCD61D9FD95D00F54838 /* Project object */;
@@ -100,12 +111,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CE0385E91DAA51FC00D7F482 /* UIReactionControlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIReactionControlTests.swift; sourceTree = "<group>"; };
+		CE0385F01DAA560F00D7F482 /* UIReactionControlTest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIReactionControlTest.xib; sourceTree = "<group>"; };
+		CE0386071DAA8C7B00D7F482 /* ReactionFeedbackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionFeedbackTests.swift; sourceTree = "<group>"; };
 		CE83F88A1DA8F033000943AB /* Reactions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE83F88C1DA8F033000943AB /* Reactions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reactions.h; sourceTree = "<group>"; };
 		CE83F88D1DA8F033000943AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE83F8AE1DA95CDA000943AB /* ReactionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE83F8B21DA95CDA000943AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE83F8B91DA95D41000943AB /* ReactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionTests.swift; sourceTree = "<group>"; };
+		CE83F8D01DAA50A5000943AB /* ReactionButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionButtonTests.swift; sourceTree = "<group>"; };
 		CE874F001DA2D916000D309E /* ReactionSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionSummary.swift; sourceTree = "<group>"; };
 		CE874F021DA2DA64000D309E /* ComponentBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentBuilder.swift; sourceTree = "<group>"; };
 		CEB867BB1DA41CB600031B0D /* UIReactionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIReactionControl.swift; sourceTree = "<group>"; };
@@ -162,6 +177,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE0385EF1DAA560F00D7F482 /* nibs */ = {
+			isa = PBXGroup;
+			children = (
+				CE0385F01DAA560F00D7F482 /* UIReactionControlTest.xib */,
+			);
+			path = nibs;
+			sourceTree = "<group>";
+		};
 		CE83F88B1DA8F033000943AB /* Reactions */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,7 +205,11 @@
 		CE83F8B81DA95D41000943AB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				CE0385EF1DAA560F00D7F482 /* nibs */,
 				CE83F8B91DA95D41000943AB /* ReactionTests.swift */,
+				CE83F8D01DAA50A5000943AB /* ReactionButtonTests.swift */,
+				CE0386071DAA8C7B00D7F482 /* ReactionFeedbackTests.swift */,
+				CE0385E91DAA51FC00D7F482 /* UIReactionControlTests.swift */,
 			);
 			name = Tests;
 			path = ../Tests;
@@ -302,6 +329,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CE0386061DAA87F400D7F482 /* PBXTargetDependency */,
 			);
 			name = ReactionsTests;
 			productName = ReactionsTests;
@@ -344,7 +372,8 @@
 					CE83F8AD1DA95CDA000943AB = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						TestTargetID = CED4FCDD1D9FD95D00F54838;
 					};
 					CED4FCDD1D9FD95D00F54838 = {
 						CreatedOnToolsVersion = 8.0;
@@ -391,6 +420,7 @@
 			files = (
 				CE83F8CE1DA95FC6000943AB /* FacebookReactionLocalizable.strings in Resources */,
 				CE83F8CD1DA95FC6000943AB /* FeedbackLocalizable.strings in Resources */,
+				CE0385F11DAA560F00D7F482 /* UIReactionControlTest.xib in Resources */,
 				CE83F8CF1DA95FC8000943AB /* Facebook.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,23 +468,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE83F8C11DA95FBF000943AB /* FacebookReactions.swift in Sources */,
-				CE83F8C01DA95FBF000943AB /* Extensions.swift in Sources */,
-				CE83F8CA1DA95FBF000943AB /* ReactionSummary.swift in Sources */,
-				CE83F8C21DA95FBF000943AB /* Reaction.swift in Sources */,
+				CE0385F71DAA87C100D7F482 /* Configurable.swift in Sources */,
+				CE0385FA1DAA87C100D7F482 /* Reaction.swift in Sources */,
+				CE0385FB1DAA87C100D7F482 /* ReactionAlignment.swift in Sources */,
+				CE0386011DAA87C100D7F482 /* ReactionSelectorConfig.swift in Sources */,
+				CE0386021DAA87C100D7F482 /* ReactionSummary.swift in Sources */,
+				CE0385EA1DAA51FC00D7F482 /* UIReactionControlTests.swift in Sources */,
+				CE0386001DAA87C100D7F482 /* ReactionSelector.swift in Sources */,
+				CE0386031DAA87C100D7F482 /* ReactionSummaryConfig.swift in Sources */,
+				CE0385FD1DAA87C100D7F482 /* ReactionButtonConfig.swift in Sources */,
 				CE83F8BA1DA95D41000943AB /* ReactionTests.swift in Sources */,
-				CE83F8BE1DA95FBF000943AB /* Components.swift in Sources */,
-				CE83F8C61DA95FBF000943AB /* ReactionFeedback.swift in Sources */,
-				CE83F8CC1DA95FBF000943AB /* UIReactionControl.swift in Sources */,
-				CE83F8BF1DA95FBF000943AB /* Configurable.swift in Sources */,
-				CE83F8C31DA95FBF000943AB /* ReactionAlignment.swift in Sources */,
-				CE83F8C81DA95FBF000943AB /* ReactionSelector.swift in Sources */,
-				CE83F8BD1DA95FBF000943AB /* ComponentBuilder.swift in Sources */,
-				CE83F8C51DA95FBF000943AB /* ReactionButtonConfig.swift in Sources */,
-				CE83F8C71DA95FBF000943AB /* ReactionFeedbackDelegate.swift in Sources */,
-				CE83F8C41DA95FBF000943AB /* ReactionButton.swift in Sources */,
-				CE83F8C91DA95FBF000943AB /* ReactionSelectorConfig.swift in Sources */,
-				CE83F8CB1DA95FBF000943AB /* ReactionSummaryConfig.swift in Sources */,
+				CE0385F61DAA87C100D7F482 /* Components.swift in Sources */,
+				CE0386081DAA8C7B00D7F482 /* ReactionFeedbackTests.swift in Sources */,
+				CE0385F91DAA87C100D7F482 /* FacebookReactions.swift in Sources */,
+				CE0385FC1DAA87C100D7F482 /* ReactionButton.swift in Sources */,
+				CE83F8D11DAA50A5000943AB /* ReactionButtonTests.swift in Sources */,
+				CE0385FF1DAA87C100D7F482 /* ReactionFeedbackDelegate.swift in Sources */,
+				CE0385F51DAA87C100D7F482 /* ComponentBuilder.swift in Sources */,
+				CE0386041DAA87C100D7F482 /* UIReactionControl.swift in Sources */,
+				CE0385FE1DAA87C100D7F482 /* ReactionFeedback.swift in Sources */,
+				CE0385F81DAA87C100D7F482 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +519,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CE0386061DAA87F400D7F482 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CED4FCDD1D9FD95D00F54838 /* ReactionsExample */;
+			targetProxy = CE0386051DAA87F400D7F482 /* PBXContainerItemProxy */;
+		};
 		CE83F8901DA8F033000943AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CE83F8891DA8F033000943AB /* Reactions */;
@@ -590,6 +628,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactionsExample.app/ReactionsExample";
 			};
 			name = Debug;
 		};
@@ -605,6 +644,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yannickloriot.ReactionsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactionsExample.app/ReactionsExample";
 			};
 			name = Release;
 		};
@@ -741,6 +781,7 @@
 				CE83F8941DA8F033000943AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE83F8B31DA95CDA000943AB /* Build configuration list for PBXNativeTarget "ReactionsTests" */ = {
 			isa = XCConfigurationList;
@@ -749,6 +790,7 @@
 				CE83F8B51DA95CDA000943AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CED4FCD91D9FD95D00F54838 /* Build configuration list for PBXProject "ReactionsExample" */ = {
 			isa = XCConfigurationList;

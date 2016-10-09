@@ -26,34 +26,10 @@
 
 import XCTest
 
-class ReactionTests: XCTestCase {
-  func testFacebookReaction() {
-    let reactions = Reaction.facebook.all
-
-    XCTAssertEqual(reactions.count, 6)
-    XCTAssertEqual(reactions, [Reaction.facebook.like, Reaction.facebook.love, Reaction.facebook.haha, Reaction.facebook.wow, Reaction.facebook.sad, Reaction.facebook.angry])
-  }
-
-  func testReactionInit() {
-    let icon         = UIImage(named: "like", in: .reactionsBundle(), compatibleWith: nil)!
-    let likeReaction = Reaction(id: "like", title: "Like", color: .red, icon: icon)
-
-    XCTAssertEqual(likeReaction.id, "like")
-    XCTAssertEqual(likeReaction.title, "Like")
-    XCTAssertEqual(likeReaction.color, .red)
-    XCTAssertEqual(likeReaction.icon, icon)
-    XCTAssertNil(likeReaction.alternativeIcon)
-  }
-
-  func testReactionHash() {
-    let likeReaction = Reaction.facebook.like
-
-    XCTAssertEqual(likeReaction.hashValue, Reaction.facebook.like.id.hashValue)
-  }
-
-  func testReactionDescription() {
-    let likeReaction = Reaction.facebook.like
-
-    XCTAssertEqual(likeReaction.description, "<Reaction id=like title=Like>")
+class ReactionFeedbackTests: XCTestCase {
+  func testLocalizedFeeback() {
+    XCTAssertEqual(ReactionFeedback.slideFingerAcross.localizedString, "Slide finger across")
+    XCTAssertEqual(ReactionFeedback.releaseToCancel.localizedString, "Release to cancel")
+    XCTAssertEqual(ReactionFeedback.tapToSelectAReaction.localizedString, "Tap to select a reaction")
   }
 }
