@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary  = 'Fully customizable Facebook reactions control'
   s.homepage = 'https://github.com/yannickl/Reactions'
   s.authors  = { 'Yannick Loriot' => 'contact@yannickloriot.com' }
-  s.source   = { :git => 'https://github.com/yannickl/Reactions', :tag => s.version }
+  s.source   = { :git => 'https://github.com/yannickl/Reactions.git', :tag => s.version }
 
   s.ios.deployment_target = '8.0'
   s.ios.framework         = 'UIKit'
