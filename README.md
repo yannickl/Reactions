@@ -144,7 +144,7 @@ Install CocoaPods if not already available:
 $ [sudo] gem install cocoapods
 $ pod setup
 ```
-Go to the directory of your Xcode project, and Create and Edit your *Podfile* and add _DynamicColor_:
+Go to the directory of your Xcode project, and Create and Edit your *Podfile* and add _Reactions_:
 
 ``` bash
 $ cd /path/to/MyProject
@@ -154,7 +154,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 use_frameworks!
-pod 'Reactions', '~> 1.0.0'
+pod 'Reactions', '~> 1.0.1'
 ```
 
 Install into your project:
@@ -185,7 +185,7 @@ $ brew install carthage
 To integrate `Reactions` into your Xcode project using Carthage, specify it in your `Cartfile` file:
 
 ```ogdl
-github "yannickl/Reactions" >= 1.0.0
+github "yannickl/Reactions" >= 1.0.1
 ```
 
 #### Swift Package Manager
@@ -198,7 +198,7 @@ let package = Package(
     name: "YOUR_PROJECT_NAME",
     targets: [],
     dependencies: [
-        .Package(url: "https://github.com/yannickl/Reactions.git", versions: "1.0.0" ..< Version.max)
+        .Package(url: "https://github.com/yannickl/Reactions.git", versions: "1.0.1" ..< Version.max)
     ]
 )
 ```
