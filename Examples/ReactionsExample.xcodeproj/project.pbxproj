@@ -26,6 +26,8 @@
 		CE0386031DAA87C100D7F482 /* ReactionSummaryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D94B1DA7D36700A70C2D /* ReactionSummaryConfig.swift */; };
 		CE0386041DAA87C100D7F482 /* UIReactionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB867BB1DA41CB600031B0D /* UIReactionControl.swift */; };
 		CE0386081DAA8C7B00D7F482 /* ReactionFeedbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0386071DAA8C7B00D7F482 /* ReactionFeedbackTests.swift */; };
+		CE03860A1DAAA58D00D7F482 /* ReactionSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0386091DAAA58D00D7F482 /* ReactionSelectorTests.swift */; };
+		CE03860C1DAAA63F00D7F482 /* ReactionSelectorConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03860B1DAAA63F00D7F482 /* ReactionSelectorConfigTests.swift */; };
 		CE83F88E1DA8F033000943AB /* Reactions.h in Headers */ = {isa = PBXBuildFile; fileRef = CE83F88C1DA8F033000943AB /* Reactions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE83F8911DA8F033000943AB /* Reactions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE83F88A1DA8F033000943AB /* Reactions.framework */; };
 		CE83F8921DA8F033000943AB /* Reactions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE83F88A1DA8F033000943AB /* Reactions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -114,6 +116,8 @@
 		CE0385E91DAA51FC00D7F482 /* UIReactionControlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIReactionControlTests.swift; sourceTree = "<group>"; };
 		CE0385F01DAA560F00D7F482 /* UIReactionControlTest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIReactionControlTest.xib; sourceTree = "<group>"; };
 		CE0386071DAA8C7B00D7F482 /* ReactionFeedbackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionFeedbackTests.swift; sourceTree = "<group>"; };
+		CE0386091DAAA58D00D7F482 /* ReactionSelectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionSelectorTests.swift; sourceTree = "<group>"; };
+		CE03860B1DAAA63F00D7F482 /* ReactionSelectorConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionSelectorConfigTests.swift; sourceTree = "<group>"; };
 		CE83F88A1DA8F033000943AB /* Reactions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE83F88C1DA8F033000943AB /* Reactions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reactions.h; sourceTree = "<group>"; };
 		CE83F88D1DA8F033000943AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -206,9 +210,11 @@
 			isa = PBXGroup;
 			children = (
 				CE0385EF1DAA560F00D7F482 /* nibs */,
-				CE83F8B91DA95D41000943AB /* ReactionTests.swift */,
 				CE83F8D01DAA50A5000943AB /* ReactionButtonTests.swift */,
 				CE0386071DAA8C7B00D7F482 /* ReactionFeedbackTests.swift */,
+				CE03860B1DAAA63F00D7F482 /* ReactionSelectorConfigTests.swift */,
+				CE0386091DAAA58D00D7F482 /* ReactionSelectorTests.swift */,
+				CE83F8B91DA95D41000943AB /* ReactionTests.swift */,
 				CE0385E91DAA51FC00D7F482 /* UIReactionControlTests.swift */,
 			);
 			name = Tests;
@@ -471,6 +477,7 @@
 				CE0385F71DAA87C100D7F482 /* Configurable.swift in Sources */,
 				CE0385FA1DAA87C100D7F482 /* Reaction.swift in Sources */,
 				CE0385FB1DAA87C100D7F482 /* ReactionAlignment.swift in Sources */,
+				CE03860A1DAAA58D00D7F482 /* ReactionSelectorTests.swift in Sources */,
 				CE0386011DAA87C100D7F482 /* ReactionSelectorConfig.swift in Sources */,
 				CE0386021DAA87C100D7F482 /* ReactionSummary.swift in Sources */,
 				CE0385EA1DAA51FC00D7F482 /* UIReactionControlTests.swift in Sources */,
@@ -480,6 +487,7 @@
 				CE83F8BA1DA95D41000943AB /* ReactionTests.swift in Sources */,
 				CE0385F61DAA87C100D7F482 /* Components.swift in Sources */,
 				CE0386081DAA8C7B00D7F482 /* ReactionFeedbackTests.swift in Sources */,
+				CE03860C1DAAA63F00D7F482 /* ReactionSelectorConfigTests.swift in Sources */,
 				CE0385F91DAA87C100D7F482 /* FacebookReactions.swift in Sources */,
 				CE0385FC1DAA87C100D7F482 /* ReactionButton.swift in Sources */,
 				CE83F8D11DAA50A5000943AB /* ReactionButtonTests.swift in Sources */,

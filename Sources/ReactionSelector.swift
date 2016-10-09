@@ -78,7 +78,7 @@ public final class ReactionSelector: UIReactionControl {
         stateHighlightedReactionIndex = nil
       }
 
-      stateSelectedReaction = selectedReaction
+      stateSelectedReaction = newValue
 
       setNeedsLayout()
     }
