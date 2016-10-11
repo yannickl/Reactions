@@ -1,5 +1,10 @@
 # Change log
 
+## [Version 1.0.2](https://github.com/yannickl/Reactions/releases/tag/1.0.2)
+*Released on 2015-10-11.*
+
+- Fixing initial background path of selectors
+
 ## [Version 1.0.1](https://github.com/yannickl/Reactions/releases/tag/1.0.1)
 *Released on 2015-10-09.*
 
