@@ -39,7 +39,7 @@ public final class ReactionSummary: UIReactionControl {
    The reaction summary configuration.
    */
   public var config: ReactionSummaryConfig = ReactionSummaryConfig() {
-    didSet { setupAndUpdate() }
+    didSet { update() }
   }
 
   /**

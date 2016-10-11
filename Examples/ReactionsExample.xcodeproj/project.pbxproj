@@ -79,6 +79,7 @@
 		CED9D9591DA82C6700A70C2D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9D9581DA82C6700A70C2D /* Extensions.swift */; };
 		CED9D95A1DA835DB00A70C2D /* FeedbackLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CED9D95C1DA835DB00A70C2D /* FeedbackLocalizable.strings */; };
 		CED9D95D1DA835DF00A70C2D /* FacebookReactionLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CED9D95F1DA835DF00A70C2D /* FacebookReactionLocalizable.strings */; };
+		CEDBA1301DACEC0D0031AB42 /* ReactionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBA12F1DACEC0D0031AB42 /* ReactionSummaryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,7 @@
 		CED9D95E1DA835DF00A70C2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/FacebookReactionLocalizable.strings; sourceTree = "<group>"; };
 		CED9D9601DA8364D00A70C2D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/FeedbackLocalizable.strings; sourceTree = "<group>"; };
 		CED9D9611DA8364D00A70C2D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/FacebookReactionLocalizable.strings; sourceTree = "<group>"; };
+		CEDBA12F1DACEC0D0031AB42 /* ReactionSummaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionSummaryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 				CE0386071DAA8C7B00D7F482 /* ReactionFeedbackTests.swift */,
 				CE03860B1DAAA63F00D7F482 /* ReactionSelectorConfigTests.swift */,
 				CE0386091DAAA58D00D7F482 /* ReactionSelectorTests.swift */,
+				CEDBA12F1DACEC0D0031AB42 /* ReactionSummaryTests.swift */,
 				CE83F8B91DA95D41000943AB /* ReactionTests.swift */,
 				CE0385E91DAA51FC00D7F482 /* UIReactionControlTests.swift */,
 			);
@@ -483,6 +486,7 @@
 				CE0385EA1DAA51FC00D7F482 /* UIReactionControlTests.swift in Sources */,
 				CE0386001DAA87C100D7F482 /* ReactionSelector.swift in Sources */,
 				CE0386031DAA87C100D7F482 /* ReactionSummaryConfig.swift in Sources */,
+				CEDBA1301DACEC0D0031AB42 /* ReactionSummaryTests.swift in Sources */,
 				CE0385FD1DAA87C100D7F482 /* ReactionButtonConfig.swift in Sources */,
 				CE83F8BA1DA95D41000943AB /* ReactionTests.swift in Sources */,
 				CE0385F61DAA87C100D7F482 /* Components.swift in Sources */,
