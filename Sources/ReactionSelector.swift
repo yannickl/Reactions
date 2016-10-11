@@ -139,7 +139,7 @@ public final class ReactionSelector: UIReactionControl {
   private func updateReactionAtIndex(_ index: Int, highlighted isHighlighted: Bool) {
     let icon: CALayer                    = reactionIconLayers[index]
     let label: UILabel                   = reactionLabels[index]
-    let labelAlpha: CGFloat              = isHighlighted ? 0.7 : 0
+    let labelAlpha: CGFloat              = isHighlighted ? 1 : 0
     let labelTranform: CGAffineTransform = isHighlighted ? .identity : CGAffineTransform(scaleX: 0.5, y: 0.5)
 
     icon.frame = config.computedIconFrameAtIndex(index, in: bounds, reactionCount: reactions.count, highlightedIndex: stateHighlightedReactionIndex)

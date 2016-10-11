@@ -1,5 +1,9 @@
 # Change log
 
+## Version 1.0.3
+
+- Fixing reaction label text opacity
+
 ## [Version 1.0.2](https://github.com/yannickl/Reactions/releases/tag/1.0.2)
 *Released on 2015-10-11.*
 

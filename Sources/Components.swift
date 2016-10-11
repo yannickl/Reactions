@@ -48,7 +48,7 @@ struct Components {
         $0.font                = font
         $0.textAlignment       = .center
         $0.textColor           = .white
-        $0.backgroundColor     = .black
+        $0.backgroundColor     = UIColor(white: 0, alpha: 0.7)
         $0.alpha               = 0
         $0.frame               = CGRect(x: 0, y: 0, width: bounds.width + height / 2, height: height)
         $0.layer.masksToBounds = true
