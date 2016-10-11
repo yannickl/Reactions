@@ -99,6 +99,9 @@ public final class ReactionSelector: UIReactionControl {
         $0.minimumPressDuration = 0
       })
 
+      let bounds           = boundsToFit()
+      backgroundLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: bounds.height / 2).cgPath
+
       layer.addSublayer(backgroundLayer)
     }
 
