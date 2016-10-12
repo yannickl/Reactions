@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Reactions'
-  s.version          = '1.0.2'
+  s.version          = '1.0.3'
   s.license          = 'MIT'
   s.summary          = 'Fully customizable Facebook reactions control'
   s.homepage         = 'https://github.com/yannickl/Reactions'

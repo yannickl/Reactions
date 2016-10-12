@@ -154,7 +154,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 use_frameworks!
-pod 'Reactions', '~> 1.0.2'
+pod 'Reactions', '~> 1.0.3'
 ```
 
 Install into your project:
@@ -185,7 +185,7 @@ $ brew install carthage
 To integrate `Reactions` into your Xcode project using Carthage, specify it in your `Cartfile` file:
 
 ```ogdl
-github "yannickl/Reactions" >= 1.0.2
+github "yannickl/Reactions" >= 1.0.3
 ```
 
 #### Swift Package Manager
@@ -198,7 +198,7 @@ let package = Package(
     name: "YOUR_PROJECT_NAME",
     targets: [],
     dependencies: [
-        .Package(url: "https://github.com/yannickl/Reactions.git", versions: "1.0.2" ..< Version.max)
+        .Package(url: "https://github.com/yannickl/Reactions.git", versions: "1.0.3" ..< Version.max)
     ]
 )
 ```

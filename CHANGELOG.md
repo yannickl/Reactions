@@ -1,6 +1,7 @@
 # Change log
 
-## Version 1.0.3
+## [Version 1.0.3](https://github.com/yannickl/Reactions/releases/tag/1.0.3)
+*Released on 2015-10-12.*
 
 - Adding the `setReactions` method to control the selector frame when the reactions change
 - Fixing reaction label text opacity
