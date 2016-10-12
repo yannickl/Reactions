@@ -102,7 +102,7 @@
                         <outlet property="facebookReactionButton" destination="9zD-5d-Zpi" id="naU-pJ-kv4"/>
                         <outlet property="feedbackLabel" destination="eZb-9n-6lO" id="J95-Ji-GcN"/>
                         <outlet property="reactionButton" destination="3W2-40-QAu" id="TJy-sa-dXp"/>
-                        <outlet property="reactionSelect" destination="yZN-Tr-YCb" id="62K-BN-Gag"/>
+                        <outlet property="reactionSelect" destination="yZN-Tr-YCb" id="mkN-4W-wHg"/>
                         <outlet property="reactionSummary" destination="jWo-H6-9GO" id="Tf7-6q-M1N"/>
                     </connections>
                 </viewController>

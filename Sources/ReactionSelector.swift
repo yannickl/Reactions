@@ -39,12 +39,30 @@ public final class ReactionSelector: UIReactionControl {
   private var reactionIconLayers: [CALayer] = []
   private var reactionLabels: [UILabel]     = []
   private let backgroundLayer               = Components.reactionSelect.backgroundLayer()
+  private var _reactions: [Reaction]        = Reaction.facebook.all
 
   /**
    The reactions available in the selector.
    */
-  public var reactions: [Reaction] = Reaction.facebook.all {
-    didSet { setupAndUpdate() }
+  public var reactions: [Reaction] {
+    get { return _reactions }
+    set { setReactions(newValue, sizeToFit: false) }
+  }
+
+  /**
+   Sets the selector reactions and update the frame to fit if necessary.
+   
+   - Parameter reactions: The reactions to choose in the selector.
+   - Parameter sizeToFit: Flag to tell the receiver to update its frame to fit. False by default.
+   */
+  public func setReactions(_ reactions: [Reaction], sizeToFit: Bool = false) {
+    _reactions = reactions
+
+    if sizeToFit {
+      frame = boundsToFit()
+    }
+
+    setupAndUpdate()
   }
 
   /// The feedback delegate.
@@ -99,8 +117,8 @@ public final class ReactionSelector: UIReactionControl {
         $0.minimumPressDuration = 0
       })
 
-      let bounds           = boundsToFit()
-      backgroundLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: bounds.height / 2).cgPath
+      let backgroundBounds = boundsToFit()
+      backgroundLayer.path = UIBezierPath(roundedRect: backgroundBounds, cornerRadius: backgroundBounds.height / 2).cgPath
 
       layer.addSublayer(backgroundLayer)
     }

@@ -2,6 +2,7 @@
 
 ## Version 1.0.3
 
+- Adding the `setReactions` method to control the selector frame when the reactions change
 - Fixing reaction label text opacity
 - Fixing button selector when there is only 1 reaction
 
