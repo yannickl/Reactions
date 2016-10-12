@@ -103,6 +103,18 @@ class ReactionButtonTests: XCTestCase {
     button.reactionSelector = ReactionSelector()
 
     button.presentReactionSelector()
+
+    button.config = ReactionButtonConfig {
+      $0.alignment = .right
+    }
+
+    button.presentReactionSelector()
+
+    button.config = ReactionButtonConfig {
+      $0.alignment = .centerLeft
+    }
+
+    button.presentReactionSelector()
   }
 
   func testDismissReactionSelector() {

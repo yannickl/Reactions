@@ -238,13 +238,21 @@ public final class ReactionButton: UIReactionControl {
 
     let centerPoint = convert(CGPoint(x: bounds.midX, y: 0), to: nil)
     selector.frame  = selector.boundsToFit()
-    selector.center = centerPoint
+
+    switch config.alignment {
+    case .left:
+      selector.center = CGPoint(x: centerPoint.x + (selector.bounds.width - bounds.width) / 2, y: centerPoint.y)
+    case .right:
+      selector.center = CGPoint(x: centerPoint.x - (selector.bounds.width - bounds.width) / 2, y: centerPoint.y)
+    default:
+      selector.center = centerPoint
+    }
 
     if selector.frame.origin.x - config.spacing < 0 {
-      selector.center = CGPoint(x: centerPoint.x - selector.frame.origin.x + config.spacing, y: centerPoint.y)
+      selector.center = CGPoint(x: selector.center.x - selector.frame.origin.x + config.spacing, y: centerPoint.y)
     }
     else if selector.frame.origin.x + selector.frame.width + config.spacing > overlay.bounds.width {
-      selector.center = CGPoint(x: centerPoint.x - (selector.frame.origin.x + selector.frame.width + config.spacing - overlay.bounds.width), y: centerPoint.y)
+      selector.center = CGPoint(x: selector.center.x - (selector.frame.origin.x + selector.frame.width + config.spacing - overlay.bounds.width), y: centerPoint.y)
     }
 
     selector.feedback = feedback
