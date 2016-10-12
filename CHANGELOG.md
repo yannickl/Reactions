@@ -3,6 +3,7 @@
 ## Version 1.0.3
 
 - Fixing reaction label text opacity
+- Fixing button selector when there is only 1 reaction
 
 ## [Version 1.0.2](https://github.com/yannickl/Reactions/releases/tag/1.0.2)
 *Released on 2015-10-11.*

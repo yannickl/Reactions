@@ -192,6 +192,11 @@ class ReactionButtonTests: XCTestCase {
     press.currentState = .ended
     
     control.reactionSelector?.longPressAction(press)
-  }
 
+    control.reactionSelector?.reactions = [Reaction.facebook.like]
+
+    control.reactionSelector?.longPressAction(press)
+
+    control.presentReactionSelector()
+  }
 }

@@ -92,13 +92,13 @@ public final class ReactionButton: UIReactionControl {
     }
 
     old?.removeFromSuperview()
-    old?.removeTarget(self, action: #selector(ReactionButton.reactionTouchedInsideAction), for: .touchUpInside)
-    old?.removeTarget(self, action: #selector(ReactionButton.reactionTouchedOutsideAction), for: .touchUpOutside)
+    old?.removeTarget(self, action: #selector(ReactionButton.reactionSelectorTouchedUpInsideAction), for: .touchUpInside)
+    old?.removeTarget(self, action: #selector(ReactionButton.reactionSelectorTouchedUpOutsideAction), for: .touchUpOutside)
 
     reaction = reactionSelector?.reactions.first ?? Reaction.facebook.like
 
-    reactionSelector?.addTarget(self, action: #selector(ReactionButton.reactionTouchedInsideAction), for: .touchUpInside)
-    reactionSelector?.addTarget(self, action: #selector(ReactionButton.reactionTouchedOutsideAction), for: .touchUpOutside)
+    reactionSelector?.addTarget(self, action: #selector(ReactionButton.reactionSelectorTouchedUpInsideAction), for: .touchUpInside)
+    reactionSelector?.addTarget(self, action: #selector(ReactionButton.reactionSelectorTouchedUpOutsideAction), for: .touchUpOutside)
   }
 
   // MARK: - Updating Object State
@@ -161,7 +161,7 @@ public final class ReactionButton: UIReactionControl {
   private var isLongPressMoved = false
 
   func longPressAction(_ gestureRecognizer: UILongPressGestureRecognizer) {
-    guard let selector = reactionSelector else { return }
+    guard let selector = reactionSelector, selector.reactions.count > 1 else { return }
 
     if gestureRecognizer.state == .began {
       isLongPressMoved = false
@@ -188,10 +188,10 @@ public final class ReactionButton: UIReactionControl {
 
   // MARK: - Responding to Select Events
 
-  func reactionTouchedInsideAction(_ sender: ReactionSelector) {
+  func reactionSelectorTouchedUpInsideAction(_ sender: ReactionSelector) {
     guard let selectedReaction = sender.selectedReaction else { return }
 
-    let isReactionChanged = reaction != selectedReaction
+    let isReactionChanged = reaction != selectedReaction || !isSelected
 
     reaction   = selectedReaction
     isSelected = true
@@ -203,7 +203,7 @@ public final class ReactionButton: UIReactionControl {
     dismissReactionSelector()
   }
 
-  func reactionTouchedOutsideAction(_ sender: ReactionSelector) {
+  func reactionSelectorTouchedUpOutsideAction(_ sender: ReactionSelector) {
     dismissReactionSelector()
   }
 
@@ -228,7 +228,7 @@ public final class ReactionButton: UIReactionControl {
   }
 
   private func displayReactionSelector(feedback: ReactionFeedback) {
-    guard let selector = reactionSelector, let window = UIApplication.shared.keyWindow else { return }
+    guard let selector = reactionSelector, let window = UIApplication.shared.keyWindow, selector.reactions.count > 1 else { return }
 
     if overlay.superview == nil {
       UIApplication.shared.keyWindow?.addSubview(overlay)
