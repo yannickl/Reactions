@@ -32,9 +32,9 @@ import UIKit
  You can configure/skin the summary using a `ReactionSummaryConfig`.
  */
 public final class ReactionSummary: UIReactionControl {
-  private let textLabel: UILabel            = UILabel()
-  private var reactionIconLayers: [CALayer] = []
-
+  private let textLabel    = UILabel()
+  private var summaryLayer = CAReactionSummaryLayer()
+  
   /**
    The reaction summary configuration.
    */
@@ -73,25 +73,20 @@ public final class ReactionSummary: UIReactionControl {
     addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ReactionSummary.tapAction)))
 
     textLabel.removeFromSuperview()
-    reactionIconLayers.forEach { $0.removeFromSuperlayer() }
+    summaryLayer.removeFromSuperlayer()
 
-    reactionIconLayers = reactions.uniq().map { Components.reactionSummary.reactionIcon(option: $0) }
+    summaryLayer.indicatorIcons = reactions.uniq().flatMap { $0.icon.cgImage }
 
-    for index in 0 ..< reactionIconLayers.count {
-      let iconLayer           = reactionIconLayers[reactionIconLayers.count - 1 - index]
-      iconLayer.masksToBounds = true
-      iconLayer.borderWidth   = 1
-      iconLayer.borderColor   = UIColor.white.cgColor
-
-      layer.addSublayer(iconLayer)
-    }
-
+    layer.addSublayer(summaryLayer)
     addSubview(textLabel)
   }
 
   // MARK: - Updating Object State
 
   override func update() {
+    summaryLayer.frame = bounds
+    summaryLayer.setNeedsDisplay()
+    
     textLabel.font      = config.font
     textLabel.textColor = config.textColor
 
@@ -101,13 +96,9 @@ public final class ReactionSummary: UIReactionControl {
       textSize.height = bounds.height
     }
 
-    let iconSize  = min(bounds.height, textSize.height + 4)
-    let iconWidth = (iconSize - 3) * CGFloat(reactionIconLayers.count) + config.spacing
+    let iconSize  = bounds.height - config.iconMarging * 2
+    let iconWidth = (iconSize - 3) * CGFloat(summaryLayer.indicatorIcons.count) + config.spacing
     let margin    = (bounds.width - iconWidth - textSize.width) / 2
-
-    for index in 0 ..< reactionIconLayers.count {
-      updateIconAtIndex(index, with: iconSize, margin: margin)
-    }
 
     let textX: CGFloat
 
@@ -119,21 +110,6 @@ public final class ReactionSummary: UIReactionControl {
     }
 
     textLabel.frame = CGRect(x: textX, y: 0, width: textSize.width, height: bounds.height)
-  }
-
-  private func updateIconAtIndex(_ index: Int, with size: CGFloat, margin: CGFloat) {
-    let x: CGFloat
-    let layer = reactionIconLayers[index]
-
-    switch config.alignment {
-    case .left: x = (size - 3) * CGFloat(index)
-    case .right: x = bounds.width - size - (size - 3) * CGFloat(index)
-    case .centerLeft: x = margin + (size - 3) * CGFloat(index)
-    case .centerRight: x = bounds.width - size - (size - 3) * CGFloat(index) - margin
-    }
-
-    layer.frame        = CGRect(x: x, y: (bounds.height - size) / 2, width: size, height: size)
-    layer.cornerRadius = size / 2
   }
 
   // MARK: - Responding to Gesture Events

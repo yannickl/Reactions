@@ -39,6 +39,9 @@ public final class ReactionSummaryConfig: Configurable {
   /// The spacing between the icons and the text.
   public var spacing: CGFloat = 8
 
+  /// The marging between the icon and border.
+  public var iconMarging: CGFloat = 2
+
   /// The font of the text.
   public var font: UIFont! = UIFont(name: "HelveticaNeue", size: 12)
 
@@ -51,6 +54,13 @@ public final class ReactionSummaryConfig: Configurable {
    The default value of this property is left.
    */
   public var alignment: ReactionAlignment = .left
+
+  /**
+   A Boolean value that indicates whether the summary should aggregate the reactions into one total indicator.
+
+   The default value is true.
+  */
+  public var isAggregated: Bool = true
 
   // MARK: - Initializing a Reaction Summary
 

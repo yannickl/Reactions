@@ -28,6 +28,9 @@
 		CE0386081DAA8C7B00D7F482 /* ReactionFeedbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0386071DAA8C7B00D7F482 /* ReactionFeedbackTests.swift */; };
 		CE03860A1DAAA58D00D7F482 /* ReactionSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0386091DAAA58D00D7F482 /* ReactionSelectorTests.swift */; };
 		CE03860C1DAAA63F00D7F482 /* ReactionSelectorConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03860B1DAAA63F00D7F482 /* ReactionSelectorConfigTests.swift */; };
+		CE225E511DB1611700C21D8D /* CAReactionSummaryLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE225E501DB1611700C21D8D /* CAReactionSummaryLayer.swift */; };
+		CE225E521DB1611700C21D8D /* CAReactionSummaryLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE225E501DB1611700C21D8D /* CAReactionSummaryLayer.swift */; };
+		CE225E531DB1611700C21D8D /* CAReactionSummaryLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE225E501DB1611700C21D8D /* CAReactionSummaryLayer.swift */; };
 		CE83F88E1DA8F033000943AB /* Reactions.h in Headers */ = {isa = PBXBuildFile; fileRef = CE83F88C1DA8F033000943AB /* Reactions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE83F8911DA8F033000943AB /* Reactions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE83F88A1DA8F033000943AB /* Reactions.framework */; };
 		CE83F8921DA8F033000943AB /* Reactions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE83F88A1DA8F033000943AB /* Reactions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -119,6 +122,7 @@
 		CE0386071DAA8C7B00D7F482 /* ReactionFeedbackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionFeedbackTests.swift; sourceTree = "<group>"; };
 		CE0386091DAAA58D00D7F482 /* ReactionSelectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionSelectorTests.swift; sourceTree = "<group>"; };
 		CE03860B1DAAA63F00D7F482 /* ReactionSelectorConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionSelectorConfigTests.swift; sourceTree = "<group>"; };
+		CE225E501DB1611700C21D8D /* CAReactionSummaryLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAReactionSummaryLayer.swift; sourceTree = "<group>"; };
 		CE83F88A1DA8F033000943AB /* Reactions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE83F88C1DA8F033000943AB /* Reactions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reactions.h; sourceTree = "<group>"; };
 		CE83F88D1DA8F033000943AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -263,6 +267,7 @@
 		CED4FCF51DA014B100F54838 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CE225E501DB1611700C21D8D /* CAReactionSummaryLayer.swift */,
 				CE874F021DA2DA64000D309E /* ComponentBuilder.swift */,
 				CED9D93B1DA64FCD00A70C2D /* Components.swift */,
 				CED9D94D1DA7E49500A70C2D /* Configurable.swift */,
@@ -459,6 +464,7 @@
 				CE83F8A41DA8F05A000943AB /* ReactionFeedbackDelegate.swift in Sources */,
 				CE83F8A21DA8F05A000943AB /* ReactionButtonConfig.swift in Sources */,
 				CE83F8A81DA8F05A000943AB /* ReactionSummaryConfig.swift in Sources */,
+				CE225E521DB1611700C21D8D /* CAReactionSummaryLayer.swift in Sources */,
 				CE83F8A61DA8F05A000943AB /* ReactionSelectorConfig.swift in Sources */,
 				CE83F8A91DA8F05A000943AB /* UIReactionControl.swift in Sources */,
 				CE83F89C1DA8F05A000943AB /* Configurable.swift in Sources */,
@@ -486,6 +492,7 @@
 				CE0385EA1DAA51FC00D7F482 /* UIReactionControlTests.swift in Sources */,
 				CE0386001DAA87C100D7F482 /* ReactionSelector.swift in Sources */,
 				CE0386031DAA87C100D7F482 /* ReactionSummaryConfig.swift in Sources */,
+				CE225E531DB1611700C21D8D /* CAReactionSummaryLayer.swift in Sources */,
 				CEDBA1301DACEC0D0031AB42 /* ReactionSummaryTests.swift in Sources */,
 				CE0385FD1DAA87C100D7F482 /* ReactionButtonConfig.swift in Sources */,
 				CE83F8BA1DA95D41000943AB /* ReactionTests.swift in Sources */,
@@ -521,6 +528,7 @@
 				CED4FCFD1DA1100900F54838 /* ReactionFeedback.swift in Sources */,
 				CED9D9401DA6869500A70C2D /* ReactionSelectorConfig.swift in Sources */,
 				CED9D94A1DA78F9400A70C2D /* ReactionButtonConfig.swift in Sources */,
+				CE225E511DB1611700C21D8D /* CAReactionSummaryLayer.swift in Sources */,
 				CED9D93C1DA64FCD00A70C2D /* Components.swift in Sources */,
 				CED4FCF71DA014B100F54838 /* Reaction.swift in Sources */,
 				CED9D94C1DA7D36700A70C2D /* ReactionSummaryConfig.swift in Sources */,
