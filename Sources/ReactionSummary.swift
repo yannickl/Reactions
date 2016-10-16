@@ -75,7 +75,7 @@ public final class ReactionSummary: UIReactionControl {
     textLabel.removeFromSuperview()
     summaryLayer.removeFromSuperlayer()
 
-    summaryLayer.indicatorIcons = reactions.uniq().flatMap { $0.icon.cgImage }
+    summaryLayer.reactions = reactions
 
     layer.addSublayer(summaryLayer)
     addSubview(textLabel)
@@ -84,9 +84,6 @@ public final class ReactionSummary: UIReactionControl {
   // MARK: - Updating Object State
 
   override func update() {
-    summaryLayer.frame = bounds
-    summaryLayer.setNeedsDisplay()
-    
     textLabel.font      = config.font
     textLabel.textColor = config.textColor
 
@@ -97,7 +94,7 @@ public final class ReactionSummary: UIReactionControl {
     }
 
     let iconSize  = bounds.height - config.iconMarging * 2
-    let iconWidth = (iconSize - 3) * CGFloat(summaryLayer.indicatorIcons.count) + config.spacing
+    let iconWidth = (iconSize - 3) * CGFloat(summaryLayer.reactions.count) + config.spacing
     let margin    = (bounds.width - iconWidth - textSize.width) / 2
 
     let textX: CGFloat
@@ -108,6 +105,11 @@ public final class ReactionSummary: UIReactionControl {
     case .centerLeft: textX = margin + iconWidth
     case .centerRight: textX = bounds.width - iconWidth - textSize.width - margin
     }
+
+    summaryLayer.frame  = bounds
+    summaryLayer.config = config
+    summaryLayer.margin = margin
+    summaryLayer.setNeedsDisplay()
 
     textLabel.frame = CGRect(x: textX, y: 0, width: textSize.width, height: bounds.height)
   }

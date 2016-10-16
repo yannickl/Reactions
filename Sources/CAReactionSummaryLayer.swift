@@ -28,11 +28,25 @@ import CoreText
 import UIKit
 
 final class CAReactionSummaryLayer: CALayer {
-  var indicatorIcons: [CGImage] = [] {
+  private var indicatorLayers: [CALayer] = [] {
     didSet {
-      indicatorLayers = indicatorIcons.map({
+      for l in oldValue {
+        l.removeFromSuperlayer()
+      }
+
+      for index in 0 ..< indicatorLayers.count {
+        let l = indicatorLayers[indicatorLayers.count - 1 - index]
+
+        addSublayer(l)
+      }
+    }
+  }
+
+  var reactions: [Reaction] = [] {
+    didSet {
+      indicatorLayers = reactions.uniq().map({
         let l           = CALayer()
-        l.contents      = $0
+        l.contents      = $0.icon.cgImage
         l.masksToBounds = true
         l.borderColor   = UIColor.white.cgColor
         l.borderWidth   = 2
@@ -42,21 +56,9 @@ final class CAReactionSummaryLayer: CALayer {
     }
   }
 
-  private var indicatorLayers: [CALayer] = [] {
-    didSet {
-      for l in oldValue {
-        l.removeFromSuperlayer()
-      }
-
-      for index in 0 ..< indicatorIcons.count {
-        let l = indicatorLayers[indicatorLayers.count - 1 - index]
-
-        addSublayer(l)
-      }
-    }
-  }
-
   var config: ReactionSummaryConfig = ReactionSummaryConfig()
+
+  var margin: CGFloat = 0
 
   override func draw(in ctx: CGContext) {
     super.draw(in: ctx)
@@ -83,12 +85,12 @@ final class CAReactionSummaryLayer: CALayer {
     ctx.translateBy(x: 0, y: bounds.height)
     ctx.scaleBy(x: 1, y: -1)
     
-    for index in 0 ..< indicatorIcons.count {
-      updateIconAtIndex(index, with: bounds.height - config.iconMarging * 2, margin: 8, in: ctx)
+    for index in 0 ..< reactions.count {
+      updateIconAtIndex(index, with: bounds.height - config.iconMarging * 2, in: ctx)
     }
   }
 
-  private func updateIconAtIndex(_ index: Int, with size: CGFloat, margin: CGFloat, in ctx: CGContext) {
+  private func updateIconAtIndex(_ index: Int, with size: CGFloat, in ctx: CGContext) {
     let x: CGFloat
     let layer = indicatorLayers[index]
 
@@ -104,8 +106,5 @@ final class CAReactionSummaryLayer: CALayer {
     layer.frame        = iconFrame
     layer.cornerRadius = iconFrame.height / 2
     layer.draw(in: ctx)
-    //ctx.interpolationQuality = .high
-
-    //ctx.draw(icon, in: iconFrame)
   }
 }
