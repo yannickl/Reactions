@@ -40,7 +40,7 @@ class CAReactionSummaryLayerTests: XCTestCase {
 
     XCTAssertEqual(summaryLayer.config.alignment, .right)
 
-    summaryLayer.config    = ReactionSummaryConfig {
+    summaryLayer.config = ReactionSummaryConfig {
       $0.alignment = .centerLeft
     }
 
@@ -48,12 +48,20 @@ class CAReactionSummaryLayerTests: XCTestCase {
 
     XCTAssertEqual(summaryLayer.config.alignment, .centerLeft)
 
-    summaryLayer.config    = ReactionSummaryConfig {
+    summaryLayer.config = ReactionSummaryConfig {
       $0.alignment = .centerRight
     }
 
     summaryLayer.draw(in: context)
 
     XCTAssertEqual(summaryLayer.config.alignment, .centerRight)
+
+    summaryLayer.config = ReactionSummaryConfig {
+      $0.isAggregated = false
+    }
+
+    summaryLayer.draw(in: context)
+
+    XCTAssertFalse(summaryLayer.config.isAggregated)
   }
 }
