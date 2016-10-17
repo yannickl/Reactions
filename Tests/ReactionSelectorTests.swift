@@ -43,6 +43,14 @@ class ReactionSelectorTests: XCTestCase {
     select.reactions = Reaction.facebook.all
 
     XCTAssertEqual(select.reactions, Reaction.facebook.all)
+
+    select.setReactions([Reaction.facebook.like, Reaction.facebook.angry])
+
+    XCTAssertEqual(select.reactions, [Reaction.facebook.like, Reaction.facebook.angry])
+
+    select.setReactions(Reaction.facebook.all, sizeToFit: true)
+
+    XCTAssertEqual(select.reactions, Reaction.facebook.all)
   }
 
   func testSetSelectedReaction() {

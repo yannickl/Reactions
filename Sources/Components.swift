@@ -79,12 +79,4 @@ struct Components {
       }
     }
   }
-
-  struct reactionSummary {
-    static func reactionIcon(option: Reaction) -> CALayer {
-      return CALayer().build {
-        $0.contents = option.icon.cgImage
-      }
-    }
-  }
 }
