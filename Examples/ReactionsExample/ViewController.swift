@@ -39,10 +39,11 @@ class ViewController: UIViewController, ReactionFeedbackDelegate {
       reactionSummary.reactions = Reaction.facebook.all
       reactionSummary.text      = "You, Chris Lattner, and 16 others"
       reactionSummary.config    = ReactionSummaryConfig {
-        $0.spacing   = 8
-        $0.font      = UIFont(name: "HelveticaNeue", size: 12)
-        $0.textColor = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
-        $0.alignment = .centerRight
+        $0.spacing      = 8
+        $0.font         = UIFont(name: "HelveticaNeue", size: 12)
+        $0.textColor    = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
+        $0.alignment    = .left
+        $0.isAggregated = true
       }
     }
   }

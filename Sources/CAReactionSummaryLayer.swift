@@ -27,84 +27,137 @@
 import CoreText
 import UIKit
 
+fileprivate extension CATextLayer {
+  func layoutWithConfig(_ config: ReactionSummaryConfig) {
+    font            = config.font
+    fontSize        = config.font.pointSize
+    foregroundColor = config.textColor.cgColor
+  }
+}
+
+/// Convenience layer to draw the summary icon and labels
 final class CAReactionSummaryLayer: CALayer {
-  private var indicatorLayers: [CALayer] = [] {
+  private var reactionsLayers: [(CALayer, CATextLayer)] = [] {
     didSet {
-      for l in oldValue {
-        l.removeFromSuperlayer()
+      for (iconLayer, textLayer) in oldValue {
+        iconLayer.removeFromSuperlayer()
+        textLayer.removeFromSuperlayer()
       }
 
-      for index in 0 ..< indicatorLayers.count {
-        let l = indicatorLayers[indicatorLayers.count - 1 - index]
+      for index in 0 ..< reactionsLayers.count {
+        let (iconLayer, textLayer) = reactionsLayers[reactionsLayers.count - 1 - index]
 
-        addSublayer(l)
+        addSublayer(iconLayer)
+        addSublayer(textLayer)
       }
+    }
+  }
+
+  private var reactionPairs: [(Reaction, Int)] = [] {
+    didSet {
+      reactionsLayers = reactionPairs.map({
+        let iconLayer           = CALayer()
+        iconLayer.contents      = $0.0.icon.cgImage
+        iconLayer.masksToBounds = true
+        iconLayer.borderColor   = UIColor.white.cgColor
+        iconLayer.borderWidth   = 2
+        iconLayer.contentsScale = UIScreen.main.scale
+
+        let textLayer           = CATextLayer()
+        textLayer.string        = "\($0.1)"
+        textLayer.contentsScale = UIScreen.main.scale
+
+        return (iconLayer, textLayer)
+      })
     }
   }
 
   var reactions: [Reaction] = [] {
     didSet {
-      indicatorLayers = reactions.uniq().map({
-        let l           = CALayer()
-        l.contents      = $0.icon.cgImage
-        l.masksToBounds = true
-        l.borderColor   = UIColor.white.cgColor
-        l.borderWidth   = 2
+      reactionPairs = reactions.uniq().map({ reaction in
+        let reactionCount = reactions.filter({ $0 == reaction }).count
 
-        return l
+        return (reaction, reactionCount)
       })
     }
   }
 
-  var config: ReactionSummaryConfig = ReactionSummaryConfig()
-
-  var margin: CGFloat = 0
-
-  override func draw(in ctx: CGContext) {
-    super.draw(in: ctx)
-
-    /*var b = bounds
-
-    for i in 0 ..< indicatorIcons.count {
-      b.origin.x = b.height + 50 * CGFloat(i)
-
-      let path = CGPath(rect: b, transform: nil)
-      let str  = NSMutableAttributedString(string: "0")
-
-      str.addAttribute(kCTForegroundColorAttributeName as String, value: UIColor.black, range: NSMakeRange(0,str.length))
-
-      let fontRef = UIFont.systemFont(ofSize: 20)
-      str.addAttribute(kCTFontAttributeName as String, value: fontRef, range:NSMakeRange(0, str.length))
-
-      let frameSetter = CTFramesetterCreateWithAttributedString(str)
-      let ctFrame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0,str.length), path, nil)
-
-      CTFrameDraw(ctFrame, ctx)
-    }*/
-
-    ctx.translateBy(x: 0, y: bounds.height)
-    ctx.scaleBy(x: 1, y: -1)
-    
-    for index in 0 ..< reactions.count {
-      updateIconAtIndex(index, with: bounds.height - config.iconMarging * 2, in: ctx)
+  var config: ReactionSummaryConfig = ReactionSummaryConfig() {
+    didSet {
+      setNeedsDisplay()
     }
   }
 
-  private func updateIconAtIndex(_ index: Int, with size: CGFloat, in ctx: CGContext) {
-    let x: CGFloat
-    let layer = indicatorLayers[index]
+  // MARK: - Providing the Layer’s Content
+  
+  override func draw(in ctx: CGContext) {
+    super.draw(in: ctx)
+
+    for (index, (iconLayer, textLayer)) in reactionsLayers.enumerated() {
+      let rect = reactionFrameAt(index)
+
+      textLayer.isHidden = config.isAggregated
+
+      updateIconLayer(iconLayer, textLayer: textLayer, in: rect)
+    }
+  }
+
+  private func updateIconLayer(_ iconLayer: CALayer, textLayer: CATextLayer, in rect: CGRect) {
+    var iconFrame        = rect
+    iconFrame.size.width = iconFrame.height
+
+    let textSize         = sizeForText(textLayer.string as! String)
+    var textFrame        = rect
+    textFrame.origin.y   += (rect.height - textSize.height) / 2
+    textFrame.size.width = textFrame.width - iconFrame.height
 
     switch config.alignment {
-    case .left: x = (size - 3) * CGFloat(index)
-    case .right: x = bounds.width - size - (size - 3) * CGFloat(index)
-    case .centerLeft: x = margin + (size - 3) * CGFloat(index)
-    case .centerRight: x = bounds.width - size - (size - 3) * CGFloat(index) - margin
+    case .left, .centerLeft:
+      textFrame.origin.x += iconFrame.width
+    case .right, .centerRight:
+      textFrame.origin.x = bounds.width - textFrame.origin.x - rect.width
+      iconFrame.origin.x = bounds.width - iconFrame.origin.x - rect.width + textFrame.width
     }
 
-    let iconFrame = CGRect(x: x, y: (bounds.height - size) / 2, width: size, height: size)
+    iconLayer.frame        = iconFrame
+    iconLayer.cornerRadius = iconFrame.height / 2
 
-    layer.frame        = iconFrame
-    layer.cornerRadius = iconFrame.height / 2
-    layer.draw(in: ctx)
+    textLayer.frame = textFrame
+    textLayer.layoutWithConfig(config)
+  }
+
+  func sizeToFit() -> CGSize {
+    let lastReactionFrame = reactionFrameAt(reactionPairs.count - 1)
+    let width: CGFloat    = lastReactionFrame.origin.x + lastReactionFrame.width
+
+    return CGSize(width: width, height: bounds.height)
+  }
+
+  private func reactionFrameAt(_ index: Int) -> CGRect {
+    guard index >= 0 else { return .zero }
+
+    let iconHeight = bounds.height - config.iconMarging * 2
+
+    guard !config.isAggregated else {
+      return CGRect(x: (iconHeight - 3) * CGFloat(index), y: config.iconMarging, width: iconHeight, height: iconHeight)
+    }
+
+    let previousReactionFrame = reactionFrameAt(index - 1)
+    let reactionPair          = reactionPairs[index]
+
+    let textSize = sizeForText("\(reactionPair.1)")
+    var offsetX  = previousReactionFrame.origin.x + previousReactionFrame.width
+    offsetX      = offsetX > 0 ? offsetX + config.spacing : 0
+
+    return CGRect(x: offsetX, y: config.iconMarging, width: iconHeight + textSize.width, height: iconHeight)
+  }
+
+  private func sizeForText(_ text: String) -> CGSize {
+    let attributedText = NSAttributedString(string: text, attributes: [
+      NSFontAttributeName: config.font,
+      NSForegroundColorAttributeName: config.textColor
+      ])
+
+    return attributedText.size()
   }
 }

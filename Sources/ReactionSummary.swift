@@ -28,13 +28,13 @@ import UIKit
 
 /**
  A `ReactionSummary` component aims to display a list of reactions as a thumbnail associate to a text description.
- 
+
  You can configure/skin the summary using a `ReactionSummaryConfig`.
  */
 public final class ReactionSummary: UIReactionControl {
   private let textLabel    = UILabel()
   private var summaryLayer = CAReactionSummaryLayer()
-  
+
   /**
    The reaction summary configuration.
    */
@@ -84,34 +84,51 @@ public final class ReactionSummary: UIReactionControl {
   // MARK: - Updating Object State
 
   override func update() {
+    updateComponentConfig()
+    updateComponentFrame()
+  }
+
+  private func updateComponentConfig() {
     textLabel.font      = config.font
     textLabel.textColor = config.textColor
-
-    var textSize  = textLabel.sizeThatFits(CGSize(width: bounds.width, height: bounds.height))
-
-    if textSize.height == 0 {
-      textSize.height = bounds.height
-    }
-
-    let iconSize  = bounds.height - config.iconMarging * 2
-    let iconWidth = (iconSize - 3) * CGFloat(summaryLayer.reactions.count) + config.spacing
-    let margin    = (bounds.width - iconWidth - textSize.width) / 2
-
-    let textX: CGFloat
-
-    switch config.alignment {
-    case .left: textX = iconWidth
-    case .right: textX = bounds.width - iconWidth - textSize.width
-    case .centerLeft: textX = margin + iconWidth
-    case .centerRight: textX = bounds.width - iconWidth - textSize.width - margin
-    }
-
     summaryLayer.frame  = bounds
     summaryLayer.config = config
-    summaryLayer.margin = margin
-    summaryLayer.setNeedsDisplay()
 
-    textLabel.frame = CGRect(x: textX, y: 0, width: textSize.width, height: bounds.height)
+    switch config.alignment {
+    case .left, .centerLeft:
+      textLabel.lineBreakMode = .byTruncatingTail
+    case .right, .centerRight:
+      textLabel.lineBreakMode = .byTruncatingHead
+    }
+  }
+
+  private func updateComponentFrame() {
+    let textLabelSize    = textLabel.sizeThatFits(bounds.size)
+    let summaryLayerSize = summaryLayer.sizeToFit()
+
+    let textLabelX: CGFloat
+    let summaryLayerX: CGFloat
+
+    let textLabelWidth = min(textLabelSize.width, bounds.width - summaryLayerSize.width - config.spacing)
+    let margin         = (bounds.width - (summaryLayerSize.width + config.spacing + textLabelWidth)) / 2
+
+    switch config.alignment {
+    case .left:
+      summaryLayerX = 0
+      textLabelX    = summaryLayerSize.width + config.spacing
+    case .right:
+      summaryLayerX = bounds.width - summaryLayerSize.width
+      textLabelX    = bounds.width - summaryLayerSize.width - config.spacing - textLabelWidth
+    case .centerLeft:
+      summaryLayerX = margin
+      textLabelX    = margin + textLabelWidth + config.spacing
+    case .centerRight:
+      summaryLayerX = margin + textLabelWidth + config.spacing
+      textLabelX    = margin
+    }
+
+    textLabel.frame    = CGRect(x: textLabelX, y: 0, width: textLabelWidth, height: bounds.height)
+    summaryLayer.frame = CGRect(x: summaryLayerX, y: 0, width: summaryLayerSize.width, height: bounds.height)
   }
 
   // MARK: - Responding to Gesture Events

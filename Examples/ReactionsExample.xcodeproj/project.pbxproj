@@ -61,6 +61,7 @@
 		CE874F011DA2D916000D309E /* ReactionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE874F001DA2D916000D309E /* ReactionSummary.swift */; };
 		CE874F031DA2DA64000D309E /* ComponentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE874F021DA2DA64000D309E /* ComponentBuilder.swift */; };
 		CEB867BC1DA41CB600031B0D /* UIReactionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB867BB1DA41CB600031B0D /* UIReactionControl.swift */; };
+		CECBB78E1DB4C87D007DCA25 /* CAReactionSummaryLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBB78D1DB4C87D007DCA25 /* CAReactionSummaryLayerTests.swift */; };
 		CED4FCE21D9FD95D00F54838 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4FCE11D9FD95D00F54838 /* AppDelegate.swift */; };
 		CED4FCE41D9FD95D00F54838 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4FCE31D9FD95D00F54838 /* ViewController.swift */; };
 		CED4FCE71D9FD95D00F54838 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED4FCE51D9FD95D00F54838 /* Main.storyboard */; };
@@ -133,6 +134,7 @@
 		CE874F001DA2D916000D309E /* ReactionSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionSummary.swift; sourceTree = "<group>"; };
 		CE874F021DA2DA64000D309E /* ComponentBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentBuilder.swift; sourceTree = "<group>"; };
 		CEB867BB1DA41CB600031B0D /* UIReactionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIReactionControl.swift; sourceTree = "<group>"; };
+		CECBB78D1DB4C87D007DCA25 /* CAReactionSummaryLayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAReactionSummaryLayerTests.swift; sourceTree = "<group>"; };
 		CED4FCDE1D9FD95D00F54838 /* ReactionsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactionsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED4FCE11D9FD95D00F54838 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CED4FCE31D9FD95D00F54838 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0385EF1DAA560F00D7F482 /* nibs */,
+				CECBB78D1DB4C87D007DCA25 /* CAReactionSummaryLayerTests.swift */,
 				CE83F8D01DAA50A5000943AB /* ReactionButtonTests.swift */,
 				CE0386071DAA8C7B00D7F482 /* ReactionFeedbackTests.swift */,
 				CE03860B1DAAA63F00D7F482 /* ReactionSelectorConfigTests.swift */,
@@ -486,6 +489,7 @@
 				CE0385F71DAA87C100D7F482 /* Configurable.swift in Sources */,
 				CE0385FA1DAA87C100D7F482 /* Reaction.swift in Sources */,
 				CE0385FB1DAA87C100D7F482 /* ReactionAlignment.swift in Sources */,
+				CECBB78E1DB4C87D007DCA25 /* CAReactionSummaryLayerTests.swift in Sources */,
 				CE03860A1DAAA58D00D7F482 /* ReactionSelectorTests.swift in Sources */,
 				CE0386011DAA87C100D7F482 /* ReactionSelectorConfig.swift in Sources */,
 				CE0386021DAA87C100D7F482 /* ReactionSummary.swift in Sources */,
