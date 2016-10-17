@@ -123,14 +123,26 @@ summary.text      = "You, Chris Lattner, and 16 others"
 select.addTarget(self, action: #selector(summaryDidTouched), for: .touchUpInside)
 ```
 
+<img src="https://cloud.githubusercontent.com/assets/798235/19440513/792e0b6c-9482-11e6-8410-c5522ca93fed.png" alt="ReactionSummary Non Aggregated" height="23px">
+
+You can also have the details for each reaction. For that you'll need to uncombined them by setting the `isAggregated` config property to `false`.
+
+```swift
+summary.config = ReactionSummaryConfig {
+  $0.isAggregated = false
+}
+```
+
 Like the other components you can setting it using a `ReactionSummaryConfig` object:
 
 ```swift
 summary.config = ReactionSummaryConfig {
-  $0.spacing   = 8
-  $0.font      = UIFont(name: "HelveticaNeue", size: 12)
-  $0.textColor = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
-  $0.alignment = .left
+  $0.spacing      = 8
+  $0.iconMarging  = 2
+  $0.font         = UIFont(name: "HelveticaNeue", size: 12)
+  $0.textColor    = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
+  $0.alignment    = .left
+  $0.isAggregated = true
 }
 ```
 

@@ -1,5 +1,12 @@
 # Change log
 
+## [Version 1.0.4](https://github.com/yannickl/Reactions/releases/tag/1.0.4)
+*Released on 2015-10-17.*
+
+- Adding the `isAggregated` property to the `ReactionSummaryConfig` in order to see summary reaction details
+- Adding the `iconMarging` property to the `ReactionSummaryConfig`
+- Fixing the line break mode of the `ReactionSummaryConfig`'s text
+
 ## [Version 1.0.3](https://github.com/yannickl/Reactions/releases/tag/1.0.3)
 *Released on 2015-10-12.*
 
