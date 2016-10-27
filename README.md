@@ -33,7 +33,7 @@
 
  <img src="https://cloud.githubusercontent.com/assets/798235/19212812/1bc819f6-8d5a-11e6-81fc-555f02db2342.png" alt="Reaction" height="132px">
 
-A `Reaction` object is a model defines with these properties:
+A `Reaction` object is a model defined with these properties:
 
 - *id:* a unique identifier.
 - *title:* the title displayed either in a selector or a button.
