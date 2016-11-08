@@ -68,18 +68,29 @@ public final class ReactionSummary: UIReactionControl {
   /**
    Convenient method to set a default localized text in order to display the given total number of people including you.
    
-   For example, calling this methods with `withTotalNumberOfPeople` to 3 and `includingYou` to true will set the followwing text: "You and 2 others".
+   For example:
+   ```
+   let summary = ReactionSummary()
    
+   summary.setDefaultText(withTotalNumberOfPeople: 3, includingYou: false)
+   
+   print(summary.text) // 3
+   
+   summary.setDefaultText(withTotalNumberOfPeople: 3, includingYou: true)
+   
+   print(summary.text) // You and 2 others
+   ```
+
    - Parameter peopleNumber: The total number of people.
    - Parameter includingYou: A flag to know whether you are included in the total number of people.
    */
-  public func setDefaultText(withTotalNumberOfPeople peopleNumber: UInt, includingYou: Bool = false) {
+  public func setDefaultText(withTotalNumberOfPeople peopleNumber: Int, includingYou: Bool = false) {
     let localizedFormat: String
     let total: Int
 
-    if includingYou {
+    if includingYou && peopleNumber > 0 {
       localizedFormat = "summary.you".localized(from: "ReactionSummaryLocalizable")
-      total           = Int(peopleNumber) - (peopleNumber > 2 ? 1 : 0)
+      total           = Int(peopleNumber - 1)
     }
     else {
       localizedFormat = "summary.other".localized(from: "ReactionSummaryLocalizable")

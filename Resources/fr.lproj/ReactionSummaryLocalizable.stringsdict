@@ -53,10 +53,8 @@
         <key>NSStringFormatValueTypeKey</key>
         <string>d</string>
         <key>zero</key>
-        <string>Aucune réaction</string>
-        <key>one</key>
         <string>Vous</string>
-        <key>two</key>
+        <key>one</key>
         <string>1 autre personne et vous</string>
         <key>other</key>
         <string>%d autres personnes et vous</string>
