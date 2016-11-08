@@ -31,6 +31,12 @@
 		CE225E511DB1611700C21D8D /* CAReactionSummaryLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE225E501DB1611700C21D8D /* CAReactionSummaryLayer.swift */; };
 		CE225E521DB1611700C21D8D /* CAReactionSummaryLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE225E501DB1611700C21D8D /* CAReactionSummaryLayer.swift */; };
 		CE225E531DB1611700C21D8D /* CAReactionSummaryLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE225E501DB1611700C21D8D /* CAReactionSummaryLayer.swift */; };
+		CE6C88121DD1DD6F00ED6864 /* ReactionSummaryLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6C88161DD1DD6F00ED6864 /* ReactionSummaryLocalizable.strings */; };
+		CE6C88131DD1DD6F00ED6864 /* ReactionSummaryLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6C88161DD1DD6F00ED6864 /* ReactionSummaryLocalizable.strings */; };
+		CE6C88141DD1DD6F00ED6864 /* ReactionSummaryLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6C88161DD1DD6F00ED6864 /* ReactionSummaryLocalizable.strings */; };
+		CE6C88181DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CE6C881C1DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict */; };
+		CE6C88191DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CE6C881C1DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict */; };
+		CE6C881A1DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CE6C881C1DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict */; };
 		CE83F88E1DA8F033000943AB /* Reactions.h in Headers */ = {isa = PBXBuildFile; fileRef = CE83F88C1DA8F033000943AB /* Reactions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE83F8911DA8F033000943AB /* Reactions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE83F88A1DA8F033000943AB /* Reactions.framework */; };
 		CE83F8921DA8F033000943AB /* Reactions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE83F88A1DA8F033000943AB /* Reactions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -124,6 +130,10 @@
 		CE0386091DAAA58D00D7F482 /* ReactionSelectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionSelectorTests.swift; sourceTree = "<group>"; };
 		CE03860B1DAAA63F00D7F482 /* ReactionSelectorConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionSelectorConfigTests.swift; sourceTree = "<group>"; };
 		CE225E501DB1611700C21D8D /* CAReactionSummaryLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAReactionSummaryLayer.swift; sourceTree = "<group>"; };
+		CE6C88151DD1DD6F00ED6864 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ReactionSummaryLocalizable.strings; sourceTree = "<group>"; };
+		CE6C88171DD1DD7100ED6864 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ReactionSummaryLocalizable.strings; sourceTree = "<group>"; };
+		CE6C881B1DD1DD7500ED6864 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/ReactionSummaryLocalizable.stringsdict; sourceTree = "<group>"; };
+		CE6C881D1DD1DD7600ED6864 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/ReactionSummaryLocalizable.stringsdict; sourceTree = "<group>"; };
 		CE83F88A1DA8F033000943AB /* Reactions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE83F88C1DA8F033000943AB /* Reactions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reactions.h; sourceTree = "<group>"; };
 		CE83F88D1DA8F033000943AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -298,6 +308,8 @@
 				CED9D9521DA82AA100A70C2D /* Facebook.xcassets */,
 				CED9D95C1DA835DB00A70C2D /* FeedbackLocalizable.strings */,
 				CED9D95F1DA835DF00A70C2D /* FacebookReactionLocalizable.strings */,
+				CE6C88161DD1DD6F00ED6864 /* ReactionSummaryLocalizable.strings */,
+				CE6C881C1DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -428,6 +440,8 @@
 				CE83F8981DA8F050000943AB /* FacebookReactionLocalizable.strings in Resources */,
 				CE83F8971DA8F04D000943AB /* FeedbackLocalizable.strings in Resources */,
 				CE83F8991DA8F054000943AB /* Facebook.xcassets in Resources */,
+				CE6C88191DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict in Resources */,
+				CE6C88131DD1DD6F00ED6864 /* ReactionSummaryLocalizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,8 +449,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6C881A1DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict in Resources */,
 				CE83F8CE1DA95FC6000943AB /* FacebookReactionLocalizable.strings in Resources */,
 				CE83F8CD1DA95FC6000943AB /* FeedbackLocalizable.strings in Resources */,
+				CE6C88141DD1DD6F00ED6864 /* ReactionSummaryLocalizable.strings in Resources */,
 				CE0385F11DAA560F00D7F482 /* UIReactionControlTest.xib in Resources */,
 				CE83F8CF1DA95FC8000943AB /* Facebook.xcassets in Resources */,
 			);
@@ -451,6 +467,8 @@
 				CED9D95D1DA835DF00A70C2D /* FacebookReactionLocalizable.strings in Resources */,
 				CED4FCE71D9FD95D00F54838 /* Main.storyboard in Resources */,
 				CED9D95A1DA835DB00A70C2D /* FeedbackLocalizable.strings in Resources */,
+				CE6C88121DD1DD6F00ED6864 /* ReactionSummaryLocalizable.strings in Resources */,
+				CE6C88181DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict in Resources */,
 				CED9D9531DA82AA100A70C2D /* Facebook.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,6 +574,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		CE6C88161DD1DD6F00ED6864 /* ReactionSummaryLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE6C88151DD1DD6F00ED6864 /* Base */,
+				CE6C88171DD1DD7100ED6864 /* fr */,
+			);
+			name = ReactionSummaryLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		CE6C881C1DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE6C881B1DD1DD7500ED6864 /* Base */,
+				CE6C881D1DD1DD7600ED6864 /* fr */,
+			);
+			name = ReactionSummaryLocalizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		CED4FCE51D9FD95D00F54838 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
