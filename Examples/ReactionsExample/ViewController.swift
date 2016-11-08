@@ -37,7 +37,7 @@ class ViewController: UIViewController, ReactionFeedbackDelegate {
   @IBOutlet weak var reactionSummary: ReactionSummary! {
     didSet {
       reactionSummary.reactions = Reaction.facebook.all
-      reactionSummary.text      = "You, Chris Lattner, and 16 others"
+      reactionSummary.setDefaultText(withTotalNumberOfPeople: 4, includingYou: true)
       reactionSummary.config    = ReactionSummaryConfig {
         $0.spacing      = 8
         $0.iconMarging  = 2

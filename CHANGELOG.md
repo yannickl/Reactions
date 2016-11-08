@@ -1,6 +1,7 @@
 # Change log
 
-## Version 1.1.0
+## [Version 1.1.0](https://github.com/yannickl/Reactions/releases/tag/1.1.0)
+*Released on 2015-11-08.*
 
 - Adding the `setDefaultText` method to the `ReactionSummary` with default localized texts
 
