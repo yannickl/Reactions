@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-    <a href="#requirements">Requirements</a> • <a href="#usage">Usage</a> • <a href="#installation">Installation</a> • <a href="#contact">Contact</a> • <a href="#license-mit">License</a>
+    <a href="#requirements">Requirements</a> • <a href="#usage">Usage</a> • <a href="#installation">Installation</a> • <a href="#contribution">Contribution</a> • <a href="#contact">Contact</a> • <a href="#license-mit">License</a>
 </p>
 
 ## Requirements
@@ -221,6 +221,10 @@ Note that the [Swift Package Manager](https://swift.org/package-manager) is stil
 #### Manually
 
 [Download](https://github.com/YannickL/Reactions/archive/master.zip) the project and copy the `Sources` and `Resources` folders into your project to use it in.
+
+## Contribution
+
+Contributions are welcomed and encouraged *♡*.
 
 ## Contact
 
