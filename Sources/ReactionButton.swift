@@ -141,7 +141,7 @@ public final class ReactionButton: UIReactionControl {
 
   // MARK: - Responding to Gesture Events
 
-  func tapAction(_ gestureRecognizer: UITapGestureRecognizer) {
+  @objc func tapAction(_ gestureRecognizer: UITapGestureRecognizer) {
     isSelected = !isSelected
 
     if isSelected {
@@ -160,7 +160,7 @@ public final class ReactionButton: UIReactionControl {
 
   private var isLongPressMoved = false
 
-  func longPressAction(_ gestureRecognizer: UILongPressGestureRecognizer) {
+  @objc func longPressAction(_ gestureRecognizer: UILongPressGestureRecognizer) {
     guard let selector = reactionSelector, selector.reactions.count > 1 else { return }
 
     if gestureRecognizer.state == .began {
@@ -188,7 +188,7 @@ public final class ReactionButton: UIReactionControl {
 
   // MARK: - Responding to Select Events
 
-  func reactionSelectorTouchedUpInsideAction(_ sender: ReactionSelector) {
+  @objc func reactionSelectorTouchedUpInsideAction(_ sender: ReactionSelector) {
     guard let selectedReaction = sender.selectedReaction else { return }
 
     let isReactionChanged = reaction != selectedReaction || !isSelected
@@ -203,7 +203,7 @@ public final class ReactionButton: UIReactionControl {
     dismissReactionSelector()
   }
 
-  func reactionSelectorTouchedUpOutsideAction(_ sender: ReactionSelector) {
+  @objc func reactionSelectorTouchedUpOutsideAction(_ sender: ReactionSelector) {
     dismissReactionSelector()
   }
 
@@ -221,7 +221,7 @@ public final class ReactionButton: UIReactionControl {
   /**
    Dismisses the attached reaction selector that was presented by the button.
    */
-  public func dismissReactionSelector() {
+  @objc public func dismissReactionSelector() {
     reactionSelector?.feedback = nil
 
     animateOverlay(alpha: 0, center: CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY))

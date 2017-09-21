@@ -186,7 +186,7 @@ public final class ReactionSelector: UIReactionControl {
 
   // MARK: - Responding to Gesture Events
 
-  func longPressAction(_ gestureRecognizer: UIGestureRecognizer) {
+  @objc func longPressAction(_ gestureRecognizer: UIGestureRecognizer) {
     let location    = gestureRecognizer.location(in: self)
     let touchIndex  = optionIndexFromPoint(location)
     let needsUpdate = touchIndex != stateHighlightedReactionIndex

@@ -154,8 +154,8 @@ final class CAReactionSummaryLayer: CALayer {
 
   private func sizeForText(_ text: String) -> CGSize {
     let attributedText = NSAttributedString(string: text, attributes: [
-      NSFontAttributeName: config.font,
-      NSForegroundColorAttributeName: config.textColor
+      NSAttributedStringKey.font: config.font,
+      NSAttributedStringKey.foregroundColor: config.textColor
       ])
 
     return attributedText.size()

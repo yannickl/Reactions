@@ -170,7 +170,7 @@ public final class ReactionSummary: UIReactionControl {
 
   // MARK: - Responding to Gesture Events
 
-  func tapAction(_ gestureRecognizer: UITapGestureRecognizer) {
+  @objc func tapAction(_ gestureRecognizer: UITapGestureRecognizer) {
     sendActions(for: .touchUpInside)
   }
 }
