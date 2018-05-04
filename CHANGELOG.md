@@ -1,5 +1,10 @@
 # Change log
 
+## [Version 2.1.0](https://github.com/yannickl/Reactions/releases/tag/2.1.0)
+*Released on 2018-05-04.*
+
+- Adding the `sizeToFit` property to the `ReactionSummary`
+
 ## [Version 2.0.0](https://github.com/yannickl/Reactions/releases/tag/2.0.0)
 *Released on 2017-09-21.*
 

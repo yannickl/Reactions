@@ -63,6 +63,9 @@ public final class ReactionSummary: UIReactionControl {
     }
   }
 
+  /** Size that just encloses its subviews. */
+  public var sizeToFit: CGSize = .zero
+
   // MARK: - Localizing Default Summary Text
 
   /**
@@ -166,6 +169,7 @@ public final class ReactionSummary: UIReactionControl {
 
     textLabel.frame    = CGRect(x: textLabelX, y: 0, width: textLabelWidth, height: bounds.height)
     summaryLayer.frame = CGRect(x: summaryLayerX, y: 0, width: summaryLayerSize.width, height: bounds.height)
+    sizeToFit          = textLabel.frame.union(summaryLayer.frame).size
   }
 
   // MARK: - Responding to Gesture Events
