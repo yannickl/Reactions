@@ -184,7 +184,7 @@ class ReactionButtonTests: XCTestCase {
         return currentState
       }
 
-      private override func location(in view: UIView?) -> CGPoint {
+      override func location(in view: UIView?) -> CGPoint {
         return CGPoint(x: 10, y: 10)
       }
     }
