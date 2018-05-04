@@ -64,7 +64,7 @@ public final class ReactionSummary: UIReactionControl {
   }
 
   /** Size that just encloses its subviews. */
-  public var sizeToFit: CGSize = .zero
+  public private(set) var sizeToFit: CGSize = .zero
 
   // MARK: - Localizing Default Summary Text
 
