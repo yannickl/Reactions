@@ -37,6 +37,7 @@
 		CE6C88181DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CE6C881C1DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict */; };
 		CE6C88191DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CE6C881C1DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict */; };
 		CE6C881A1DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CE6C881C1DD1DD7500ED6864 /* ReactionSummaryLocalizable.stringsdict */; };
+		CE712DB4212B261400649B5A /* ReactionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE712DB3212B261400649B5A /* ReactionCellView.swift */; };
 		CE83F88E1DA8F033000943AB /* Reactions.h in Headers */ = {isa = PBXBuildFile; fileRef = CE83F88C1DA8F033000943AB /* Reactions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE83F8911DA8F033000943AB /* Reactions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE83F88A1DA8F033000943AB /* Reactions.framework */; };
 		CE83F8921DA8F033000943AB /* Reactions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE83F88A1DA8F033000943AB /* Reactions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -134,6 +135,7 @@
 		CE6C88171DD1DD7100ED6864 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ReactionSummaryLocalizable.strings; sourceTree = "<group>"; };
 		CE6C881B1DD1DD7500ED6864 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/ReactionSummaryLocalizable.stringsdict; sourceTree = "<group>"; };
 		CE6C881D1DD1DD7600ED6864 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/ReactionSummaryLocalizable.stringsdict; sourceTree = "<group>"; };
+		CE712DB3212B261400649B5A /* ReactionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionCellView.swift; sourceTree = "<group>"; };
 		CE83F88A1DA8F033000943AB /* Reactions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE83F88C1DA8F033000943AB /* Reactions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reactions.h; sourceTree = "<group>"; };
 		CE83F88D1DA8F033000943AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			children = (
 				CED4FCE11D9FD95D00F54838 /* AppDelegate.swift */,
 				CED4FCE31D9FD95D00F54838 /* ViewController.swift */,
+				CE712DB3212B261400649B5A /* ReactionCellView.swift */,
 				CED4FCE51D9FD95D00F54838 /* Main.storyboard */,
 				CED4FCE81D9FD95D00F54838 /* Assets.xcassets */,
 				CED4FCEA1D9FD95D00F54838 /* LaunchScreen.storyboard */,
@@ -555,6 +558,7 @@
 				CE225E511DB1611700C21D8D /* CAReactionSummaryLayer.swift in Sources */,
 				CED9D93C1DA64FCD00A70C2D /* Components.swift in Sources */,
 				CED4FCF71DA014B100F54838 /* Reaction.swift in Sources */,
+				CE712DB4212B261400649B5A /* ReactionCellView.swift in Sources */,
 				CED9D94C1DA7D36700A70C2D /* ReactionSummaryConfig.swift in Sources */,
 				CED4FCFB1DA10E4300F54838 /* ReactionSelector.swift in Sources */,
 			);
