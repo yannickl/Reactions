@@ -141,10 +141,13 @@ class ReactionButtonTests: XCTestCase {
 
   func testLongPressButtonWithSelector() {
     class PressBeganGesture: UILongPressGestureRecognizer {
-      var currentState: UIGestureRecognizerState = .began
+      var currentState: UIGestureRecognizer.State = .began
 
-      override var state: UIGestureRecognizerState {
-        return currentState
+      override var state: UIGestureRecognizer.State {
+        get {
+          return currentState
+        }
+        set {}
       }
     }
 
@@ -178,10 +181,13 @@ class ReactionButtonTests: XCTestCase {
 
   func testLongPressReactionSelector() {
     class PressBeganGesture: UILongPressGestureRecognizer {
-      var currentState: UIGestureRecognizerState = .began
+      var currentState: UIGestureRecognizer.State = .began
 
-      override var state: UIGestureRecognizerState {
-        return currentState
+      override var state: UIGestureRecognizer.State {
+        get {
+          return currentState
+        }
+        set {}
       }
 
       override func location(in view: UIView?) -> CGPoint {

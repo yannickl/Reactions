@@ -1,7 +1,7 @@
 language: objective-c
-osx_image: xcode9
+osx_image: xcode10
 script:
   - cd Examples
   - xcodebuild -version
-  - xcodebuild -project ReactionsExample.xcodeproj -scheme ReactionsTests -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6" -configuration Release ONLY_ACTIVE_ARCH=YES -enableCodeCoverage YES test
+  - xcodebuild -project ReactionsExample.xcodeproj -scheme ReactionsTests -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 8" -configuration Release ONLY_ACTIVE_ARCH=YES -enableCodeCoverage YES test
   - bash <(curl -s https://codecov.io/bash) -cF ios
