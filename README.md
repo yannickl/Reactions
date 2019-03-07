@@ -100,7 +100,7 @@ button.reactionSelector = ReactionSelector()
 You can configure the component using a `ReactionButtonConfig` object:
 
 ```swift
-button.config           = ReactionButtonConfig() {
+button.config         = ReactionButtonConfig() {
   $0.iconMarging      = 8
   $0.spacing          = 4
   $0.font             = UIFont(name: "HelveticaNeue", size: 14)
