@@ -90,7 +90,7 @@ public final class ReactionSelector: UIReactionControl {
     get { return stateSelectedReaction }
     set {
       if let reaction = newValue, config.stickyReaction {
-        stateHighlightedReactionIndex = reactions.index(of: reaction)
+        stateHighlightedReactionIndex = reactions.firstIndex(of: reaction)
       }
       else {
         stateHighlightedReactionIndex = nil
