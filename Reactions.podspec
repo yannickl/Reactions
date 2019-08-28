@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name             = 'Reactions'
-  s.version          = '3.0.0'
+  s.version          = '3.0.1'
   s.license          = 'MIT'
   s.summary          = 'Fully customizable Facebook reactions control'
-  s.homepage         = 'https://github.com/yannickl/Reactions'
+  s.homepage         = 'https://github.com/starfall-9000/gp-reactions-swift'
   s.authors          = { 'Yannick Loriot' => 'contact@yannickloriot.com' }
   s.social_media_url = 'https://twitter.com/yannickloriot'
-  s.source           = { :git => 'https://github.com/yannickl/Reactions.git', :tag => s.version }
+  s.source           = { :git => 'https://github.com/starfall-9000/gp-reactions-swift' }
 
   s.ios.deployment_target = '8.0'
   s.ios.framework         = 'UIKit'
