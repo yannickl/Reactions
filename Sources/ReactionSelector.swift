@@ -124,7 +124,7 @@ public final class ReactionSelector: UIReactionControl {
     }
 
     reactionIconLayers.forEach { layer.addSublayer($0) }
-    reactionLabels.forEach { addSubview($0) }
+    // reactionLabels.forEach { addSubview($0) }
   }
 
   // MARK: - Updating Object State
