@@ -31,7 +31,21 @@ struct Components {
   struct reactionSelect {
     static func reactionIcon(option: Reaction) -> CALayer {
       return CALayer().build {
-        $0.contents = option.icon.cgImage
+        if option.icon.images != nil {
+            let imageArray = option.icon.images!
+            let animation = CAKeyframeAnimation(keyPath: "contents")
+            animation.calculationMode = CAAnimationCalculationMode.discrete
+            animation.duration = 1.0
+            animation.repeatCount = .greatestFiniteMagnitude
+            animation.autoreverses = false
+            animation.values = imageArray.map {$0.cgImage!}
+            animation.isRemovedOnCompletion = false
+            animation.fillMode = CAMediaTimingFillMode.forwards
+            animation.beginTime = 0.0
+            $0.add(animation, forKey: "contents")
+        } else {
+            $0.contents = option.icon.cgImage
+        }
       }
     }
 
