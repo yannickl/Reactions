@@ -186,7 +186,7 @@ public final class ReactionSelector: UIReactionControl {
 
   // MARK: - Responding to Gesture Events
 
-  @objc func longPressAction(_ gestureRecognizer: UIGestureRecognizer) {
+  @objc func longPressAction(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
     let location    = gestureRecognizer.location(in: self)
     let touchIndex  = optionIndexFromPoint(location)
     let needsUpdate = touchIndex != stateHighlightedReactionIndex
@@ -226,6 +226,8 @@ public final class ReactionSelector: UIReactionControl {
         sendActions(for: isPointInsideExtendedBounds(location) ? .touchUpInside : .touchUpOutside)
       }
     }
+    
+    return isPointInsideExtendedBounds(location)
   }
 
   // MARK: - Locating Points

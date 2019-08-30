@@ -172,13 +172,16 @@ public final class ReactionButton: UIReactionControl {
     if gestureRecognizer.state == .changed {
       isLongPressMoved = true
 
-      selector.longPressAction(gestureRecognizer)
+      _ = selector.longPressAction(gestureRecognizer)
     }
     else if gestureRecognizer.state == .ended {
       if isLongPressMoved {
-        selector.longPressAction(gestureRecognizer)
-
-        dismissReactionSelector()
+        let isPointInside = selector.longPressAction(gestureRecognizer)
+        if (isPointInside) {
+            dismissReactionSelector()
+        } else {
+            displayReactionSelector(feedback: .tapToSelectAReaction)
+        }
       }
       else {
         selector.feedback = .tapToSelectAReaction
