@@ -264,7 +264,7 @@ public final class ReactionButton: UIReactionControl {
   }
 
   private func animateOverlay(alpha: CGFloat, center: CGPoint) {
-    UIView.animate(withDuration: 0.1) { [weak self] in
+    UIView.animate(withDuration: 0.01) { [weak self] in
       guard let overlay = self?.overlay else { return }
       
       overlay.alpha  = alpha
