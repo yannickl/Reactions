@@ -35,7 +35,7 @@ struct Components {
             let imageArray = option.icon.images!
             let animation = CAKeyframeAnimation(keyPath: "contents")
             animation.calculationMode = CAAnimationCalculationMode.discrete
-            animation.duration = 1.0
+            animation.duration = 3.0
             animation.repeatCount = .greatestFiniteMagnitude
             animation.autoreverses = false
             animation.values = imageArray.map {$0.cgImage!}
