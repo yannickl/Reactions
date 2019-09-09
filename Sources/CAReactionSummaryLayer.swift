@@ -53,14 +53,15 @@ final class CAReactionSummaryLayer: CALayer {
     }
   }
 
+  // using `summaryIcon` for iconLayer, if it nil, using `alternativeIcon` instead, then using `icon` instead
   private var reactionPairs: [(Reaction, Int)] = [] {
     didSet {
       reactionsLayers = reactionPairs.map({
         let iconLayer           = CALayer()
-        iconLayer.contents      = $0.0.icon.cgImage
-        iconLayer.masksToBounds = true
+        iconLayer.contents      = $0.0.summaryIcon?.cgImage ?? $0.0.alternativeIcon?.cgImage ?? $0.0.icon.cgImage
+        iconLayer.masksToBounds = false
         iconLayer.borderColor   = UIColor.white.cgColor
-        iconLayer.borderWidth   = 2
+        iconLayer.borderWidth   = 0
         iconLayer.contentsScale = UIScreen.main.scale
 
         let textLayer           = CATextLayer()
