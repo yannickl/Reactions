@@ -52,6 +52,13 @@ public struct Reaction {
   public let alternativeIcon: UIImage?
 
   /**
+   The reaction's summary icon image.
+     
+   The summary icon is only used by the `ReactionSummary`. It tries to display the alternative summary as icon and if it fails it uses the `alternativeIcon` then `icon`.
+   */
+  public let summaryIcon: UIImage?
+
+  /**
    Creates and returns a new reaction using the specified properties.
 
    - Parameter id: The reaction's identifier.
@@ -59,14 +66,16 @@ public struct Reaction {
    - Parameter color: The reaction's color.
    - Parameter icon: The reaction's icon image.
    - Parameter alternativeIcon: The reaction's alternative icon image.
+   - Parameter summaryIcon: The reaction's summary icon image.
    - Returns: Newly initialized reaction with the specified properties.
    */
-  public init(id: String, title: String, color: UIColor, icon: UIImage, alternativeIcon: UIImage? = nil) {
+  public init(id: String, title: String, color: UIColor, icon: UIImage, alternativeIcon: UIImage? = nil, summaryIcon: UIImage? = nil) {
     self.id              = id
     self.title           = title
     self.color           = color
     self.icon            = icon
     self.alternativeIcon = alternativeIcon
+    self.summaryIcon     = summaryIcon
   }
 }
 
