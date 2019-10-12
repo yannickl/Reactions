@@ -25,6 +25,7 @@
  */
 
 import XCTest
+@testable import Reactions
 
 class UIReactionControlTests: XCTestCase {
   func testUIReactionControlInit() {

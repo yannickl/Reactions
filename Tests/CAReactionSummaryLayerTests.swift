@@ -25,6 +25,7 @@
  */
 
 import XCTest
+@testable import Reactions
 
 class CAReactionSummaryLayerTests: XCTestCase {
   func testSetConfig() {
