@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Reactions'
-  s.version          = '3.0.5'
+  s.version          = '3.0.6'
   s.license          = 'MIT'
   s.summary          = 'Fully customizable Facebook reactions control'
   s.homepage         = 'https://github.com/starfall-9000/gp-reactions-swift'
