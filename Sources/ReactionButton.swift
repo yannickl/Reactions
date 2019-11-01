@@ -43,6 +43,7 @@ public final class ReactionButton: UIReactionControl {
 
     $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ReactionButton.dismissReactionSelector)))
   }
+  public var didTapButton: ((_ sender: ReactionButton) -> Void)? = nil
 
   /**
    A Boolean value indicating whether the reaction button is in the selected state.
@@ -156,6 +157,7 @@ public final class ReactionButton: UIReactionControl {
     }
 
     sendActions(for: .touchUpInside)
+    didTapButton?(self)
   }
 
   private var isLongPressMoved = false
