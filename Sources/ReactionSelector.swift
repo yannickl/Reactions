@@ -122,6 +122,7 @@ public final class ReactionSelector: UIReactionControl {
 
       layer.addSublayer(backgroundLayer)
     }
+    backgroundLayer.fillColor = config.backgroundColor?.cgColor
 
     reactionIconLayers.forEach { layer.addSublayer($0) }
     // reactionLabels.forEach { addSubview($0) }

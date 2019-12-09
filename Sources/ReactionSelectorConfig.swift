@@ -45,6 +45,9 @@ public final class ReactionSelectorConfig: Configurable {
   /// Boolean value to know whether the reactions needs to be sticked when they are selected.
   public var stickyReaction: Bool = false
 
+  /// The icon size when the selector is inactive.
+  public var backgroundColor: UIColor? = UIColor.white
+
   // MARK: - Initializing a Reaction Selector
 
   // Initialize a configurable with default values.
