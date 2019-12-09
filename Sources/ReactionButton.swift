@@ -109,24 +109,28 @@ public final class ReactionButton: UIReactionControl {
     titleLabel.font     = config.font
     titleLabel.text     = reaction.title
 
-    let iconSize   = min(bounds.width - config.spacing, bounds.height) - config.iconMarging * 2
-    let titleSize  = titleLabel.sizeThatFits(CGSize(width: bounds.width - iconSize, height: bounds.height))
+    let configSpacing = (config.hideIcon || config.hideTitle) ? 0 : config.spacing
+    let iconSize   = config.hideIcon ? 0
+                        : min(bounds.width - configSpacing, bounds.height) - config.iconMarging * 2
+    let titleSize  = config.hideTitle ? CGSize.zero
+                        : titleLabel.sizeThatFits(CGSize(width: bounds.width - iconSize,
+                                                         height: bounds.height))
     var iconFrame  = CGRect(x: 0, y: (bounds.height - iconSize) / 2, width: iconSize, height: iconSize)
-    var titleFrame = CGRect(x: iconSize + config.spacing, y: 0, width: titleSize.width, height: bounds.height)
+    var titleFrame = CGRect(x: iconSize + configSpacing, y: 0, width: titleSize.width, height: bounds.height)
 
     if config.alignment == .right {
       iconFrame.origin.x  = bounds.width - iconSize
-      titleFrame.origin.x = bounds.width - iconSize - config.spacing - titleSize.width
+      titleFrame.origin.x = bounds.width - iconSize - configSpacing - titleSize.width
     }
     else if config.alignment == .centerLeft || config.alignment == .centerRight {
-      let emptyWidth = bounds.width - iconFrame.width - titleLabel.bounds.width - config.spacing
+      let emptyWidth = bounds.width - iconFrame.width - titleLabel.bounds.width - configSpacing
 
       if config.alignment == .centerLeft {
         iconFrame.origin.x  = emptyWidth / 2
-        titleFrame.origin.x = emptyWidth / 2 + iconSize + config.spacing
+        titleFrame.origin.x = emptyWidth / 2 + iconSize + configSpacing
       }
       else {
-        iconFrame.origin.x  = emptyWidth / 2 + titleSize.width + config.spacing
+        iconFrame.origin.x  = emptyWidth / 2 + titleSize.width + configSpacing
         titleFrame.origin.x = emptyWidth / 2
       }
     }
