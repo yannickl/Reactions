@@ -54,6 +54,9 @@ public final class ReactionButtonConfig: Configurable {
   /// Boolean value to show or hide reaction button title.
   public var hideTitle: Bool = false
     
+  /// The margin between selector and screen.
+  public var safeSelectorMargin: CGFloat = 8
+    
   /**
    The technique to use for aligning the icon and the text.
 

@@ -257,16 +257,19 @@ public final class ReactionButton: UIReactionControl {
       selector.center = centerPoint
     }
 
-    if selector.frame.origin.x - config.spacing < 0 {
-      selector.center = CGPoint(x: selector.center.x - selector.frame.origin.x + config.spacing, y: centerPoint.y)
+    if selector.frame.origin.x - config.safeSelectorMargin < 0 {
+      selector.center = CGPoint(x: selector.center.x - selector.frame.origin.x + config.safeSelectorMargin, y: centerPoint.y)
     }
-    else if selector.frame.origin.x + selector.frame.width + config.spacing > overlay.bounds.width {
-      selector.center = CGPoint(x: selector.center.x - (selector.frame.origin.x + selector.frame.width + config.spacing - overlay.bounds.width), y: centerPoint.y)
+    else if selector.frame.origin.x + selector.frame.width + config.safeSelectorMargin > overlay.bounds.width {
+      selector.center = CGPoint(x: selector.center.x - (selector.frame.origin.x + selector.frame.width + config.safeSelectorMargin - overlay.bounds.width), y: centerPoint.y)
     }
 
     selector.feedback = feedback
-
-    animateOverlay(alpha: 1, center: CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY - selector.bounds.height))
+    if selector.frame.origin.y - config.safeSelectorMargin < 0 {
+        animateOverlay(alpha: 1, center: CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY + selector.bounds.height + bounds.height))
+    } else {
+        animateOverlay(alpha: 1, center: CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY - selector.bounds.height))
+    }
   }
 
   private func animateOverlay(alpha: CGFloat, center: CGPoint) {
