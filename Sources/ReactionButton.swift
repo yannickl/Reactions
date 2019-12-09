@@ -43,7 +43,12 @@ public final class ReactionButton: UIReactionControl {
 
     $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ReactionButton.dismissReactionSelector)))
   }
+  // public variable
+  public var isInitObserve: Bool = true
+  public var likeReaction: Reaction = Reaction.facebook.like
+  public var unlikeReaction: Reaction = Reaction.facebook.like
   public var didTapButton: ((_ sender: ReactionButton) -> Void)? = nil
+  public var didUpdateReaction: ((_ reaction: Reaction?) -> Void)? = nil
 
   /**
    A Boolean value indicating whether the reaction button is in the selected state.
@@ -161,6 +166,8 @@ public final class ReactionButton: UIReactionControl {
     }
 
     sendActions(for: .touchUpInside)
+    reaction = isSelected ? likeReaction : unlikeReaction
+    didUpdateReaction?(isSelected ? likeReaction : nil)
     didTapButton?(self)
   }
 
