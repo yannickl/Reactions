@@ -34,6 +34,7 @@ import UIKit
  You can configure/skin the button using a `ReactionButtonConfig`.
  */
 public final class ReactionButton: UIReactionControl {
+    private var isSelectingReaction = false
   private let iconImageView: UIImageView = Components.reactionButton.facebookLikeIcon()
   private let titleLabel: UILabel        = Components.reactionButton.facebookLikeLabel()
   private lazy var overlay: UIView       = UIView().build {
@@ -49,6 +50,8 @@ public final class ReactionButton: UIReactionControl {
   public var unlikeReaction: Reaction = Reaction.facebook.like
   public var didTapButton: ((_ sender: ReactionButton) -> Void)? = nil
   public var didUpdateReaction: ((_ reaction: Reaction?) -> Void)? = nil
+  public var willShowSelector: (() -> Void)? = nil
+  public var didHideSelector: (() -> Void)? = nil
 
   /**
    A Boolean value indicating whether the reaction button is in the selected state.
@@ -104,7 +107,10 @@ public final class ReactionButton: UIReactionControl {
     reaction = reactionSelector?.reactions.first ?? Reaction.facebook.like
 
     reactionSelector?.addTarget(self, action: #selector(ReactionButton.reactionSelectorTouchedUpInsideAction), for: .touchUpInside)
-    reactionSelector?.addTarget(self, action: #selector(ReactionButton.reactionSelectorTouchedUpOutsideAction), for: .touchUpOutside)
+    /**
+        Remove Outside Dismiss
+     */
+//    reactionSelector?.addTarget(self, action: #selector(ReactionButton.reactionSelectorTouchedUpOutsideAction), for: .touchUpOutside)
   }
 
   // MARK: - Updating Object State
@@ -142,7 +148,6 @@ public final class ReactionButton: UIReactionControl {
 
     iconImageView.frame = iconFrame
     titleLabel.frame    = titleFrame
-
     UIView.transition(with: titleLabel, duration: 0.15, options: .transitionCrossDissolve, animations: { [unowned self] in
       self.iconImageView.tintColor = self.isSelected ? self.reaction.color : self.config.neutralTintColor
       self.titleLabel.textColor    = self.isSelected ? self.reaction.color : self.config.neutralTintColor
@@ -175,30 +180,27 @@ public final class ReactionButton: UIReactionControl {
 
   @objc func longPressAction(_ gestureRecognizer: UILongPressGestureRecognizer) {
     guard let selector = reactionSelector, selector.reactions.count > 1 else { return }
-
-    if gestureRecognizer.state == .began {
-      isLongPressMoved = false
-
-      displayReactionSelector(feedback: .slideFingerAcross)
-    }
-
-    if gestureRecognizer.state == .changed {
-      isLongPressMoved = true
-
-      _ = selector.longPressAction(gestureRecognizer)
-    }
-    else if gestureRecognizer.state == .ended {
-      if isLongPressMoved {
-        let isPointInside = selector.longPressAction(gestureRecognizer)
-        if (isPointInside) {
-            dismissReactionSelector()
-        } else {
-            displayReactionSelector(feedback: .tapToSelectAReaction)
+    switch gestureRecognizer.state {
+    case .began:
+        isLongPressMoved = false
+        displayReactionSelector(feedback: .slideFingerAcross)
+    case .changed:
+        isLongPressMoved = true
+        _ = selector.longPressAction(gestureRecognizer)
+    case .ended:
+        if isLongPressMoved {
+          let isPointInside = selector.longPressAction(gestureRecognizer)
+          if (isPointInside) {
+              dismissReactionSelector()
+          } else {
+            selector.feedback = .tapToSelectAReaction
+          }
         }
-      }
-      else {
-        selector.feedback = .tapToSelectAReaction
-      }
+        else {
+          selector.feedback = .tapToSelectAReaction
+        }
+    default:
+        break
     }
   }
 
@@ -238,14 +240,18 @@ public final class ReactionButton: UIReactionControl {
    Dismisses the attached reaction selector that was presented by the button.
    */
   @objc public func dismissReactionSelector() {
+    guard self.isSelectingReaction else {return}
+    self.isSelectingReaction = false
     reactionSelector?.feedback = nil
-
+    didHideSelector?()
     animateOverlay(alpha: 0, center: CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY))
   }
 
   private func displayReactionSelector(feedback: ReactionFeedback) {
     guard let selector = reactionSelector, let window = UIApplication.shared.keyWindow, selector.reactions.count > 1 else { return }
-
+    self.isSelectingReaction = true
+    self.willShowSelector?()
+    
     if overlay.superview == nil {
       UIApplication.shared.keyWindow?.addSubview(overlay)
     }

@@ -29,6 +29,13 @@ final class ReactionCellView: UITableViewCell {
       }
 
       facebookReactionButton.reactionSelector?.feedbackDelegate = self
+      facebookReactionButton.willShowSelector = {
+            print("HAHAHAA")
+        }
+        
+      facebookReactionButton.didHideSelector = {
+            print("HIDE ROOIF KIA")
+        }
     }
   }
   @IBOutlet weak var reactionSummary: ReactionSummary! {
