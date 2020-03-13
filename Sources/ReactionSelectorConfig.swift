@@ -44,6 +44,9 @@ public final class ReactionSelectorConfig: Configurable {
 
   /// Boolean value to know whether the reactions needs to be sticked when they are selected.
   public var stickyReaction: Bool = false
+    
+  /// The fill color of the reaction selector.
+  public var backgroundFillColor: CGColor = nil
 
   // MARK: - Initializing a Reaction Selector
 
