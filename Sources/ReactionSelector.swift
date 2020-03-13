@@ -147,6 +147,10 @@ public final class ReactionSelector: UIReactionControl {
 
     backgroundLayer.add(pathAnimation, forKey: "morhingPath")
 
+    if config.backgroundFillColor != nil {
+        backgroundLayer.fillColor = config.backgroundFillColor
+    }
+    
     for index in 0 ..< reactionIconLayers.count {
       updateReactionAtIndex(index, highlighted: stateHighlightedReactionIndex == index)
     }
