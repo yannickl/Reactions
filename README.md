@@ -24,7 +24,7 @@
 
 ## Requirements
 
-- iOS 8.0+
+- iOS 11.0+
 - Xcode 9.0+
 - Swift 4.2+
 
